@@ -30,6 +30,8 @@ const NavBar = (props) => {
           <Link to="/chat/" className="NavBar-link">
             Chat
           </Link>
+        </div>
+        <div className="u-inlineBlock NavBar-googleContainer">
           {props.userId ? (
             <button
               onClick={() => {
