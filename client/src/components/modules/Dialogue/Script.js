@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 /**
  * Represents a clickable choice that the player can interact with during an event.
  * @typedef DialogueOption

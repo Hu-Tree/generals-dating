@@ -2,22 +2,58 @@
   border: var(--pink) 2px solid;
   border-radius: var(--xs);
   margin-top: var(--m);
+  margin-bottom: var(--m);
+  width: 40%;
+  margin: auto;
 }
 
 .optionsBox-text {
   padding: var(--s) var(--m);
-  background: var(--lightpink);
-  border-radius: var(--l);
+  background: var(--lighterpink);
+  /* border-radius: var(--xs); */
+  overflow-y: auto;
+  height: 5vh;
 }
 
 .scriptBox-container {
-  border: var(--pink) 3px solid;
+  position: absolute;
+  top: 70vh;
+  right: 25%;
+  z-index: 0;
+  border: var(--pink) 4px solid;
   border-radius: var(--s);
   margin-top: var(--m);
+  width: 50%;
+  margin: auto;
 }
 
 .scriptBox-text {
   padding: var(--s) var(--m);
   background: var(--lightpink);
-  border-radius: var(--l);
+  border-radius: var(--xs);
+  height: 20vh;
+  overflow-y: auto;
+}
+
+.screenBackground {
+  z-index: -5;
+
+  width: 100vw;
+  height: 100vh;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  /* it makes the clue thing, takes smaller dimension to fill div */
+  background-size: cover;
+
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../../TestBackground.jpg");
 }

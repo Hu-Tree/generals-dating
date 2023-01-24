@@ -4,7 +4,7 @@ import { OptionsBox, DialogueBox } from "./DialogueBox.js";
 
 const DialogueScreen = (props) => {
   return (
-    <>
+    <div className="screenBackground">
       <DialogueBox
         Script={testInteraction}
         Trigger={() => {
@@ -23,7 +23,7 @@ const DialogueScreen = (props) => {
           console.log(x);
         }}
       />
-    </>
+    </div>
   );
   //return <span> {"PAIN AND SUFFERING "} </span>;
 };
