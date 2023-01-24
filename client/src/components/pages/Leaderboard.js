@@ -11,12 +11,14 @@ const Leaderboard = (props) => {
   ]);
 
   useEffect(() => {
-    get("/leaderboard-profiles", { m: "m" }).then((result) => {
+    get("/api/leaderboard-profiles", {
+      property: "cooking",
+    }).then((result) => {
       console.log(result);
       setBestList(result);
     });
   }, []);
-  
+
   return (
     <>
       <div className="leaderboardContainer">

@@ -41,14 +41,11 @@ router.get("/allSaves", (req, res) => {
 });
 
 router.get("/leaderboard-profiles", (req, res) => {
-  console.log("in");
-  GameData.find({}).then((gameDataList) => {
-    console.log(gameDataList);
+  GameData.find().then((gameDataList) => {
     gameDataList.sort((a, b) => {
-      return -a.cooking + b.cooking;
+      return b[req.query.property] - a[req.query.property];
     });
-    console.log(gameDataList);
-    const hi = gameDataList.slice(0, 1);
+    const hi = gameDataList.slice(0, 3);
     res.send(hi);
   });
 });
