@@ -20,6 +20,7 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
+const { ensureLoggedIn } = require("connect-ensure-login");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -30,6 +31,27 @@ router.get("/whoami", (req, res) => {
   }
 
   res.send(req.user);
+});
+
+router.post("/save", ensureLoggedIn, (req, res) => {
+  NewUser = new User({
+    name: req.name,
+    googleid: req.userId,
+    technical: req.body.technical,
+    presentation: req.body.presentation,
+    cooking: req.body.cooking,
+    networking: req.body.networking,
+    stat5: req.body.stat5,
+    energy: req.body.energy,
+    health: req.body.health,
+    currentTime: req.body.currentTime,
+    reputation1: req.body.reputation1,
+    reputation2: req.body.reputation2,
+    reputation3: req.body.reputation3,
+    reputation4: req.body.reputation4,
+  });
+
+  NewUser.save().then((story) => res.send(story));
 });
 
 router.post("/initsocket", (req, res) => {
