@@ -45,6 +45,9 @@ const NavBar = (props) => {
             <GoogleLogin onSuccess={props.handleLogin} onError={(err) => console.log(err)} />
           )}
         </div>
+        <div className="NavBar-linkContainer">
+          <button onClick={() => {}}>Save</button>
+        </div>
       </nav>
     </GoogleOAuthProvider>
   );

@@ -6,18 +6,25 @@ import NotFound from "./pages/NotFound.js";
 import GamePage from "./pages/GamePage.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
+import Leaderboard from "./pages/Leaderboard.js";
 
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import { Stats } from "webpack";
 
 /**
  * Define the "App" component
  */
 const App = () => {
   const [userId, setUserId] = useState(undefined);
+  const [stats, setStats] = useState();
+
+  const childToParent = (stats) => {
+    setData(stats);
+  };
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -47,7 +54,7 @@ const App = () => {
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
-        <GamePage path="/" />
+        <GamePage path="/" statpasser={childToParent} />
         <Profile path="/profile/:userid" />
         <Leaderboard path="/leaderboard" />
         <NotFound default />

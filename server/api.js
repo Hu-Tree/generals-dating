@@ -43,6 +43,29 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
+router.get("/scores", (req, res) => {});
+
+router.post("/save", auth.ensureLoggedIn, (req, res) => {
+  const newSave = new User({
+    name: req.name,
+    googleid: req.googleid,
+    technical: req.stats.technical,
+    presentation: req.stats.presentation,
+    cooking: req.stats.cooking,
+    networking: req.stats.networking,
+    stat5: req.stats.stat5,
+    energy: req.stats.energy,
+    health: req.stats.health,
+    currentTime: req.stats.currentTime,
+    reputation1: req.stats.reputation1,
+    reputation2: req.stats.reputation2,
+    reputation3: req.stats.reputation3,
+    reputation4: req.stats.reputation4,
+  });
+
+  newSave.save().then((save) => res.send(save));
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

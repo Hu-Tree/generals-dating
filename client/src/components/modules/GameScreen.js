@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../../utilities.css";
 import "./GameScreen.css";
@@ -7,6 +7,11 @@ import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
 import { testInteraction, multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
 
+/**
+ *
+ * @param {Function} statpasser Passes stats up the chain to be saved.
+ * @returns
+ */
 const GameScreen = (props) => {
   const [stats, setStats] = useState({
     technical: 0,
@@ -25,6 +30,11 @@ const GameScreen = (props) => {
   const [activeScreen, setActiveScreen] = useState("schedule");
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(34);
+
+  useEffect(() => {
+    props.statpasser(stats);
+  }, [stats]);
+
   const EVENTS = {
     sleep: {
       name: "sleep",
