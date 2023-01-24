@@ -19,7 +19,6 @@ import "./StatsScreen.css";
 // });
 
 const StatsScreen = (props) => {
-  console.log(props.stats);
   return (
     <>
       <div>

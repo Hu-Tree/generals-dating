@@ -21,15 +21,15 @@ const GameScreen = (props) => {
     reputation3: 0,
     reputation4: 0,
   });
-  const EVENTLIST = [
-    {
-      _id: "slp",
+  const EVENTS = {
+    sleep: {
       name: "sleep",
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
           prevStats.energy += 5;
           prevStats.health += 3;
+          prevStats.currentTime += 1;
           return prevStats;
         });
       },
@@ -41,8 +41,7 @@ const GameScreen = (props) => {
         cssClass: "sleep",
       },
     },
-    {
-      _id: "cook",
+    cook: {
       name: "cook",
       scriptName: "idfk",
       sideEffects: () => {
@@ -50,6 +49,7 @@ const GameScreen = (props) => {
           prevStats.cooking += 1;
           prevStats.energy -= 1;
           prevStats.health += 3;
+          prevStats.currentTime += 1;
           return prevStats;
         });
       },
@@ -61,12 +61,12 @@ const GameScreen = (props) => {
         cssClass: "cook",
       },
     },
-    {
-      _id: "date_e1",
+    date_e1: {
       name: "career fair",
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
+          prevStats.currentTime += 1;
           return prevStats;
         });
       },
@@ -78,12 +78,29 @@ const GameScreen = (props) => {
         cssClass: "important",
       },
     },
-  ];
+    empty: {
+      name: "empty",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setStats((prevStats) => {
+          prevStats.currentTime += 1;
+          return prevStats;
+        });
+      },
+      eventDisplay: {
+        availableTimes: "000000000000000000000000",
+        name: "This should not display",
+        description: "This should not display",
+        limit: 0,
+        cssClass: "empty",
+      },
+    },
+  };
 
   return (
     <>
       <DialogueScreen />
-      <ScheduleScreen />
+      <ScheduleScreen stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
     </>
   );
