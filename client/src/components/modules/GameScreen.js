@@ -7,6 +7,7 @@ import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
 import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
+<script src="https://apis.google.com/js/platform.js"></script>
 
 const GameScreen = (props) => {
   const RESETSTATS = {
@@ -132,26 +133,19 @@ const GameScreen = (props) => {
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
-      <button
-        className="saveButton"
-        onClick={() => {
-          //post save
-        }}
-      >
-        Save!
-      </button>
-
-      <button
-        className="saveButton"
-        onClick={() => {
-          post("/api/save", RESETSTATS).then(() => {
-            console.log("hi");
-          });
-          //post save but reset for testing purposes
-        }}
-      >
-        Reset!
-      </button>
+      if (gapi.auth2.isSignedIn.get()) {
+        <button
+          className="saveButton"
+          onClick={() => {
+            post("/api/save", RESETSTATS).then(() => {
+              console.log("hi");
+            });
+            //post save but reset for testing purposes
+          }}
+        >
+          Reset!
+        </button>
+      }
     </>
   );
 };
