@@ -54,12 +54,27 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
           </div>
           <div>
             <button
+              className="button"
               onClick={() => {
                 EVENTS[activeScheduleList[stats.currentTime]].sideEffects();
               }}
             >
               Play Next Event!
             </button>
+
+            <div className="optionsWrapper">
+              {Object.keys(EVENTS).map((eventID) => {
+                if (eventID === "empty") {
+                  return <></>;
+                }
+                return (
+                  <div className={`card optionCard ${EVENTS[eventID].eventDisplay.cssClass}`}>
+                    <h6>{EVENTS[eventID].eventDisplay.name}</h6>
+                    <p>{EVENTS[eventID].eventDisplay.description}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
