@@ -138,29 +138,35 @@ const GameScreen = (props) => {
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
-      <button
-        className="saveButton"
-        onClick={() => {
-          post("/api/save", stats).then(() => {
-            alert("Your data has been saved!");
-          });
-        }}
-      >
-        Save!
-      </button>
+      {props.userId ? (
+        <div>
+          <button
+            className="saveButton"
+            onClick={() => {
+              post("/api/save", stats).then(() => {
+                alert("Your data has been saved!");
+              });
+            }}
+          >
+            Save!
+          </button>
 
-      <button
-        className="saveButton"
-        onClick={() => {
-          post("/api/save", RESETSTATS).then(() => {
-            alert("Your data has been reset!");
-          });
-          //post save but reset for testing purposes
-          setStats(RESETSTATS);
-        }}
-      >
-        Reset!
-      </button>
+          <button
+            className="saveButton"
+            onClick={() => {
+              post("/api/save", RESETSTATS).then(() => {
+                alert("Your data has been reset!");
+              });
+              //post save but reset for testing purposes
+              setStats(RESETSTATS);
+            }}
+          >
+            Reset!
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
