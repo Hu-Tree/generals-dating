@@ -24,6 +24,7 @@ const GameScreen = (props) => {
   });
   const [activeScreen, setActiveScreen] = useState("schedule");
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
+  const [flag, setFlag] = useState(34);
   const EVENTS = {
     sleep: {
       name: "sleep",
@@ -31,6 +32,7 @@ const GameScreen = (props) => {
       sideEffects: () => {
         setActiveScreen("dialogue");
         setStats((prevStats) => {
+          setFlag(prevStats.currentTime);
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
@@ -54,6 +56,7 @@ const GameScreen = (props) => {
       sideEffects: () => {
         setActiveScreen("dialogue");
         setStats((prevStats) => {
+          setFlag(prevStats.currentTime);
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
@@ -118,6 +121,7 @@ const GameScreen = (props) => {
         cleanup={() => {
           setActiveScreen("schedule");
         }}
+        Flag={flag}
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />

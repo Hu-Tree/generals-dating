@@ -17,9 +17,6 @@ const DialogueScreen = (props) => {
   const [help, setHelp] = useState("");
   const [affectionChange, setAffectionChange] = useState(0);
   const [active, setActive] = useState(false);
-  useEffect(() => {
-    setNextText(0);
-  }, []);
 
   useEffect(() => {
     if (!active) {
