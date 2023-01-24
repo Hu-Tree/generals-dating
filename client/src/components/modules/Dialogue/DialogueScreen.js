@@ -10,6 +10,7 @@ import { DialogueOption, ScriptObject } from "./Script.js";
  * @param {int} industry determines which character to summon
  * @param {*} stats is all the stats
  * @param {Function} cleanup cleans up
+ * @param {int} Flag triggers reset to fix a bug (ty rey)
  */
 const DialogueScreen = (props) => {
   const [nextText, setNextText] = useState(0);
@@ -32,7 +33,7 @@ const DialogueScreen = (props) => {
     setAffectionChange(0);
     setHelp("");
     setNextText(0);
-  }, [props.Scene]);
+  }, [props.Scene, props.Flag]);
 
   useEffect(() => {
     setHelp(
