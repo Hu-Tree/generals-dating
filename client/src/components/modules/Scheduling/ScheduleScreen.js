@@ -52,7 +52,15 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
               );
             })}
           </div>
-          <div>lorem ipsum</div>
+          <div>
+            <button
+              onClick={() => {
+                EVENTS[activeScheduleList[stats.currentTime]].sideEffects();
+              }}
+            >
+              Play Next Event!
+            </button>
+          </div>
         </div>
       </div>
     </>

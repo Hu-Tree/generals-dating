@@ -28,10 +28,12 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
-          prevStats.energy += 5;
-          prevStats.health += 3;
-          prevStats.currentTime += 1;
-          return prevStats;
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            health: prevStats.health + 3,
+            energy: prevStats.energy + 5,
+          };
         });
       },
       eventDisplay: {
@@ -47,11 +49,13 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
-          prevStats.cooking += 1;
-          prevStats.energy -= 1;
-          prevStats.health += 3;
-          prevStats.currentTime += 1;
-          return prevStats;
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            cooking: prevStats.cooking + 1,
+            health: prevStats.health + 3,
+            energy: prevStats.energy - 1,
+          };
         });
       },
       eventDisplay: {
@@ -67,8 +71,7 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
-          prevStats.currentTime += 1;
-          return prevStats;
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
       },
       eventDisplay: {
@@ -84,8 +87,7 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
-          prevStats.currentTime += 1;
-          return prevStats;
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
       },
       eventDisplay: {
