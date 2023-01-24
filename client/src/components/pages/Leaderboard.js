@@ -5,10 +5,7 @@ import "../../utilities.css";
 import "./Leaderboard.css";
 
 const Leaderboard = (props) => {
-  const [bestList, setBestList] = useState([
-    { name: "Arthur", cooking: 34 },
-    { name: "Bruh", cooking: 100 },
-  ]);
+  const [bestList, setBestList] = useState([{ name: "NaN", cooking: NaN }]);
 
   useEffect(() => {
     get("/api/leaderboard-profiles", {
@@ -22,17 +19,19 @@ const Leaderboard = (props) => {
   return (
     <>
       <div className="leaderboardContainer">
-        <div>
-          <h1>Best Cook!</h1>
+        <div className="leaderboard">
+          <div>
+            <h1>Best Cook!</h1>
+          </div>
+          {bestList.map((value, index) => {
+            return (
+              <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
+                <span className=" SingleMessage-sender u-bold">{value.name + ":"}</span>
+                <span className="SingleMessage-content">{value.cooking}</span>
+              </div>
+            );
+          })}
         </div>
-        {bestList.map((value, index) => {
-          return (
-            <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
-              <span className=" SingleMessage-sender u-bold">{value.name + ":"}</span>
-              <span className="SingleMessage-content">{value.cooking}</span>
-            </div>
-          );
-        })}
       </div>
     </>
   );
