@@ -1,9 +1,10 @@
 .gridWrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-    padding: 10px;
+    gap: 1vh;
+    grid-auto-rows: minmax(11vh, auto);
+    padding: 1vh;
+    width:60vw;
     white-space: pre-wrap;
 }
 
@@ -11,15 +12,15 @@
     border-radius: 2vmin;
     border-color: black;
     border: solid;
-    padding: 8px;
+    padding: 1vh;
 }
 .card > h6 {
-    font-size: medium;
-    margin: 0px;
+    font-size: 2vh;
+    margin: 0vh;
 }
 .card > p {
-    font-size: small;
-    margin: 0px;
+    font-size: 2vh;
+    margin: 0vh;
 }
 
 .empty {
@@ -29,4 +30,14 @@
 .purple {
     border-color: darkorchid;
     background-color:lavender;
+}
+
+.orange {
+    border-color:darkorange;
+    background-color:navajowhite;
+}
+
+.important {
+    border-color: red;
+    background-color:lemonchiffon;
 }
