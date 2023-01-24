@@ -32,7 +32,7 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
   ]); //24 long list of strings referring to ids of events.
   return (
     <>
-      <div>
+      <div className="scheduleWrapper">
         <h2>Schedule</h2>
         Current Time: {stats.currentTime}
         <div className="u-flex">
@@ -41,7 +41,9 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
               console.log(index);
               return (
                 <div
-                  className={`card ${EVENTS[eventID].eventDisplay.cssClass}`}
+                  className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
+                    index < stats.currentTime ? "passed" : ""
+                  }`}
                   style={{ gridColumn: 1 + Math.floor(index / 6), gridRow: 1 + (index % 6) }}
                 >
                   <h6>{EVENTS[eventID].eventDisplay.name}</h6>

@@ -7,9 +7,9 @@ import GameScreen from "../modules/GameScreen";
 
 const GamePage = (props) => {
   return (
-    <>
+    <div className="gameWrapper">
       <GameScreen />
-    </>
+    </div>
   );
 };
 
