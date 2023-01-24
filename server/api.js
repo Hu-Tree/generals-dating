@@ -34,7 +34,6 @@ router.get("/whoami", (req, res) => {
 });
 
 router.get("/test", (req, res) => {
-  // empty selector means get all documents
   res.send({ msg: "hi" });
 });
 

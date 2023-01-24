@@ -135,7 +135,9 @@ const GameScreen = (props) => {
       <button
         className="saveButton"
         onClick={() => {
-          //post save
+          post("/api/save", stats).then(() => {
+            alert("Your data has been saved!");
+          });
         }}
       >
         Save!
