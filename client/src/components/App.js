@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound.js";
 import GamePage from "./pages/GamePage.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
+import Leaderboard from "./pages/Leaderboard.js";
 
 import "../utilities.css";
 
