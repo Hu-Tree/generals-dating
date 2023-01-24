@@ -5,7 +5,7 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import { testInteraction, multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
+import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
 
 const GameScreen = (props) => {
   const [stats, setStats] = useState({
@@ -24,7 +24,7 @@ const GameScreen = (props) => {
   });
   const [activeScreen, setActiveScreen] = useState("schedule");
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
-  const [flag, setFlag] = useState(34);
+  const [flag, setFlag] = useState(-100);
   const EVENTS = {
     sleep: {
       name: "sleep",
