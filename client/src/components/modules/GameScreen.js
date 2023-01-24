@@ -115,14 +115,8 @@ const GameScreen = (props) => {
   };
 
   useEffect(() => {
-    if (props.userId) {
-      get("/api/save", {}).then((save) => {
-        const { __v, _id, user_id, name, ...stats } = save[0];
-        console.log(stats);
-        setStats(stats);
-      });
-    }
-  }, [props.userId]);
+    //load shit from api from save
+  }, []);
 
   return (
     <>
