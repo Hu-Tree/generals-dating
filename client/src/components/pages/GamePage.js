@@ -3,10 +3,12 @@ import React from "react";
 import "../../utilities.css";
 import "./GamePage.css";
 
+import GameScreen from "../modules/GameScreen";
+
 const GamePage = (props) => {
   return (
     <>
-      <div>Game here</div>
+      <GameScreen />
     </>
   );
 };

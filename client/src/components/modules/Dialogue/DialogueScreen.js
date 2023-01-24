@@ -1,7 +1,10 @@
-import react from "react";
+import React from "react";
 
-const ChatScreen = () => {
+import "../../../utilities.css";
+import "./Dialogue.css";
+
+const DialogueScreen = (props) => {
   return <span> {"PAIN AND SUFFERING "} </span>;
 };
 
-export default ChatScreen;
+export default DialogueScreen;
