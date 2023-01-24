@@ -34,12 +34,12 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
     <>
       <div>
         <h2>Schedule</h2>
-        <div className="grid">
+        <div className="gridWrapper">
           {activeScheduleList.map((eventID, index) => {
             return (
               <div className="card">
-                <h6></h6>
-                <p></p>
+                <h6>Hi</h6>
+                <p>Wee</p>
               </div>
             );
           })}
