@@ -1,3 +1,6 @@
+.scheduleWrapper {
+}
+
 .gridWrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -9,7 +12,6 @@
 }
 
 .card {
-    border-radius: 2vmin;
     border-color: black;
     border: solid;
     padding: 1vh;
@@ -21,6 +23,9 @@
 .card > p {
     font-size: 2vh;
     margin: 0vh;
+}
+.passed {
+    opacity:0.3;
 }
 
 .empty {
