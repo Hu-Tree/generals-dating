@@ -17,10 +17,10 @@ const NavBar = (props) => {
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">Catbook</div>
+        <div className="NavBar-title u-inlineBlock">UI DATING SIM BAYBEEEEE</div>
         <div className="NavBar-linkContainer u-inlineBlock">
           <Link to="/" className="NavBar-link">
-            Home
+            GAME
           </Link>
           {props.userId && (
             <Link to={`/profile/${props.userId}`} className="NavBar-link">
@@ -28,7 +28,7 @@ const NavBar = (props) => {
             </Link>
           )}
           <Link to="/chat/" className="NavBar-link">
-            Chat
+            Leaderboards
           </Link>
         </div>
         <div className="u-inlineBlock NavBar-googleContainer">
