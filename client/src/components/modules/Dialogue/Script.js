@@ -35,3 +35,5 @@ const testInteraction = {
     },
   ],
 };
+
+export default testInteraction;

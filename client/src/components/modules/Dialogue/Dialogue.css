@@ -1,0 +1,23 @@
+.optionsBox-container {
+  border: var(--pink) 2px solid;
+  border-radius: var(--xs);
+  margin-top: var(--m);
+}
+
+.optionsBox-text {
+  padding: var(--s) var(--m);
+  background: var(--lightpink);
+  border-radius: var(--l);
+}
+
+.scriptBox-container {
+  border: var(--pink) 3px solid;
+  border-radius: var(--s);
+  margin-top: var(--m);
+}
+
+.scriptBox-text {
+  padding: var(--s) var(--m);
+  background: var(--lightpink);
+  border-radius: var(--l);
+}
