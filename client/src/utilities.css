@@ -24,8 +24,9 @@
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
-  --pink: #f54f8f;
-  --lightpink: #fbb8d2;
+  --pink: #f74364;
+  --lightpink: #ffcde0;
+  --lighterpink: rgb(253, 230, 239);
 
   --xs: 4px;
   --s: 8px;
