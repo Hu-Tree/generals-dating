@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { get } from "../../utilities.js";
 import "../../utilities.css";
 import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
