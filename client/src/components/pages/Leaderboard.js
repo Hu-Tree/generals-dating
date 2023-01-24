@@ -16,21 +16,23 @@ const Leaderboard = (props) => {
       setBestList(result);
     });
   }, []);
-  
+
   return (
     <>
-      <div className="leaderboardContainer">
-        <div>
-          <h1>Best Cook!</h1>
+      <div className="screenBackground">
+        <div className="leaderboardContainer">
+          <div>
+            <h1>Best Cook!</h1>
+          </div>
+          {bestList.map((value, index) => {
+            return (
+              <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
+                <span className=" SingleMessage-sender u-bold">{value.name + ":"}</span>
+                <span className="SingleMessage-content">{value.cooking}</span>
+              </div>
+            );
+          })}
         </div>
-        {bestList.map((value, index) => {
-          return (
-            <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
-              <span className=" SingleMessage-sender u-bold">{value.name + ":"}</span>
-              <span className="SingleMessage-content">{value.cooking}</span>
-            </div>
-          );
-        })}
       </div>
     </>
   );

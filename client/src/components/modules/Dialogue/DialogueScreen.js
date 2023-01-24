@@ -13,10 +13,12 @@ import { DialogueOption, ScriptObject } from "./Script.js";
  * @param {int} Flag triggers reset to fix a bug (ty rey)
  */
 const DialogueScreen = (props) => {
-  const [nextText, setNextText] = useState(0);
-  const [help, setHelp] = useState("");
+  const [nextText, setNextText] = useState(-2);
   const [affectionChange, setAffectionChange] = useState(0);
   const [active, setActive] = useState(false);
+
+  let help = "";
+  let flag2 = true;
 
   useEffect(() => {
     if (!active) {
@@ -26,31 +28,17 @@ const DialogueScreen = (props) => {
   }, [active]);
 
   useEffect(() => {
-    setActive(true);
-    setAffectionChange(0);
-    setHelp("");
-    setNextText(0);
-  }, [props.Scene, props.Flag]);
-
-  useEffect(() => {
-    setHelp(
-      props.Scene[nextText].Options.map((DialogueOption) => (
-        <OptionsBox
-          Option={DialogueOption}
-          Indexer={(Destination, affection) => {
-            if (Destination < 0) {
-              console.log("well shit");
-              setActive(false);
-            } else {
-              setNextText(Destination);
-              console.log(Destination);
-              setAffectionChange(affectionChange + affection);
-            }
-          }}
-        />
-      ))
-    );
-  }, [nextText]);
+    if (props.Scene) {
+      setActive(true);
+      setAffectionChange(0);
+      help = "";
+      setNextText(0);
+      console.log(help);
+    } else {
+      flag2 = !flag2;
+      console.log(flag2);
+    }
+  }, [props.Scene, props.Flag, flag2]);
 
   if (!active) {
     return (
@@ -61,12 +49,31 @@ const DialogueScreen = (props) => {
     );
   }
 
+  if (props.Scene) {
+    help = props.Scene[nextText].Options.map((DialogueOption) => (
+      <OptionsBox
+        Option={DialogueOption}
+        Indexer={(Destination, affection) => {
+          if (Destination < 0) {
+            console.log("well shit");
+            setActive(false);
+          } else {
+            setNextText(Destination);
+            console.log(Destination);
+            setAffectionChange(affectionChange + affection);
+          }
+        }}
+      />
+    ));
+  } else {
+    setActive(false);
+    console.log("whew");
+  }
+  console.log(props.Scene, help);
   return (
     <div className="dialogueFullScreen">
       <div className="screenBackground">
-        {console.log(props.Scene[nextText])}
         <div className={"cP_".concat(props.Scene[nextText].CharacterState)}></div>
-        {console.log("cP_".concat(props.Scene[nextText].CharacterState))}
         <DialogueBox Script={props.Scene[nextText].Text} />
         <div className="optionsBox-container">{help}</div>
       </div>

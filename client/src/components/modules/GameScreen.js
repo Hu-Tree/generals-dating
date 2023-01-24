@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import "../../utilities.css";
 import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
-import { get, post } from "../../utilities.js";
+import { testInteraction, multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
 
 const GameScreen = (props) => {
-  const RESETSTATS = {
+  const [stats, setStats] = useState({
     technical: 0,
     presentation: 0,
     cooking: 0,
@@ -22,12 +21,10 @@ const GameScreen = (props) => {
     reputation2: 0,
     reputation3: 0,
     reputation4: 0,
-  };
-
-  const [stats, setStats] = useState(RESETSTATS);
+  });
   const [activeScreen, setActiveScreen] = useState("schedule");
-  const [activeScene, setActiveScene] = useState(multiTestInteraction);
-  const [flag, setFlag] = useState(-100);
+  const [activeScene, setActiveScene] = useState();
+  const [flag, setFlag] = useState(34);
   const EVENTS = {
     sleep: {
       name: "sleep",
@@ -114,16 +111,6 @@ const GameScreen = (props) => {
     },
   };
 
-  useEffect(() => {
-    if (props.userId) {
-      get("/api/save", {}).then((save) => {
-        const { __v, _id, user_id, name, ...stats } = save[0];
-        console.log(stats);
-        setStats(stats);
-      });
-    }
-  }, [props.userId]);
-
   return (
     <>
       <DialogueScreen
@@ -138,35 +125,6 @@ const GameScreen = (props) => {
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
-      {props.userId ? (
-        <div>
-          <button
-            className="saveButton"
-            onClick={() => {
-              post("/api/save", stats).then(() => {
-                alert("Your data has been saved!");
-              });
-            }}
-          >
-            Save!
-          </button>
-
-          <button
-            className="saveButton"
-            onClick={() => {
-              post("/api/save", RESETSTATS).then(() => {
-                alert("Your data has been reset!");
-              });
-              //post save but reset for testing purposes
-              setStats(RESETSTATS);
-            }}
-          >
-            Reset!
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
     </>
   );
 };

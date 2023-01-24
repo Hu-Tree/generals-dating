@@ -130,7 +130,8 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
             </div>
           </div>
         </div>
-        {/* {enabled ? <></> : <div className="disableScreen"></div>} commented because dialogue is too broken to not allow this just in case*/}
+        {enabled ? <></> : <div className="disableScreen"></div>} commented because dialogue is too
+        broken to not allow this just in case}
       </div>
     </>
   );
