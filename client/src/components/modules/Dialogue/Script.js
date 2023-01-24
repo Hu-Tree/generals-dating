@@ -18,7 +18,7 @@
 
 const testInteraction = {
   Index: 0,
-  CharacterState: 0,
+  CharacterState: flus,
   Text: "It's not like I like you or anything, baka!",
   Options: [
     {
@@ -39,7 +39,7 @@ const testInteraction = {
 const multiTestInteraction = [
   {
     Index: 0,
-    CharacterState: 0,
+    CharacterState: flus,
     Text: "It's not like I like you or anything, baka!",
     Options: [
       {
@@ -58,7 +58,7 @@ const multiTestInteraction = [
   },
   {
     Index: 1,
-    CharacterState: 1,
+    CharacterState: gloom,
     Text: "How could you just say that??",
     Options: [
       {
@@ -71,7 +71,7 @@ const multiTestInteraction = [
   },
   {
     Index: 2,
-    CharacterState: 1,
+    CharacterState: gloom,
     Text: "Shut up!",
     Options: [
       {
@@ -90,7 +90,7 @@ const multiTestInteraction = [
   },
   {
     Index: 3,
-    CharacterState: 2,
+    CharacterState: neut,
     Text: "Well whatever, it's not important anyways. Let's get cracking on this web.lab project.",
     Options: [
       {
@@ -118,7 +118,7 @@ const multiTestInteraction = [
 const ResettiTestySpaghetti = [
   {
     Index: 0,
-    CharacterState: 0,
+    CharacterState: rizz,
     Text: "Hello there! How ya doing?",
     Options: [
       {
@@ -143,7 +143,7 @@ const ResettiTestySpaghetti = [
   },
   {
     Index: 1,
-    CharacterState: 0,
+    CharacterState: myst,
     Text: "Very cool! By the way, do you have a spare moment to talk about our lord and savior, Trevor Johst?",
     Options: [
       {
@@ -162,7 +162,7 @@ const ResettiTestySpaghetti = [
   },
   {
     Index: 2,
-    CharacterState: 1,
+    CharacterState: gloom,
     Text: "...that bad, huh?",
     Options: [
       {
@@ -175,7 +175,7 @@ const ResettiTestySpaghetti = [
   },
   {
     Index: 3,
-    CharacterState: 0,
+    CharacterState: ibuk,
     Text: "I'm glad to have met a fellow Trevor CONEussier! ",
     Options: [
       {
