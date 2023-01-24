@@ -22,7 +22,7 @@ const GameScreen = (props) => {
     reputation3: 0,
     reputation4: 0,
   });
-  const [activeScreen, setActiveScreen] = useState("dialogue");
+  const [activeScreen, setActiveScreen] = useState("schedule");
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
   const EVENTS = {
     sleep: {
@@ -38,7 +38,7 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 5,
           };
         });
-        setActiveScene(testInteraction);
+        setActiveScene(multiTestInteraction);
       },
       eventDisplay: {
         availableTimes: "111111111111111111111111".split(""),
