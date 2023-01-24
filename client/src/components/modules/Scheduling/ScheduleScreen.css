@@ -1,17 +1,43 @@
 .gridWrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    gap: 1vh;
+    grid-auto-rows: minmax(11vh, auto);
+    padding: 1vh;
+    width:60vw;
+    white-space: pre-wrap;
 }
 
 .card {
     border-radius: 2vmin;
     border-color: black;
+    border: solid;
+    padding: 1vh;
 }
 .card > h6 {
-    font-size: medium;
+    font-size: 2vh;
+    margin: 0vh;
 }
 .card > p {
-    font-size: small;
+    font-size: 2vh;
+    margin: 0vh;
+}
+
+.empty {
+    border-color:grey;
+}
+
+.purple {
+    border-color: darkorchid;
+    background-color:lavender;
+}
+
+.orange {
+    border-color:darkorange;
+    background-color:navajowhite;
+}
+
+.important {
+    border-color: red;
+    background-color:lemonchiffon;
 }

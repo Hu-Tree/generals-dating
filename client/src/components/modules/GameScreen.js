@@ -39,7 +39,7 @@ const GameScreen = (props) => {
         name: "Sleep",
         description: "ZZZ\n+5 energy, +3 health",
         limit: 12,
-        cssClass: "sleep",
+        cssClass: "purple",
       },
     },
     cook: {
@@ -59,7 +59,7 @@ const GameScreen = (props) => {
         name: "Cook!",
         description: "I hope it's edible...\n-1 energy, +3 health",
         limit: 8,
-        cssClass: "cook",
+        cssClass: "orange",
       },
     },
     date_e1: {
@@ -90,8 +90,8 @@ const GameScreen = (props) => {
       },
       eventDisplay: {
         availableTimes: "000000000000000000000000",
-        name: "This should not display",
-        description: "This should not display",
+        name: "",
+        description: "",
         limit: 0,
         cssClass: "empty",
       },
