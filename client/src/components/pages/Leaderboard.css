@@ -1,3 +1,13 @@
+.leaderboardContainer {
+    display: flex;
+    align-content:center;
+    align-items:center;
+    flex-direction: column;
+    justify-content: center;
+    width:auto;
+    height:100vh;
+}
+
 .SingleMessage-container {
     margin: 0 0 var(--xs);
     max-width: 100%;

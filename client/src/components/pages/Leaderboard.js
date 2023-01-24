@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
+import { get } from "../../utilities.js";
 
 import "../../utilities.css";
 import "./Leaderboard.css";
 
 const Leaderboard = (props) => {
   const [bestList, setBestList] = useState([
-    { name: "Arthur", content: 34 },
-    { name: "Bruh", content: 100 },
+    { name: "Arthur", cooking: 34 },
+    { name: "Bruh", cooking: 100 },
   ]);
+
+  useEffect(() => {
+    get("/leaderboard-profiles", { m: "m" }).then((result) => {
+      console.log(result);
+      setBestList(result);
+    });
+  }, []);
+  
   return (
     <>
-      <div>-</div>
-      <div>-</div>
       <div className="leaderboardContainer">
+        <div>
+          <h1>Best Cook!</h1>
+        </div>
         {bestList.map((value, index) => {
           return (
             <div className={"u-flex u-flex-alignCenter SingleMessage-container"}>
               <span className=" SingleMessage-sender u-bold">{value.name + ":"}</span>
-              <span className="SingleMessage-content">{value.content}</span>
+              <span className="SingleMessage-content">{value.cooking}</span>
             </div>
           );
         })}

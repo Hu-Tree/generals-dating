@@ -40,6 +40,19 @@ router.get("/allSaves", (req, res) => {
   GameData.find().then((gameData) => res.send(gameData));
 });
 
+router.get("/leaderboard-profiles", (req, res) => {
+  console.log("in");
+  GameData.find({}).then((gameDataList) => {
+    console.log(gameDataList);
+    gameDataList.sort((a, b) => {
+      return -a.cooking + b.cooking;
+    });
+    console.log(gameDataList);
+    const hi = gameDataList.slice(0, 1);
+    res.send(hi);
+  });
+});
+
 router.get("/save", auth.ensureLoggedIn, (req, res) => {
   GameData.find({ user_id: req.user._id }).then((gameData) => res.send(gameData));
 });
