@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../../../utilities.css";
 import "./ScheduleScreen.css";
 
-const ScheduleScreen = ({ stats, EVENTS }) => {
+const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
   const [activeScheduleList, setActiveScheduleList] = useState([
     "empty",
     "empty",
@@ -93,6 +93,7 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
               <></>
             )}
           </div>
+          <div className="divider"></div>
           <div>
             <button
               className="button"
@@ -129,6 +130,7 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
             </div>
           </div>
         </div>
+        {enabled ? <></> : <div className="disableScreen"></div>}
       </div>
     </>
   );
