@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../../utilities.css";
 import "./GameScreen.css";
@@ -6,9 +6,10 @@ import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
 import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
+import { get, post } from "../../utilities.js";
 
 const GameScreen = (props) => {
-  const [stats, setStats] = useState({
+  const RESETSTATS = {
     technical: 0,
     presentation: 0,
     cooking: 0,
@@ -21,7 +22,9 @@ const GameScreen = (props) => {
     reputation2: 0,
     reputation3: 0,
     reputation4: 0,
-  });
+  };
+
+  const [stats, setStats] = useState(RESETSTATS);
   const [activeScreen, setActiveScreen] = useState("schedule");
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(-100);
@@ -111,6 +114,10 @@ const GameScreen = (props) => {
     },
   };
 
+  useEffect(() => {
+    //load shit from api from save
+  }, []);
+
   return (
     <>
       <DialogueScreen
@@ -125,6 +132,26 @@ const GameScreen = (props) => {
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
+      <button
+        className="saveButton"
+        onClick={() => {
+          //post save
+        }}
+      >
+        Save!
+      </button>
+
+      <button
+        className="saveButton"
+        onClick={() => {
+          post("/api/save", RESETSTATS).then(() => {
+            console.log("hi");
+          });
+          //post save but reset for testing purposes
+        }}
+      >
+        Reset!
+      </button>
     </>
   );
 };

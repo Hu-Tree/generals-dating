@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const GameData = require("./models/gameData");
 
 // import authentication library
 const auth = require("./auth");
@@ -20,7 +21,6 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
-const { ensureLoggedIn } = require("connect-ensure-login");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -33,10 +33,21 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
-router.post("/save", ensureLoggedIn, (req, res) => {
-  NewUser = new User({
-    name: req.name,
-    googleid: req.userId,
+router.get("/test", (req, res) => {
+  // empty selector means get all documents
+  res.send({ msg: "hi" });
+});
+
+router.get("/save", auth.ensureLoggedIn, (req, res) => {
+  GameData.find({}).then((gameData) => res.send(gameData));
+});
+
+router.post("/save", auth.ensureLoggedIn, (req, res) => {
+  console.log("hi");
+  console.log(req.user);
+  const NewGameData = new GameData({
+    user_id: req.user._id,
+    name: req.user.name,
     technical: req.body.technical,
     presentation: req.body.presentation,
     cooking: req.body.cooking,
@@ -51,7 +62,7 @@ router.post("/save", ensureLoggedIn, (req, res) => {
     reputation4: req.body.reputation4,
   });
 
-  NewUser.save().then((story) => res.send(story));
+  NewGameData.save().then((user) => res.send(user));
 });
 
 router.post("/initsocket", (req, res) => {
