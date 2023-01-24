@@ -102,7 +102,7 @@ const GameScreen = (props) => {
 
   return (
     <>
-      <DialogueScreen Scene={multiTestInteraction} />
+      <DialogueScreen Scene={multiTestInteraction} setStats={setStats} stats={stats} />
       <ScheduleScreen stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
     </>
