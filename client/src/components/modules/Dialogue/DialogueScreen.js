@@ -57,12 +57,15 @@ const DialogueScreen = (props) => {
   }
 
   return (
-    <div className="screenBackground">
-      {console.log(props.Scene[nextText])}
-      <div className={"characterPortrait".concat(props.Scene[nextText].CharacterState)}></div>
-      {console.log("characterPortrait".concat(props.Scene[nextText].CharacterState))}
-      <DialogueBox Script={props.Scene[nextText].Text} />
-      <div className="optionsBox-container">{help}</div>
+    <div className="dialogueFullScreen">
+      <div className="screenBackground">
+        {console.log(props.Scene[nextText])}
+        <div className={"characterPortrait".concat(props.Scene[nextText].CharacterState)}></div>
+        {console.log("characterPortrait".concat(props.Scene[nextText].CharacterState))}
+        <DialogueBox Script={props.Scene[nextText].Text} />
+        <div className="optionsBox-container">{help}</div>
+      </div>
+      {props.enabled ? <></> : <div className="disableScreen"></div>}
     </div>
   );
   //return <span> {"PAIN AND SUFFERING "} </span>;

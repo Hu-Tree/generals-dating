@@ -22,6 +22,8 @@ const GameScreen = (props) => {
     reputation3: 0,
     reputation4: 0,
   });
+  const [activeScreen, setActiveScreen] = useState("dialogue");
+  const [activeScene, setActiveScene] = useState(multiTestInteraction);
   const EVENTS = {
     sleep: {
       name: "sleep",
@@ -102,8 +104,13 @@ const GameScreen = (props) => {
 
   return (
     <>
-      <DialogueScreen Scene={multiTestInteraction} setStats={setStats} stats={stats} />
-      <ScheduleScreen stats={stats} EVENTS={EVENTS} />
+      <DialogueScreen
+        enabled={activeScreen === "dialogue"}
+        Scene={activeScene}
+        setStats={setStats}
+        stats={stats}
+      />
+      <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
     </>
   );

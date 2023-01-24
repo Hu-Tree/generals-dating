@@ -107,3 +107,17 @@
   background-position-x: center;
   background-repeat: no-repeat;
 }
+
+.dialogueFullScreen {
+  position: relative;
+}
+
+.disableScreen {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  top:0vh;
+  left:0vw;
+  opacity: .65;
+  background-color: black;
+}
