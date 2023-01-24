@@ -3,7 +3,8 @@ import { Router } from "@reach/router";
 import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import GamePage from "./pages/GamePage.js";
+import NavBar from "./modules/NavBar.js";
 
 import "../utilities.css";
 
@@ -20,7 +21,7 @@ const App = () => {
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
+        // they are registered in the database, and currently logged in.
         setUserId(user._id);
       }
     });
@@ -43,8 +44,9 @@ const App = () => {
 
   return (
     <>
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        <GamePage path="/" />
         <NotFound default />
       </Router>
     </>
