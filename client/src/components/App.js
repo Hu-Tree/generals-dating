@@ -48,7 +48,7 @@ const App = () => {
     <>
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
-        <GamePage path="/" />
+        <GamePage path="/" userId={userId} />
         <Profile path="/profile/:userid" />
         <Leaderboard path="/leaderboard" />
         <NotFound default />
