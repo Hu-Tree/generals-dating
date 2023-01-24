@@ -15,8 +15,7 @@
 */
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 :root {
   --primary: #396dff;
   --primary--dim: #6987db;
@@ -68,6 +67,7 @@ form {
 
 .u-bold {
   font-weight: 600;
+  font-family: "Anton", sans-serif;
 }
 
 .u-textCenter {

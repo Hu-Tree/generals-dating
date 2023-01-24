@@ -9,6 +9,7 @@
 .NavBar-title {
   color: var(--white);
   font-size: 20px;
+  font-family: "Anton", sans-serif;
 }
 
 .NavBar-linkContainer {
