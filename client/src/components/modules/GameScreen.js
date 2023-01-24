@@ -5,7 +5,7 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import { multiTestInteraction } from "./Dialogue/Script.js";
+import { testInteraction, multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
 
 const GameScreen = (props) => {
   const [stats, setStats] = useState({
@@ -29,6 +29,7 @@ const GameScreen = (props) => {
       name: "sleep",
       scriptName: "idfk",
       sideEffects: () => {
+        setActiveScreen("dialogue");
         setStats((prevStats) => {
           return {
             ...prevStats,
@@ -37,6 +38,7 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 5,
           };
         });
+        setActiveScene(testInteraction);
       },
       eventDisplay: {
         availableTimes: "111111111111111111111111".split(""),
@@ -50,6 +52,7 @@ const GameScreen = (props) => {
       name: "cook",
       scriptName: "idfk",
       sideEffects: () => {
+        setActiveScreen("dialogue");
         setStats((prevStats) => {
           return {
             ...prevStats,
@@ -59,6 +62,7 @@ const GameScreen = (props) => {
             energy: prevStats.energy - 1,
           };
         });
+        setActiveScene(ResettiTestySpaghetti);
       },
       eventDisplay: {
         availableTimes: "001111001111001111001111".split(""),
@@ -72,9 +76,11 @@ const GameScreen = (props) => {
       name: "career fair",
       scriptName: "idfk",
       sideEffects: () => {
+        setActiveScreen("dialogue");
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
+        setActiveScene(multiTestInteraction);
       },
       eventDisplay: {
         availableTimes: "000000000100000000000000".split(""),
@@ -109,6 +115,9 @@ const GameScreen = (props) => {
         Scene={activeScene}
         setStats={setStats}
         stats={stats}
+        cleanup={() => {
+          setActiveScreen("schedule");
+        }}
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
