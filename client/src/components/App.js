@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import NotFound from "./pages/NotFound.js";
 import GamePage from "./pages/GamePage.js";
 import NavBar from "./modules/NavBar.js";
+import Profile from "./pages/Profile.js";
 
 import "../utilities.css";
 
@@ -47,6 +48,8 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
         <GamePage path="/" />
+        <Profile path="/profile/:userid" />
+        <Leaderboard path="/leaderboard" />
         <NotFound default />
       </Router>
     </>
