@@ -13,10 +13,9 @@ const OptionsBox = (props) => {
     <div
       className="optionsBox-text"
       onClick={() => {
-        props.Indexer(props.Option.Destination);
+        props.Indexer(props.Option.Destination, props.Option.AffectionChange);
       }}
     >
-      {" "}
       {props.Option.Text}
     </div>
   );
