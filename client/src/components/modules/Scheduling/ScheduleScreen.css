@@ -3,15 +3,30 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+    padding: 10px;
+    white-space: pre-wrap;
 }
 
 .card {
     border-radius: 2vmin;
     border-color: black;
+    border: solid;
+    padding: 8px;
 }
 .card > h6 {
     font-size: medium;
+    margin: 0px;
 }
 .card > p {
     font-size: small;
+    margin: 0px;
+}
+
+.empty {
+    border-color:grey;
+}
+
+.purple {
+    border-color: darkorchid;
+    background-color:lavender;
 }

@@ -14,12 +14,12 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
     "empty",
     "empty",
     "empty",
+    "date_e1",
     "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
+    "cook",
+    "sleep",
+    "sleep",
+    "sleep",
     "empty",
     "empty",
     "empty",
@@ -34,12 +34,17 @@ const ScheduleScreen = ({ stats, EVENTS }) => {
     <>
       <div>
         <h2>Schedule</h2>
+        Current Time: {stats.currentTime}
         <div className="gridWrapper">
           {activeScheduleList.map((eventID, index) => {
+            console.log(index);
             return (
-              <div className="card">
-                <h6>Hi</h6>
-                <p>Wee</p>
+              <div
+                className={`card ${EVENTS[eventID].eventDisplay.cssClass}`}
+                style={{ gridColumn: 1 + Math.floor(index / 6), gridRow: 1 + (index % 6) }}
+              >
+                <h6>{EVENTS[eventID].eventDisplay.name}</h6>
+                <p>{EVENTS[eventID].eventDisplay.description}</p>
               </div>
             );
           })}
