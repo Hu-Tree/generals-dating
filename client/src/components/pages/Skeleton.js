@@ -4,8 +4,7 @@ import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/goo
 import "../../utilities.css";
 import "./Skeleton.css";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID = "FILL ME IN";
+const GOOGLE_CLIENT_ID = "718159611952-1cqno013kmj0avh78nki59hfctlgovqt.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   return (
