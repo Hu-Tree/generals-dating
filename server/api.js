@@ -38,13 +38,15 @@ router.get("/test", (req, res) => {
   res.send({ msg: "hi" });
 });
 
-router.get("/save", auth.ensureLoggedIn, (req, res) => {
-  GameData.find({}).then((gameData) => res.send(gameData));
+router.get("/allSaves", (req, res) => {
+  GameData.find().then((gameData) => res.send(gameData));
 });
 
-router.post("/save", auth.ensureLoggedIn, (req, res) => {
-  console.log("hi");
-  console.log(req.user);
+router.get("/save", auth.ensureLoggedIn, (req, res) => {
+  GameData.find({ user_id: req.user._id }).then((gameData) => res.send(gameData));
+});
+
+router.post("/save", auth.ensureLoggedIn, async (req, res) => {
   const NewGameData = new GameData({
     user_id: req.user._id,
     name: req.user.name,
@@ -62,7 +64,8 @@ router.post("/save", auth.ensureLoggedIn, (req, res) => {
     reputation4: req.body.reputation4,
   });
 
-  NewGameData.save().then((user) => res.send(user));
+  await GameData.deleteMany({ user_id: req.user._id });
+  res.send(await NewGameData.save());
 });
 
 router.post("/initsocket", (req, res) => {

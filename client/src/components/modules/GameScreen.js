@@ -145,7 +145,7 @@ const GameScreen = (props) => {
         className="saveButton"
         onClick={() => {
           post("/api/save", RESETSTATS).then(() => {
-            console.log("hi");
+            alert("Your data has been reset!");
           });
           //post save but reset for testing purposes
         }}
