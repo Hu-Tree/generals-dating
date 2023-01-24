@@ -115,4 +115,83 @@ const multiTestInteraction = [
   },
 ];
 
-export { testInteraction, multiTestInteraction };
+const ResettiTestySpaghetti = [
+  {
+    Index: 0,
+    CharacterState: 0,
+    Text: "Hello there! How ya doing?",
+    Options: [
+      {
+        OptionIndex: 0,
+        Text: "good",
+        AffectionChange: 0,
+        Destination: 1,
+      },
+      {
+        OptionIndex: 1,
+        Text: "ok",
+        AffectionChange: 0,
+        Destination: 1,
+      },
+      {
+        OptionIndex: 2,
+        Text: "...",
+        AffectionChange: -1,
+        Destination: 2,
+      },
+    ],
+  },
+  {
+    Index: 1,
+    CharacterState: 0,
+    Text: "Very cool! By the way, do you have a spare moment to talk about our lord and savior, Trevor Johst?",
+    Options: [
+      {
+        OptionIndex: 3,
+        Text: "Trevor? I barely know her!",
+        AffectionChange: 2,
+        Destination: 3,
+      },
+      {
+        OptionIndex: 4,
+        Text: "Of course!",
+        AffectionChange: 1,
+        Destination: 3,
+      },
+    ],
+  },
+  {
+    Index: 2,
+    CharacterState: 1,
+    Text: "...that bad, huh?",
+    Options: [
+      {
+        OptionIndex: 5,
+        Text: "...huh? Oh sorry, I was too busy staring into your eyes...",
+        AffectionChange: 4,
+        Destination: 1,
+      },
+    ],
+  },
+  {
+    Index: 3,
+    CharacterState: 0,
+    Text: "I'm glad to have met a fellow Trevor CONEussier! ",
+    Options: [
+      {
+        OptionIndex: 6,
+        Text: "I love cones!",
+        AffectionChange: -2,
+        Destination: -1,
+      },
+      {
+        OptionIndex: 7,
+        Text: "So true!",
+        AffectionChange: 1,
+        Destination: -1,
+      },
+    ],
+  },
+];
+
+export { testInteraction, multiTestInteraction, ResettiTestySpaghetti };
