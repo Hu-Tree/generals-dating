@@ -9,6 +9,7 @@ import { DialogueOption, ScriptObject } from "./Script.js";
  * @param {Function} setStats sets the new stat levels
  * @param {int} industry determines which character to summon
  * @param {*} stats is all the stats
+ * @param {Function} cleanup cleans up
  */
 const DialogueScreen = (props) => {
   const [nextText, setNextText] = useState(0);
@@ -22,6 +23,7 @@ const DialogueScreen = (props) => {
   useEffect(() => {
     if (!active) {
       props.setStats({ ...props.stats, reputation1: props.stats.reputation1 + affectionChange });
+      props.cleanup();
     }
   }, [active]);
 
@@ -53,7 +55,12 @@ const DialogueScreen = (props) => {
   }, [nextText]);
 
   if (!active) {
-    return <div className="screenBackground"></div>;
+    return (
+      <div className="dialogueFullScreen">
+        <div className="screenBackground"></div>;
+        {props.enabled ? <></> : <div className="disableScreen"></div>}
+      </div>
+    );
   }
 
   return (
