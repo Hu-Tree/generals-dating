@@ -22,20 +22,15 @@ const OptionsBox = (props) => {
 };
 
 /**
- * Pass in the dialogue scenario and a trigger if there are no options.
- * @param {ScriptObject} Script (the script text and associated data for this box)
- * @param {Function} Trigger (triggers the next box when no options are present; otherwise does nothing.)
+ * Pass in the text to be displayed in the large box
+ * @param {String} Script (the script text )
+ *
  */
 
 const DialogueBox = (props) => {
   return (
-    <div
-      className="scriptBox-container"
-      onClick={() => {
-        props.Trigger();
-      }}
-    >
-      <div className="scriptBox-text"> {props.Script.Text}</div>
+    <div className="scriptBox-container">
+      <div className="scriptBox-text"> {props.Script}</div>
     </div>
   );
 };

@@ -13,6 +13,7 @@
   /* border-radius: var(--xs); */
   overflow-y: auto;
   height: 5vh;
+  bottom: 1vh;
 }
 
 .scriptBox-container {

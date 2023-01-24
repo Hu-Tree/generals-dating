@@ -5,6 +5,7 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
+import { multiTestInteraction } from "./Dialogue/Script.js";
 
 const GameScreen = (props) => {
   const [stats, setStats] = useState({
@@ -99,7 +100,7 @@ const GameScreen = (props) => {
 
   return (
     <>
-      <DialogueScreen />
+      <DialogueScreen Scene={multiTestInteraction} />
       <ScheduleScreen stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
     </>
