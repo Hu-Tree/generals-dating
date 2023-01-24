@@ -111,6 +111,15 @@ const GameScreen = (props) => {
     },
   };
 
+  useEffect(() => {
+    if (props.userId) {
+      get("/api/save", {}).then((save) => {
+        const { __v, _id, user_id, name, ...stats } = save[0];
+        setStats(stats);
+      });
+    }
+  }, [props.userId]);
+
   return (
     <>
       <DialogueScreen

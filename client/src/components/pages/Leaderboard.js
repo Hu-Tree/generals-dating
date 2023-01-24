@@ -5,13 +5,12 @@ import "../../utilities.css";
 import "./Leaderboard.css";
 
 const Leaderboard = (props) => {
-  const [bestList, setBestList] = useState([
-    { name: "Arthur", cooking: 34 },
-    { name: "Bruh", cooking: 100 },
-  ]);
+  const [bestList, setBestList] = useState([{ name: "NaN", cooking: NaN }]);
 
   useEffect(() => {
-    get("/leaderboard-profiles", { m: "m" }).then((result) => {
+    get("/api/leaderboard-profiles", {
+      property: "cooking",
+    }).then((result) => {
       console.log(result);
       setBestList(result);
     });
@@ -19,8 +18,8 @@ const Leaderboard = (props) => {
 
   return (
     <>
-      <div className="screenBackground">
-        <div className="leaderboardContainer">
+      <div className="leaderboardContainer">
+        <div className="leaderboard">
           <div>
             <h1>Best Cook!</h1>
           </div>

@@ -1,11 +1,17 @@
 .leaderboardContainer {
-    display: flex;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-content:center;
     align-items:center;
-    flex-direction: column;
     justify-content: center;
     width:auto;
     height:100vh;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
 }
 
 .SingleMessage-container {
