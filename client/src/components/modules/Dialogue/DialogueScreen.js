@@ -33,8 +33,9 @@ const DialogueScreen = (props) => {
   return (
     <div className="screenBackground">
       {console.log(props.Scene[nextText])}
+      <div className="characterPortrait"></div>
       <DialogueBox Script={props.Scene[nextText].Text} />
-      {help}
+      <div className="optionsBox-container">{help}</div>
     </div>
   );
   //return <span> {"PAIN AND SUFFERING "} </span>;

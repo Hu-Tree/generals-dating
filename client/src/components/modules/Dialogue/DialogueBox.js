@@ -11,12 +11,13 @@ import "./Dialogue.css";
 const OptionsBox = (props) => {
   return (
     <div
-      className="optionsBox-container"
+      className="optionsBox-text"
       onClick={() => {
         props.Indexer(props.Option.Destination);
       }}
     >
-      <div className="optionsBox-text"> {props.Option.Text}</div>
+      {" "}
+      {props.Option.Text}
     </div>
   );
 };
