@@ -37,7 +37,7 @@ const GameScreen = (props) => {
         });
       },
       eventDisplay: {
-        availableTimes: "111111111111111111111111",
+        availableTimes: "111111111111111111111111".split(""),
         name: "Sleep",
         description: "ZZZ\n+5 energy, +3 health",
         limit: 12,
@@ -59,7 +59,7 @@ const GameScreen = (props) => {
         });
       },
       eventDisplay: {
-        availableTimes: "001111001111001111001111",
+        availableTimes: "001111001111001111001111".split(""),
         name: "Cook!",
         description: "I hope it's edible...\n-1 energy, +3 health",
         limit: 8,
@@ -75,7 +75,7 @@ const GameScreen = (props) => {
         });
       },
       eventDisplay: {
-        availableTimes: "000000000100000000000000",
+        availableTimes: "000000000100000000000000".split(""),
         name: "Career Fair",
         description: "I wonder if I'll meet anyone interesting...?",
         limit: 1,
@@ -91,7 +91,7 @@ const GameScreen = (props) => {
         });
       },
       eventDisplay: {
-        availableTimes: "000000000000000000000000",
+        availableTimes: "000000000000000000000000".split(""),
         name: "",
         description: "",
         limit: 0,

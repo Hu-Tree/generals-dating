@@ -6,25 +6,27 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1vh;
-    grid-auto-rows: minmax(11vh, auto);
     padding: 1vh;
     width:61vw;
 }
 
 .card {
+    position: relative;
     border-color: rgb(0, 0, 0);
     border: solid;
+    border-width: 0.75vh;
     padding: 1vh;
+    height: 7vh;
 }
 .card > h6 {
     font-size: 2vh;
     margin: 0vh;
 }
 .card > p {
-    font-size: 2vh;
+    font-size: 1.5vh;
     margin: 0vh;
 }
-.passed {
+.shaded {
     opacity:0.3;
 }
 
@@ -55,19 +57,35 @@
 }
 
 .optionsButton {
-    height: minmax(11vh, auto);
+    height: 10vh;
 }
 
 .optionCard {
     width: 14vw;
-    height: minmax(11vh, auto);
+}
+
+.activeOptionCard {
+    border-style: dashed;
+}
+
+.deleteEventBox {
+    position: absolute;
+    top: 0vh;
+    right: 0vw;
+    width: 1.5vmax;
+    height: 1.5vmax;
+    font-size: 1vmax;
 }
 
 .button {
     background-color: var(--pink);
     border-radius: 1vh;
     border-color: crimson;
+    border-width: 0.5vh;
     margin: 2vh;
+    width: 14vw;
+    height: 8.5vh;
+    font-size: 3vh;
     color:white;
     transition-duration: 0.2s;
 }
