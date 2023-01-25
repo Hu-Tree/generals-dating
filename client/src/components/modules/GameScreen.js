@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { get } from "../../utilities.js";
+import React, { useEffect, useState } from "react";
+
 import "../../utilities.css";
 import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import { testInteraction, multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
+import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
+import { get, post } from "../../utilities.js";
 
 const GameScreen = (props) => {
-  const [stats, setStats] = useState({
+  const RESETSTATS = {
     technical: 0,
     presentation: 0,
     cooking: 0,
@@ -21,10 +22,14 @@ const GameScreen = (props) => {
     reputation2: 0,
     reputation3: 0,
     reputation4: 0,
-  });
+  };
+
+  const [stats, setStats] = useState(RESETSTATS);
+
   const [activeScreen, setActiveScreen] = useState("schedule");
-  const [activeScene, setActiveScene] = useState();
-  const [flag, setFlag] = useState(34);
+  const [activeScene, setActiveScene] = useState(multiTestInteraction);
+  const [flag, setFlag] = useState(-100);
+
   const EVENTS = {
     sleep: {
       name: "sleep",
@@ -134,8 +139,36 @@ const GameScreen = (props) => {
       />
       <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
       <StatsScreen stats={stats} />
+      {props.userId ? (
+        <div>
+          <button
+            className="saveButton"
+            onClick={() => {
+              post("/api/save", stats).then(() => {
+                alert("Your data has been saved!");
+              });
+            }}
+          >
+            Save!
+          </button>
+
+          <button
+            className="saveButton"
+            onClick={() => {
+              post("/api/save", RESETSTATS).then(() => {
+                alert("Your data has been reset!");
+              });
+              //post save but reset for testing purposes
+              setStats(RESETSTATS);
+            }}
+          >
+            Reset!
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
-
 export default GameScreen;
