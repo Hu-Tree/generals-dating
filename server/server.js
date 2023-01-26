@@ -19,6 +19,8 @@ const validator = require("./validator");
 validator.checkSetup();
 
 //import libraries needed for the webserver to work!
+require("dotenv").config();
+
 const http = require("http");
 const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
@@ -33,8 +35,7 @@ const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL =
-  "mongodb+srv://human:NKSFnX6mzCwEqS6i@generals-io.ldkrnne.mongodb.net/?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.MONGO_SRV;
 // TODO change database name to the name you chose
 const databaseName = "Generals-io";
 
@@ -59,7 +60,7 @@ app.use(express.json());
 app.use(
   session({
     // TODO: add a SESSION_SECRET string in your .env file, and replace the secret with process.env.SESSION_SECRET
-    secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -97,7 +98,7 @@ app.use((err, req, res, next) => {
 });
 
 // hardcode port to 3000 for now
-const port = 3000;
+const port = process.env.Port || 3000;
 const server = http.Server(app);
 socketManager.init(server);
 
