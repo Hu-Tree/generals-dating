@@ -9,6 +9,7 @@ import {
   multiTestInteraction,
   ResettiTestySpaghetti,
   clickthroughTest,
+  IntroSegment,
 } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
@@ -53,7 +54,7 @@ const GameScreen = (props) => {
           };
         });
         console.log("sleep");
-        setScene(clickthroughTest);
+        setScene(IntroSegment[1]);
       },
       eventDisplay: {
         availableTimes:
@@ -80,7 +81,7 @@ const GameScreen = (props) => {
           };
         });
         console.log("cook");
-        setScene(ResettiTestySpaghetti);
+        setScene(IntroSegment[0]);
       },
       eventDisplay: {
         availableTimes:

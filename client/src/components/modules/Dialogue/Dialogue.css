@@ -55,7 +55,7 @@
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../backgrounds/Room.png");
+  background-image: url("../../../backgrounds/Meeting.png");
 }
 
 .Conference {
@@ -68,14 +68,14 @@
   background-image: url("../../../backgrounds/Room.png");
 }
 
-.Corrdior {
+.Corridor {
   height: 80vh;
 
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../backgrounds/Room.png");
+  background-image: url("../../../backgrounds/Corridor.png");
 }
 
 .Table {
@@ -85,7 +85,7 @@
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../backgrounds/Room.png");
+  background-image: url("../../../backgrounds/Table.png");
 }
 
 .Room {
