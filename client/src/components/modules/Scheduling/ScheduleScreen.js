@@ -48,14 +48,13 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
                 <div
                   className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
                     index < stats.currentTime ? "shaded" : ""
-                  } ${index == stats.currentTime % (PERIODSPERDAY * DAYSPERWEEK) ? "next2" : ""}`}
+                  } ${index === stats.currentTime ? "next2" : ""}`}
                   style={{
                     gridColumn: convertTime(index).day,
                     gridRow: convertTime(index).period,
                   }}
                 >
-                  {eventID !== "empty" &&
-                  fixedEventTimes.indexOf((getTime().week - 1) * NUMWEEKS + index) === -1 ? (
+                  {eventID !== "empty" && fixedEventTimes.indexOf(index) === -1 ? (
                     <button
                       className="deleteEventBox"
                       onClick={() => {
