@@ -16,30 +16,10 @@
  *@property {DialogueOption[]} Options
  */
 
-const testInteraction = {
-  Index: 0,
-  CharacterState: "empty",
-  Text: "It's not like I like you or anything, baka!",
-  Options: [
-    {
-      OptionIndex: 0,
-      Text: "lol ok",
-      AffectionChange: 1,
-      Destination: 2,
-    },
-    {
-      OptionIndex: 1,
-      Text: "huh????",
-      AffectionChange: -1,
-      Destination: 2,
-    },
-  ],
-};
-
 const multiTestInteraction = [
   {
     Index: 0,
-    CharacterState: "flus",
+    CharacterState: "empty",
     Text: "It's not like I like you or anything, baka!",
     Options: [
       {
@@ -194,4 +174,4 @@ const ResettiTestySpaghetti = [
   },
 ];
 
-export { testInteraction, multiTestInteraction, ResettiTestySpaghetti };
+export { multiTestInteraction, ResettiTestySpaghetti };

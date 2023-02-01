@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { testInteraction, multiTestInteraction } from "./Script.js";
 import { OptionsBox, DialogueBox } from "./DialogueBox.js";
 import { DialogueOption, ScriptObject } from "./Script.js";
 
@@ -11,6 +10,7 @@ import { DialogueOption, ScriptObject } from "./Script.js";
  * @param {*} stats is all the stats
  * @param {Function} cleanup cleans up
  * @param {int} Flag triggers reset to fix a bug (ty rey)
+ * @param {boolean} enabled Sets whether the screen is currently active
  */
 const DialogueScreen = (props) => {
   const [nextText, setNextText] = useState(-2);
@@ -74,6 +74,7 @@ const DialogueScreen = (props) => {
     console.log("whew");
   }
   console.log(props.Scene, help);
+  console.log();
   return (
     <div className="dialogueFullScreen">
       <div className="screenBackground">
