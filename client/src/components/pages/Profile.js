@@ -8,7 +8,6 @@ const Profile = (props) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    document.title = "Profile Page";
     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
   }, []);
 
@@ -26,6 +25,7 @@ const Profile = (props) => {
         <li>Games Lost: </li>
         <li>Best Final Cooking Stat: </li>
         <li>Best Final X Stat: </li>
+        <li>Best JP Silver Affection: </li>
         <li>Least Number of Events Used: </li>
       </ul>
       <h1 className="Profile-h1">Achievements</h1>

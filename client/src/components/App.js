@@ -21,6 +21,10 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
 
   useEffect(() => {
+    document.title = "Unexpected♡Internships";
+  }, []);
+
+  useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registered in the database, and currently logged in.
