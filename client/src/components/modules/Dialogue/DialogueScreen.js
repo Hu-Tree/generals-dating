@@ -81,7 +81,7 @@ const DialogueScreen = (props) => {
   if (help === "") {
     return (
       <div className="dialogueFullScreen">
-        <div className="screenBackground">
+        <div className={props.Scene[nextText].Background}>
           <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
           <DialogueBox
             Script={props.Scene[nextText]}
@@ -101,7 +101,7 @@ const DialogueScreen = (props) => {
   }
   return (
     <div className="dialogueFullScreen">
-      <div className="screenBackground">
+      <div className={props.Scene[nextText].Background}>
         <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
         <DialogueBox Script={props.Scene[nextText]} />
         <div className="optionsBox-container">{help}</div>

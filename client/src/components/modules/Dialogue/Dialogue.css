@@ -38,14 +38,14 @@
   overflow-y: auto;
 }
 
-.screenBackground {
+.Room {
   height: 80vh;
 
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../11469.jpg");
+  background-image: url("../../../backgrounds/Room.png");
 }
 
 .characterPortrait {
