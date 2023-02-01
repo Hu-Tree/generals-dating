@@ -1,28 +1,28 @@
 const INITIALSCHEDULE = [
-  "sleep", //week1 day1 period1
-  "sleep",
+  "empty", //week1 day1 period1
+  "empty",
   "empty",
   "cook",
-  "empty",
-  "empty",
-  "sleep", //week1 day2 period1
   "sleep",
+  "sleep",
+  "empty", //week1 day2 period1
+  "empty",
   "empty",
   "date_e1",
-  "empty",
-  "empty",
-  "sleep", //week1 day3 period1
   "sleep",
+  "sleep",
+  "empty", //week1 day3 period1
+  "empty",
   "empty",
   "cook",
-  "empty",
-  "empty",
-  "sleep", //week1 day4 period1
   "sleep",
+  "sleep",
+  "empty", //week1 day4 period1
   "empty",
   "empty",
-  "empty",
-  "empty",
+  "finale",
+  "sleep",
+  "sleep",
   "sleep", //week2 day1 period1
   "sleep",
   "empty",

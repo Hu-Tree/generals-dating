@@ -15,6 +15,29 @@ import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
   const EVENTS = {
+    weblab: {
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            energy: prevStats.energy + 5,
+          };
+        });
+
+        console.log("weblab");
+      },
+      eventDisplay: {
+        availableTimes: "111111111111111111111111".split(""),
+        name: "Sleep",
+        description: "ZZZ\n+5 energy",
+        limit: 12,
+        cssClass: "purple",
+      },
+    },
     sleep: {
       name: "sleep",
       scriptName: "idfk",
