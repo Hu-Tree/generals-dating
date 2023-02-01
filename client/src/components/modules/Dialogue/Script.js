@@ -13,7 +13,8 @@
  *@property {int} Index index within the normal dialogue doc
  * @property {String} CharacterState facial expresssion of the character
  * @property {string} Text text of the interaction
- *@property {DialogueOption[]} Options
+ *@property {DialogueOption[]} Options Included choices the player can make
+ *@property {String} Background The background selection for the scene
  */
 
 const multiTestInteraction = [
@@ -21,6 +22,7 @@ const multiTestInteraction = [
     Index: 0,
     CharacterState: "empty",
     Text: "It's not like I like you or anything, baka!",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 0,
@@ -40,6 +42,7 @@ const multiTestInteraction = [
     Index: 1,
     CharacterState: "gloom",
     Text: "How could you just say that??",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 2,
@@ -53,6 +56,7 @@ const multiTestInteraction = [
     Index: 2,
     CharacterState: "gloom",
     Text: "Shut up!",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 3,
@@ -72,6 +76,7 @@ const multiTestInteraction = [
     Index: 3,
     CharacterState: "neut",
     Text: "Well whatever, it's not important anyways. Let's get cracking on this web.lab project.",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 5,
@@ -100,6 +105,7 @@ const ResettiTestySpaghetti = [
     Index: 0,
     CharacterState: "rizz",
     Text: "Hello there! How ya doing?",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 0,
@@ -125,6 +131,7 @@ const ResettiTestySpaghetti = [
     Index: 1,
     CharacterState: "myst",
     Text: "Very cool! By the way, do you have a spare moment to talk about our lord and savior, Trevor Johst?",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 3,
@@ -144,6 +151,7 @@ const ResettiTestySpaghetti = [
     Index: 2,
     CharacterState: "gloom",
     Text: "...that bad, huh?",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 5,
@@ -157,6 +165,7 @@ const ResettiTestySpaghetti = [
     Index: 3,
     CharacterState: "ibuk",
     Text: "I'm glad to have met a fellow Trevor CONEussier! ",
+    Background: "Room",
     Options: [
       {
         OptionIndex: 6,
@@ -179,12 +188,14 @@ const clickthroughTest = [
     Index: 0,
     CharacterState: "rizz",
     Text: "TESTING TESTING, OUT OF THE WAY",
+    Background: "Room",
     Destination: 1,
   },
   {
     Index: 1,
     CharacterState: "empty",
     Text: "WOOSH! DISAPPEARED!",
+    Background: "Room",
     Destination: -1,
   },
 ];
