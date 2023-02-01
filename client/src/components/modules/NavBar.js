@@ -15,38 +15,41 @@ const GOOGLE_CLIENT_ID = "718159611952-1cqno013kmj0avh78nki59hfctlgovqt.apps.goo
  */
 const NavBar = (props) => {
   return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock"> {"U♡I"}</div>
-        <div className="NavBar-linkContainer u-inlineBlock">
-          <Link to="/" className="NavBar-link">
-            Game
-          </Link>
-          {props.userId && (
-            <Link to={`/profile/${props.userId}`} className="NavBar-link">
-              Profile
+    <>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <nav className="NavBar-container">
+          <div className="NavBar-title u-inlineBlock"> {"U♡I"}</div>
+          <div className="NavBar-linkContainer u-inlineBlock">
+            <Link to="/" className="NavBar-link">
+              Game
             </Link>
-          )}
-          <Link to="/leaderboard/" className="NavBar-link">
-            Leaderboards
-          </Link>
-        </div>
-        <div className="u-inlineBlock NavBar-googleContainer">
-          {props.userId ? (
-            <button
-              onClick={() => {
-                googleLogout();
-                props.handleLogout();
-              }}
-            >
-              Logout
-            </button>
-          ) : (
-            <GoogleLogin onSuccess={props.handleLogin} onError={(err) => console.log(err)} />
-          )}
-        </div>
-      </nav>
-    </GoogleOAuthProvider>
+            {props.userId && (
+              <Link to={`/profile/${props.userId}`} className="NavBar-link">
+                Profile
+              </Link>
+            )}
+            <Link to="/leaderboard/" className="NavBar-link">
+              Leaderboards
+            </Link>
+          </div>
+          <div className="u-inlineBlock NavBar-googleContainer">
+            {props.userId ? (
+              <button
+                onClick={() => {
+                  googleLogout();
+                  props.handleLogout();
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <GoogleLogin onSuccess={props.handleLogin} onError={(err) => console.log(err)} />
+            )}
+          </div>
+        </nav>
+      </GoogleOAuthProvider>
+      <div className="NavBarSpacer"></div>
+    </>
   );
 };
 

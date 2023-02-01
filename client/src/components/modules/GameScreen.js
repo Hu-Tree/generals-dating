@@ -127,6 +127,12 @@ const GameScreen = (props) => {
 
   return (
     <>
+      <div className="tabButtonContainer">
+        <button>Dialogue</button>
+        <button>Schedule</button>
+        <button>Stats</button>
+      </div>
+
       <DialogueScreen
         enabled={activeScreen === "dialogue"}
         Scene={activeScene}

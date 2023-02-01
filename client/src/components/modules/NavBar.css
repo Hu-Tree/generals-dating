@@ -1,6 +1,9 @@
 .NavBar-container {
+  display: flex;
+  align-items: flex-end;
   z-index: 10;
   width: 100vw;
+  height: 35px;
   position: fixed;
   padding: var(--s) var(--m);
   background-color: rgb(185, 40, 40);
@@ -8,7 +11,7 @@
 
 .NavBar-title {
   color: var(--white);
-  font-size: 20px;
+  font-size: 24px;
   font-family: "Anton", sans-serif;
 }
 
@@ -37,4 +40,9 @@
 
 .NavBar-googleContainer {
   margin-left: var(--m);
+}
+
+.NavBarSpacer {
+  height:35px;
+  padding: var(--s) var(--m);
 }
