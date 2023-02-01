@@ -5,47 +5,41 @@
 
   position: absolute;
 
-  top: 80vh;
-  left: 25vw;
-  height: auto;
-  width: 48vw;
-
-  border: pink 2px solid;
-  border-radius: var(--xs);
+  top: 61vh;
+  left: 26%;
+  height: 18vh;
+  width: 48%;
 }
 
 .optionsBox-text {
   padding: var(--s);
   background: var(--lighterpink);
-  /* border-radius: var(--xs); */
   overflow-y: auto;
-  height: 2vh;
-  border: solid;
-  border-color: pink;
+  border: pink var(--xs) solid;
+  border-radius: var(--xs);
   transition: 0.3s;
 }
 
 .scriptBox-container {
   position: absolute;
-  top: 70vh;
-  right: 25vw;
+  top: 50vh;
+  height: 29vh;
+  background: var(--lightpink);
+  left: 25%;
   border: var(--pink) 4px solid;
   border-radius: var(--s);
   margin-top: var(--m);
-  width: 50vw;
-  margin: auto;
+  width: 50%;
+  margin: 0px;
 }
 
 .scriptBox-text {
   padding: var(--s);
-  background: var(--lightpink);
-  border-radius: var(--xs);
-  height: 23vh;
   overflow-y: auto;
 }
 
 .screenBackground {
-  height: 100vh;
+  height: 80vh;
 
   background-position-y: center;
   background-position-x: center;
@@ -56,12 +50,12 @@
 
 .characterPortrait {
   position: absolute;
-  right: 25vw;
-  top: 10vh;
-  height: 90vh;
-  width: 50vw;
+  left: 25%;
+  top: -10vh;
+  height: 80vh;
+  width: 50%;
   margin: auto;
-  background-size: 100vh;
+  background-size: 80vh;
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
@@ -86,7 +80,7 @@
 
 .dialogueFullScreen {
   position: relative;
-  height:100vh;
+  height: 80vh;
 }
 
 .disableScreen {
