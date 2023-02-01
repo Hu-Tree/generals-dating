@@ -54,27 +54,51 @@ const DialogueScreen = (props) => {
   }
 
   if (props.Scene) {
-    help = props.Scene[nextText].Options.map((DialogueOption) => (
-      <OptionsBox
-        Option={DialogueOption}
-        Indexer={(Destination, affection) => {
-          if (Destination < 0) {
-            console.log("well shit");
-            setActive(false);
-          } else {
-            setNextText(Destination);
-            console.log(Destination);
-            setAffectionChange(affectionChange + affection);
-          }
-        }}
-      />
-    ));
+    help = "";
+    if (props.Scene[nextText].Options) {
+      help = props.Scene[nextText].Options.map((DialogueOption) => (
+        <OptionsBox
+          Option={DialogueOption}
+          Indexer={(Destination, affection) => {
+            if (Destination < 0) {
+              console.log("well shit");
+              setActive(false);
+            } else {
+              setNextText(Destination);
+              console.log(Destination);
+              setAffectionChange(affectionChange + affection);
+            }
+          }}
+        />
+      ));
+    }
   } else {
     setActive(false);
     console.log("whew");
   }
   console.log(props.Scene, help);
   console.log();
+  if (help === "") {
+    return (
+      <div className="dialogueFullScreen">
+        <div className="screenBackground">
+          <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
+          <DialogueBox
+            Script={props.Scene[nextText]}
+            Indexer={(Destination) => {
+              if (Destination < 0) {
+                console.log("well shit");
+                setActive(false);
+              } else {
+                setNextText(Destination);
+                console.log(Destination);
+              }
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="dialogueFullScreen">
       <div className="screenBackground">
