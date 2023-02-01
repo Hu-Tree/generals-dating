@@ -78,7 +78,7 @@ const DialogueScreen = (props) => {
   return (
     <div className="dialogueFullScreen">
       <div className="screenBackground">
-        <div className={"cP_".concat(props.Scene[nextText].CharacterState)}></div>
+        <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
         <DialogueBox Script={props.Scene[nextText].Text} />
         <div className="optionsBox-container">{help}</div>
       </div>
