@@ -140,7 +140,7 @@ const GameScreen = (props) => {
     cooking: 0,
     networking: 0,
     energy: 10,
-    currentTime: 2,
+    currentTime: 0,
     reputation1: 0,
     reputation2: 0,
     reputation3: 0,
@@ -171,7 +171,7 @@ const GameScreen = (props) => {
 
     //reset everything
     setStats(RESETSTATS);
-    setActiveScreen("dialogue");
+    setActiveScreen("schedule");
     setIsStatsScreenActive(false);
     setScene(multiTestInteraction);
     setFlag(-100);

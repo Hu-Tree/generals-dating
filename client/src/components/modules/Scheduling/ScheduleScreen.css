@@ -65,10 +65,7 @@ p{
   border-color: white;
 }
 
-.next2 {
-  border-color: black;
-  border-style: dashed;
-}
+
 
 .purple {
   border-color: rgb(60, 50, 204);
@@ -137,4 +134,10 @@ p{
 .button:hover {
   background-color: rgb(174, 0, 61);
   color: rgb(255, 203, 223);
+}
+
+.next2 {
+  border-color: black;
+  border-style: dashed;
+  background-color: white;
 }

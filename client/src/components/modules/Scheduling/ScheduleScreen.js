@@ -40,9 +40,9 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
       }
       return (
         <div
-          className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
-            index < stats.currentTime ? "shaded" : ""
-          } ${index === stats.currentTime ? "next2" : ""}`}
+          className={`card ${index === stats.currentTime ? "next2" : ""} ${
+            EVENTS[eventID].eventDisplay.cssClass
+          } ${index < stats.currentTime ? "shaded" : ""}`}
           style={{
             gridColumn: convertTime(index).day,
             gridRow: convertTime(index).period,
