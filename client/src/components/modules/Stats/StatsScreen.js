@@ -33,13 +33,10 @@ const StatsScreen = (props) => {
           <li>Networking Skills: {props.stats.networking}</li>
           <li>Presentation Skills: {props.stats.presentation}</li>
           <li>Cooking Skills: {props.stats.cooking}</li>
-          <li>
-            Reputation:{" "}
-            {props.stats.reputation1 +
-              props.stats.reputation2 +
-              props.stats.reputation3 +
-              props.stats.reputation4}
-          </li>
+          <li>Ed G Tonne Affection: {props.stats.reputation1}</li>
+          <li>JP Silverbags Affection: {props.stats.reputation2}</li>
+          <li>Martin L Ray Affection: {props.stats.reputation3}</li>
+          <li>Sylvia Besk Affection: {props.stats.reputation4}</li>
         </ul>
       </div>
     </>
