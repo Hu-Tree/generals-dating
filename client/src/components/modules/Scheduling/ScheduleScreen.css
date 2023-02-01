@@ -83,7 +83,7 @@ p{
 }
 
 .divider {
-  width: 5vw;
+  width: 1vw;
   background-color: var(--pink);
   margin-right: 0.5vw;
 }
@@ -91,6 +91,7 @@ p{
 .optionsWrapper {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1vh;
 }
 
@@ -99,7 +100,7 @@ p{
 }
 
 .optionCard {
-  width: 14vw;
+  width: 13vw;
 }
 
 .activeOptionCard {
@@ -124,7 +125,7 @@ p{
   border-color: crimson;
   border-width: 0.5vh;
   margin: 2vh;
-  width: 14vw;
+  width: 13vw;
   height: 8.5vh;
   font-size: 3vh;
   color: white;
