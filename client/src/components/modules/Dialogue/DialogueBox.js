@@ -29,7 +29,8 @@ const OptionsBox = (props) => {
  */
 
 const DialogueBox = (props) => {
-  if (props.Script.Destination) {
+  if (!(props.Script.Destination === undefined || props.Script.Destination === null)) {
+    console.log("pain??");
     return (
       <div
         className="scriptBox-container"

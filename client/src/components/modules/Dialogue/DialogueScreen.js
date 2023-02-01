@@ -79,10 +79,11 @@ const DialogueScreen = (props) => {
   console.log(props.Scene, help);
   console.log();
   if (help === "") {
+    console.log("pain");
     return (
       <div className="dialogueFullScreen">
         <div className={props.Scene[nextText].Background}>
-          <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
+          <div className={`characterPortrait ${props.Scene[nextText].CharacterState}`}></div>
           <DialogueBox
             Script={props.Scene[nextText]}
             Indexer={(Destination) => {
@@ -102,7 +103,7 @@ const DialogueScreen = (props) => {
   return (
     <div className="dialogueFullScreen">
       <div className={props.Scene[nextText].Background}>
-        <div className={`characterPortrait cP_${props.Scene[nextText].CharacterState}`}></div>
+        <div className={`characterPortrait ${props.Scene[nextText].CharacterState}`}></div>
         <DialogueBox Script={props.Scene[nextText]} />
         <div className="optionsBox-container">{help}</div>
       </div>
