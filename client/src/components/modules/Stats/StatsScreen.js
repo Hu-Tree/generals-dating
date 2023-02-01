@@ -26,15 +26,20 @@ const StatsScreen = (props) => {
   return (
     <>
       <div>
-        Stats:
+        <h1 className="statsHeader">Stats!</h1>
         <ul>
-          {Object.keys(props.stats).map((property) => {
-            return (
-              <li>
-                {property}: {props.stats[property]}
-              </li>
-            );
-          })}
+          <li>Energy: {props.stats.energy}</li>
+          <li>Technical Skills: {props.stats.technical}</li>
+          <li>Networking Skills: {props.stats.networking}</li>
+          <li>Presentation Skills: {props.stats.presentation}</li>
+          <li>Cooking Skills: {props.stats.cooking}</li>
+          <li>
+            Reputation:{" "}
+            {props.stats.reputation1 +
+              props.stats.reputation2 +
+              props.stats.reputation3 +
+              props.stats.reputation4}
+          </li>
         </ul>
       </div>
     </>

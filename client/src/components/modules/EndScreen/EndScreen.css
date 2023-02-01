@@ -1,0 +1,26 @@
+.endScreenContainer {
+    padding: var(--m);
+}
+
+.endScreenContainer h1 {
+    font-size: 5vh;
+    margin-top: 0px;
+}
+
+.endScreenContainer li {
+    font-size: 3vh;
+}
+
+.endScreenContainer ul {
+    margin: var(--xs);
+}
+
+.endScreenContainer h3 {
+    font-size: 4vh;
+    margin-top: var(--s);
+    margin-bottom: 0px;
+}
+
+.endScreenContainer button {
+    font-size: 4vh;
+}

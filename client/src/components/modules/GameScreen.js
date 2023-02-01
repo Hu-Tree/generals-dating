@@ -26,7 +26,6 @@ const GameScreen = (props) => {
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
-            health: prevStats.health + 3,
             energy: prevStats.energy + 5,
           };
         });
@@ -37,7 +36,7 @@ const GameScreen = (props) => {
         availableTimes:
           "111111111111111111111111111111111111111111111111111111111111111111111111".split(""),
         name: "Sleep",
-        description: "ZZZ\n+5 energy, +3 health",
+        description: "ZZZ\n+5 energy",
         limit: 12,
         cssClass: "purple",
       },
@@ -54,7 +53,6 @@ const GameScreen = (props) => {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
             cooking: prevStats.cooking + 1,
-            health: prevStats.health + 3,
             energy: prevStats.energy - 1,
           };
         });
@@ -65,7 +63,7 @@ const GameScreen = (props) => {
         availableTimes:
           "001111001111001111001111001111001111001111001111001111001111001111001110".split(""),
         name: "Cook!",
-        description: "I hope it's edible...\n-1 energy, +3 health",
+        description: "Energize yourself with cooking!\nI hope it's edible...",
         limit: 8,
         cssClass: "orange",
       },
@@ -141,9 +139,7 @@ const GameScreen = (props) => {
     presentation: 0,
     cooking: 0,
     networking: 0,
-    stat5: 0,
     energy: 10,
-    health: 10,
     currentTime: 2,
     reputation1: 0,
     reputation2: 0,
@@ -203,7 +199,7 @@ const GameScreen = (props) => {
             setStats={setStats}
             stats={stats}
             cleanup={async () => {
-              if (stats.currentTime !== RESETSTATS.currentTime) {
+              if (stats.currentTime !== RESETSTATS.currentTime && stats.currentTime < 5) {
                 await post("/api/save", stats);
               }
 

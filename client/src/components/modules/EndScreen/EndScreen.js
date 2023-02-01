@@ -20,16 +20,21 @@ const EndScreen = ({ enabled, ending, finalStats, resetFunc }) => {
     return <></>;
   }
   return (
-    <div>
+    <div className="endScreenContainer">
       <h1>Ending: {endInfo[ending].title}</h1>
       <p>{endInfo[ending].blurb}</p>
       <h3>Final Statistics</h3>
       <ul>
-        <li>Stats (cooking, etc)</li>
-        <li>Affection Stats: </li>
-        <li>Events Played: </li>
+        <li>Energy: {finalStats.energy}</li>
+        <li>Technical Skills: {finalStats.technical}</li>
+        <li>Networking Skills: {finalStats.networking}</li>
+        <li>Presentation Skills: {finalStats.presentation}</li>
+        <li>Cooking Skills: {finalStats.cooking}</li>
+        <li>Ed G Tonne Affection: {finalStats.reputation1}</li>
+        <li>JP Silverbags Affection: {finalStats.reputation2}</li>
+        <li>Martin L Ray Affection: {finalStats.reputation3}</li>
+        <li>Sylvia Besk Affection: {finalStats.reputation4}</li>
       </ul>
-      {`${finalStats}`}
       <div>
         <button onClick={resetFunc}>Play Again</button>
       </div>

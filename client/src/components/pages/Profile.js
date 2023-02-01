@@ -23,10 +23,14 @@ const Profile = (props) => {
         <li>Games Played: </li>
         <li>Games Won: </li>
         <li>Games Lost: </li>
-        <li>Best Final Cooking Stat: </li>
-        <li>Best Final X Stat: </li>
-        <li>Best JP Silver Affection: </li>
-        {/* <li>Least Number of Events Used In A Winning Run: </li> */}
+        <li>Best Technical Stat: </li>
+        <li>Best Networking Stat: </li>
+        <li>Best Presentation Stat: </li>
+        <li>Best Cooking Stat: </li>
+        <li>Best Ed G Tonne Affection: </li>
+        <li>Best JP Silverbags Affection: </li>
+        <li>Best Martin L Ray Affection: </li>
+        <li>Best Sylvia Besk Affection: </li>
       </ul>
       <h1 className="Profile-h1">Achievements</h1>
       <div>Placeholder</div>

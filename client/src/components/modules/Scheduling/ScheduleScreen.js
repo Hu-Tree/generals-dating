@@ -147,7 +147,9 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
     <>
       <div className="scheduleWrapper">
         <h2>Schedule</h2>
-        <p>{`Week ${getTime().week} Day ${getTime().day} Period ${getTime().period}`}</p>
+        <p>{`Week ${getTime().week} Day ${getTime().day} Period ${getTime().period} | Energy ${
+          stats.energy
+        }`}</p>
         <div className="calendarWrapper">
           <div className="gridWrapper">
             {drawBaseSchedule()}
