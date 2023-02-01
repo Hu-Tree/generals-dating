@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { INITIALSCHEDULE } from "../EventConstants";
 
 import "../../../utilities.css";
 import "./ScheduleScreen.css";
 
-const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
+const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
   const [activeScheduleList, setActiveScheduleList] = useState(INITIALSCHEDULE);
 
   const NUMWEEKS = 3;
@@ -16,6 +16,10 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
 
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");
+
+  useEffect(() => {
+    setActiveScheduleList(INITIALSCHEDULE);
+  }, [reset]);
 
   const getTime = () => {
     return convertTime(stats.currentTime);

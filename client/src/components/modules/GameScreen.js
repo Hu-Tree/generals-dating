@@ -11,6 +11,7 @@ import {
   clickthroughTest,
 } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
+import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
   const EVENTS = {
@@ -19,8 +20,9 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
         setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
@@ -29,7 +31,7 @@ const GameScreen = (props) => {
           };
         });
         console.log("sleep");
-        setActiveScene(clickthroughTest);
+        setScene(clickthroughTest);
       },
       eventDisplay: {
         availableTimes:
@@ -45,8 +47,9 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
         setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
@@ -56,7 +59,7 @@ const GameScreen = (props) => {
           };
         });
         console.log("cook");
-        setActiveScene(ResettiTestySpaghetti);
+        setScene(ResettiTestySpaghetti);
       },
       eventDisplay: {
         availableTimes:
@@ -72,12 +75,13 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
         setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
         console.log("career fair");
-        setActiveScene(multiTestInteraction);
+        setScene(multiTestInteraction);
       },
       eventDisplay: {
         availableTimes:
@@ -93,7 +97,6 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
 
@@ -112,12 +115,15 @@ const GameScreen = (props) => {
       name: "finale",
       scriptName: "idfk",
       sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
         setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
 
         console.log("finale");
+        setScene(multiTestInteraction);
       },
       eventDisplay: {
         availableTimes:
@@ -146,11 +152,21 @@ const GameScreen = (props) => {
   };
 
   const [stats, setStats] = useState(RESETSTATS);
-
   const [activeScreen, setActiveScreen] = useState("dialogue");
-  const [statsActive, setStatsActive] = useState(false);
-  const [activeScene, setActiveScene] = useState(multiTestInteraction);
+  const [isStatsScreenActive, setIsStatsScreenActive] = useState(false);
+  const [scene, setScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(-100);
+  const [ending, setEnding] = useState("lonely");
+  const [resetAllToggle, setResetAllToggle] = useState(false);
+
+  const runEnding = () => {
+    if (stats.cooking > 2) {
+      setEnding("cooking");
+    } else {
+      setEnding("lonely");
+    }
+    setActiveScreen("end");
+  };
 
   useEffect(() => {
     if (props.userId) {
@@ -167,14 +183,14 @@ const GameScreen = (props) => {
         <div className="tabButtonContainer">
           <button
             onClick={() => {
-              setStatsActive(false);
+              setIsStatsScreenActive(false);
             }}
           >
             Game
           </button>
           <button
             onClick={() => {
-              setStatsActive(true);
+              setIsStatsScreenActive(true);
             }}
           >
             Stats
@@ -182,21 +198,44 @@ const GameScreen = (props) => {
         </div>
         <div className="gameScreen">
           <DialogueScreen
-            enabled={activeScreen === "dialogue" && !statsActive}
-            Scene={activeScene}
+            enabled={activeScreen === "dialogue" && !isStatsScreenActive}
+            Scene={scene}
             setStats={setStats}
             stats={stats}
-            cleanup={() => {
-              setActiveScreen("schedule");
+            cleanup={async () => {
+              await post("/api/save", stats);
+
+              if (stats.currentTime >= 5) {
+                runEnding();
+              } else {
+                setActiveScreen("schedule");
+              }
             }}
             Flag={flag}
           />
           <ScheduleScreen
-            enabled={activeScreen === "schedule" && !statsActive}
+            enabled={activeScreen === "schedule" && !isStatsScreenActive}
             stats={stats}
             EVENTS={EVENTS}
+            reset={resetAllToggle}
           />
-          <StatsScreen enabled={statsActive} stats={stats} />
+          <EndScreen
+            enabled={activeScreen === "end" && !isStatsScreenActive}
+            ending={ending}
+            finalStats={"hello"}
+            resetFunc={async () => {
+              await post("/api/save", RESETSTATS);
+
+              //reset everything
+              setStats(RESETSTATS);
+              setActiveScreen("dialogue");
+              setIsStatsScreenActive(false);
+              setScene(multiTestInteraction);
+              setFlag(-100);
+              setResetAllToggle(!resetAllToggle);
+            }}
+          />
+          <StatsScreen enabled={isStatsScreenActive} stats={stats} />
         </div>
 
         {props.userId ? (
