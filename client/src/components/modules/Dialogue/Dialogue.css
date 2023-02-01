@@ -61,25 +61,68 @@
   background-repeat: no-repeat;
 }
 
-.cP_flus {
+.MartinFlus {
   background-image: url("../../../martin_states/martin_flustered.png");
 }
-.cP_gloom {
+.MartinGloom {
   background-image: url("../../../martin_states/martin_gloomy.png");
 }
-.cP_neut {
+.MartinNeut {
   background-image: url("../../../martin_states/martin_neutral.png");
 }
-.cP_ibuk {
+.MartinIbuk {
   background-image: url("../../../martin_states/martin_ibuki.png");
 }
-.cP_rizz {
+.MartinRizz {
   background-image: url("../../../martin_states/martin_rizz.png");
 }
-.cP_myst {
+.MartinMyst {
   background-image: url("../../../martin_states/martin_wants_to_launch.png");
 }
-.cP_empty {
+
+.EdnaFlus {
+  background-image: url("../../../edna_states/martin_flustered.png");
+}
+.EdnaSad {
+  background-image: url("../../../_states/martin_gloomy.png");
+}
+.EdnaNeut {
+  background-image: url("../../../martin_states/martin_neutral.png");
+}
+.EdnaHappy {
+  background-image: url("../../../martin_states/martin_ibuki.png");
+}
+.EdnaShook {
+  background-image: url("../../../martin_states/martin_rizz.png");
+}
+
+.JpTrade {
+  background-image: url("../../../silverbag_states/silverbag_tradeoffer.png");
+}
+.JpNeut {
+  background-image: url("../../../silverbag_states/silverbag_stonks.png");
+}
+.JpRizz {
+  background-image: url("../../../silverbag_states/silverbag_rizz.png");
+}
+.JpAgit {
+  background-image: url("../../../silverbag_states/silverbag_agitated.png");
+}
+
+.SylviaNeut {
+  background-image: url("../../../sylvia_states/sylvia_karchmer.png");
+}
+.SylviaFlus {
+  background-image: url("../../../sylvia_states/sylvia_flustered.png");
+}
+.SylviaTsun {
+  background-image: url("../../../sylvia_states/sylvia_outburst.png");
+}
+.SylviaAgit {
+  background-image: url("../../../sylvia_states/sylvia_pissed.png");
+}
+
+.Empty {
   background-image: url("../../../Empty.png");
 }
 
