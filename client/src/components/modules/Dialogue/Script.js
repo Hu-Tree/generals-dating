@@ -18,7 +18,7 @@
 
 const testInteraction = {
   Index: 0,
-  CharacterState: "flus",
+  CharacterState: "empty",
   Text: "It's not like I like you or anything, baka!",
   Options: [
     {
