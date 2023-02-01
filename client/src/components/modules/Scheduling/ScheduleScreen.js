@@ -102,6 +102,22 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
             ) : (
               <></>
             )}
+
+            <div
+              className={`card next1`}
+              style={{
+                gridColumn: getTime().day,
+                gridRow: getTime().period,
+              }}
+            ></div>
+
+            <div
+              className={`card next2`}
+              style={{
+                gridColumn: getTime().day,
+                gridRow: getTime().period,
+              }}
+            ></div>
           </div>
           <div className="divider"></div>
           <div>
@@ -111,7 +127,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
                 EVENTS[activeScheduleList[stats.currentTime]].sideEffects();
               }}
             >
-              Play Next Event!
+              Play Current Event!
             </button>
 
             <div className="optionsWrapper">
