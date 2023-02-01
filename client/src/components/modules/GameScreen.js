@@ -53,7 +53,7 @@ const GameScreen = (props) => {
         setActiveScene(clickthroughTest);
       },
       eventDisplay: {
-        availableTimes: "111111111111111111111111".split(""),
+        availableTimes: "111111111111111111111110".split(""),
         name: "Sleep",
         description: "ZZZ\n+5 energy, +3 health",
         limit: 12,
@@ -78,7 +78,7 @@ const GameScreen = (props) => {
         setActiveScene(ResettiTestySpaghetti);
       },
       eventDisplay: {
-        availableTimes: "001111001111001111001111".split(""),
+        availableTimes: "001111001111001111001110".split(""),
         name: "Cook!",
         description: "I hope it's edible...\n-1 energy, +3 health",
         limit: 8,
@@ -117,6 +117,22 @@ const GameScreen = (props) => {
         description: "",
         limit: 0,
         cssClass: "empty",
+      },
+    },
+    finale: {
+      name: "finale",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+      },
+      eventDisplay: {
+        availableTimes: "000000000000000000000001".split(""),
+        name: "Job Applications",
+        description: "Do you have the skills and relationship to get a job?",
+        limit: 0,
+        cssClass: "important",
       },
     },
   };
