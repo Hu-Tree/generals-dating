@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const GameData = require("./models/gameData");
+const User = require("./models/user");
 
 // import authentication library
 const auth = require("./auth");
@@ -38,6 +39,12 @@ router.get("/test", (req, res) => {
 
 router.get("/allSaves", (req, res) => {
   GameData.find().then((gameData) => res.send(gameData));
+});
+
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
 });
 
 router.get("/leaderboard-profiles", (req, res) => {

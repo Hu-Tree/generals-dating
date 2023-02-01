@@ -21,6 +21,10 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
 
   useEffect(() => {
+    document.title = "Unexpected♡Internships";
+  }, []);
+
+  useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registered in the database, and currently logged in.
@@ -49,7 +53,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
         <GamePage path="/" userId={userId} />
-        <Profile path="/profile/:userid" />
+        <Profile path="/profile/:userId" />
         <Leaderboard path="/leaderboard" />
         <NotFound default />
       </Router>

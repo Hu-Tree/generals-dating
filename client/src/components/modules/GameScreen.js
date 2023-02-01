@@ -11,8 +11,131 @@ import {
   clickthroughTest,
 } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
+import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
+  const EVENTS = {
+    sleep: {
+      name: "sleep",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            health: prevStats.health + 3,
+            energy: prevStats.energy + 5,
+          };
+        });
+        console.log("sleep");
+        setScene(clickthroughTest);
+      },
+      eventDisplay: {
+        availableTimes:
+          "111111111111111111111111111111111111111111111111111111111111111111111111".split(""),
+        name: "Sleep",
+        description: "ZZZ\n+5 energy, +3 health",
+        limit: 12,
+        cssClass: "purple",
+      },
+    },
+    cook: {
+      name: "cook",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            cooking: prevStats.cooking + 1,
+            health: prevStats.health + 3,
+            energy: prevStats.energy - 1,
+          };
+        });
+        console.log("cook");
+        setScene(ResettiTestySpaghetti);
+      },
+      eventDisplay: {
+        availableTimes:
+          "001111001111001111001111001111001111001111001111001111001111001111001110".split(""),
+        name: "Cook!",
+        description: "I hope it's edible...\n-1 energy, +3 health",
+        limit: 8,
+        cssClass: "orange",
+      },
+    },
+    date_e1: {
+      name: "career fair",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        console.log("career fair");
+        setScene(multiTestInteraction);
+      },
+      eventDisplay: {
+        availableTimes:
+          "000000000100000000000000000000000000000000000000000000000000000000000000".split(""),
+        name: "Career Fair",
+        description: "I wonder if I'll meet anyone interesting...?",
+        limit: 1,
+        cssClass: "important",
+      },
+    },
+    empty: {
+      name: "empty",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        console.log("empty");
+      },
+      eventDisplay: {
+        availableTimes:
+          "000000000000000000000000000000000000000000000000000000000000000000000000".split(""),
+        name: "",
+        description: "",
+        limit: 0,
+        cssClass: "empty",
+      },
+    },
+    finale: {
+      name: "finale",
+      scriptName: "idfk",
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        console.log("finale");
+        setScene(multiTestInteraction);
+      },
+      eventDisplay: {
+        availableTimes:
+          "000000000000000000000000000000000000000000000000000000000000000000000001".split(""),
+        name: "Job Applications",
+        description: "Do you have the skills and relationship to get a job?",
+        limit: 0,
+        cssClass: "important",
+      },
+    },
+  };
+
   const RESETSTATS = {
     technical: 0,
     presentation: 0,
@@ -29,112 +152,20 @@ const GameScreen = (props) => {
   };
 
   const [stats, setStats] = useState(RESETSTATS);
-
   const [activeScreen, setActiveScreen] = useState("dialogue");
-  const [statsActive, setStatsActive] = useState(false);
-  const [activeScene, setActiveScene] = useState(multiTestInteraction);
+  const [isStatsScreenActive, setIsStatsScreenActive] = useState(false);
+  const [scene, setScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(-100);
+  const [ending, setEnding] = useState("lonely");
+  const [resetAllToggle, setResetAllToggle] = useState(false);
 
-  const EVENTS = {
-    sleep: {
-      name: "sleep",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
-          return {
-            ...prevStats,
-            currentTime: prevStats.currentTime + 1,
-            health: prevStats.health + 3,
-            energy: prevStats.energy + 5,
-          };
-        });
-        setActiveScene(clickthroughTest);
-      },
-      eventDisplay: {
-        availableTimes: "111111111111111111111110".split(""),
-        name: "Sleep",
-        description: "ZZZ\n+5 energy, +3 health",
-        limit: 12,
-        cssClass: "purple",
-      },
-    },
-    cook: {
-      name: "cook",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setStats((prevStats) => {
-          setFlag(prevStats.currentTime);
-          return {
-            ...prevStats,
-            currentTime: prevStats.currentTime + 1,
-            cooking: prevStats.cooking + 1,
-            health: prevStats.health + 3,
-            energy: prevStats.energy - 1,
-          };
-        });
-        setActiveScene(ResettiTestySpaghetti);
-      },
-      eventDisplay: {
-        availableTimes: "001111001111001111001110".split(""),
-        name: "Cook!",
-        description: "I hope it's edible...\n-1 energy, +3 health",
-        limit: 8,
-        cssClass: "orange",
-      },
-    },
-    date_e1: {
-      name: "career fair",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        setActiveScene(multiTestInteraction);
-      },
-      eventDisplay: {
-        availableTimes: "000000000100000000000000".split(""),
-        name: "Career Fair",
-        description: "I wonder if I'll meet anyone interesting...?",
-        limit: 1,
-        cssClass: "important",
-      },
-    },
-    empty: {
-      name: "empty",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-      },
-      eventDisplay: {
-        availableTimes: "000000000000000000000000".split(""),
-        name: "",
-        description: "",
-        limit: 0,
-        cssClass: "empty",
-      },
-    },
-    finale: {
-      name: "finale",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-      },
-      eventDisplay: {
-        availableTimes: "000000000000000000000001".split(""),
-        name: "Job Applications",
-        description: "Do you have the skills and relationship to get a job?",
-        limit: 0,
-        cssClass: "important",
-      },
-    },
+  const runEnding = () => {
+    if (stats.cooking > 2) {
+      setEnding("cooking");
+    } else {
+      setEnding("lonely");
+    }
+    setActiveScreen("end");
   };
 
   useEffect(() => {
@@ -152,14 +183,14 @@ const GameScreen = (props) => {
         <div className="tabButtonContainer">
           <button
             onClick={() => {
-              setStatsActive(false);
+              setIsStatsScreenActive(false);
             }}
           >
             Game
           </button>
           <button
             onClick={() => {
-              setStatsActive(true);
+              setIsStatsScreenActive(true);
             }}
           >
             Stats
@@ -167,21 +198,44 @@ const GameScreen = (props) => {
         </div>
         <div className="gameScreen">
           <DialogueScreen
-            enabled={activeScreen === "dialogue" && !statsActive}
-            Scene={activeScene}
+            enabled={activeScreen === "dialogue" && !isStatsScreenActive}
+            Scene={scene}
             setStats={setStats}
             stats={stats}
-            cleanup={() => {
-              setActiveScreen("schedule");
+            cleanup={async () => {
+              await post("/api/save", stats);
+
+              if (stats.currentTime >= 5) {
+                runEnding();
+              } else {
+                setActiveScreen("schedule");
+              }
             }}
             Flag={flag}
           />
           <ScheduleScreen
-            enabled={activeScreen === "schedule" && !statsActive}
+            enabled={activeScreen === "schedule" && !isStatsScreenActive}
             stats={stats}
             EVENTS={EVENTS}
+            reset={resetAllToggle}
           />
-          <StatsScreen enabled={statsActive} stats={stats} />
+          <EndScreen
+            enabled={activeScreen === "end" && !isStatsScreenActive}
+            ending={ending}
+            finalStats={"hello"}
+            resetFunc={async () => {
+              await post("/api/save", RESETSTATS);
+
+              //reset everything
+              setStats(RESETSTATS);
+              setActiveScreen("dialogue");
+              setIsStatsScreenActive(false);
+              setScene(multiTestInteraction);
+              setFlag(-100);
+              setResetAllToggle(!resetAllToggle);
+            }}
+          />
+          <StatsScreen enabled={isStatsScreenActive} stats={stats} />
         </div>
 
         {props.userId ? (

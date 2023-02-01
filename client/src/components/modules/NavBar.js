@@ -18,7 +18,7 @@ const NavBar = (props) => {
     <>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <nav className="NavBar-container">
-          <div className="NavBar-title u-inlineBlock"> {"U♡I"}</div>
+          <div className="NavBar-title u-inlineBlock"> {"Unexpected♡Internships"}</div>
           <div className="NavBar-linkContainer u-inlineBlock">
             <Link to="/" className="NavBar-link">
               Game
