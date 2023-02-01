@@ -1,35 +1,12 @@
 import React, { useState } from "react";
 
+import { INITIALSCHEDULE } from "../EventConstants";
+
 import "../../../utilities.css";
 import "./ScheduleScreen.css";
 
 const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
-  const [activeScheduleList, setActiveScheduleList] = useState([
-    "sleep",
-    "sleep",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "date_e1",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "empty",
-    "finale",
-  ]); //24 long list of strings referring to ids of events.
+  const [activeScheduleList, setActiveScheduleList] = useState(INITIALSCHEDULE);
 
   const NUMWEEKS = 3;
   const DAYSPERWEEK = 4;
@@ -37,6 +14,18 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
 
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");
+
+  const getTime = () => {
+    return convertTime(stats.currentTime);
+  };
+
+  const convertTime = (time) => {
+    return {
+      week: Math.floor(time / (PERIODSPERDAY * DAYSPERWEEK)) + 1,
+      day: (Math.floor(time / PERIODSPERDAY) % DAYSPERWEEK) + 1,
+      period: (time % PERIODSPERDAY) + 1,
+    };
+  };
 
   if (!enabled) {
     return <></>;
@@ -46,26 +35,25 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
     <>
       <div className="scheduleWrapper">
         <h2>Schedule</h2>
-        <p>
-          {`Week ${Math.floor(stats.currentTime / (PERIODSPERDAY * DAYSPERWEEK)) + 1} Day ${
-            (Math.floor(stats.currentTime / PERIODSPERDAY) % DAYSPERWEEK) + 1
-          } Period ${(stats.currentTime % PERIODSPERDAY) + 1}`}
-        </p>
+        <p>{`Week ${getTime().week} Day ${getTime().day} Period ${getTime().period}`}</p>
         <div className="calendarWrapper">
           <div className="gridWrapper">
             {activeScheduleList.map((eventID, index) => {
+              if (getTime().week !== convertTime(index).week) {
+                return <></>;
+              }
               return (
                 <div
                   className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
                     index < stats.currentTime ? "shaded" : ""
                   }`}
                   style={{
-                    gridColumn: 1 + Math.floor(index / PERIODSPERDAY),
-                    gridRow: 1 + (index % PERIODSPERDAY),
+                    gridColumn: convertTime(index).day,
+                    gridRow: convertTime(index).period,
                   }}
                 >
                   {eventID !== "empty" &&
-                  stats.currentTime != NUMWEEKS * DAYSPERWEEK * PERIODSPERDAY - 1 ? (
+                  !(index === DAYSPERWEEK * PERIODSPERDAY - 1 && getTime().week == NUMWEEKS) ? (
                     <button
                       className="deleteEventBox"
                       onClick={() => {
@@ -87,6 +75,9 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
 
             {activeOption !== "empty" ? (
               EVENTS[activeOption].eventDisplay.availableTimes.map((allowed, index) => {
+                if (getTime().week !== convertTime(index).week) {
+                  return <></>;
+                }
                 if (allowed === "0") {
                   return <></>;
                 }
@@ -94,8 +85,8 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
                   <div
                     className={`card ${EVENTS[activeOption].eventDisplay.cssClass} shaded`}
                     style={{
-                      gridColumn: 1 + Math.floor(index / PERIODSPERDAY),
-                      gridRow: 1 + (index % PERIODSPERDAY),
+                      gridColumn: convertTime(index).day,
+                      gridRow: convertTime(index).period,
                     }}
                     onClick={() => {
                       let newScheduleList = [...activeScheduleList];

@@ -9,28 +9,6 @@ import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.j
 import { get, post } from "../../utilities.js";
 
 const GameScreen = (props) => {
-  const RESETSTATS = {
-    technical: 0,
-    presentation: 0,
-    cooking: 0,
-    networking: 0,
-    stat5: 0,
-    energy: 10,
-    health: 10,
-    currentTime: 2,
-    reputation1: 0,
-    reputation2: 0,
-    reputation3: 0,
-    reputation4: 0,
-  };
-
-  const [stats, setStats] = useState(RESETSTATS);
-
-  const [activeScreen, setActiveScreen] = useState("dialogue");
-  const [statsActive, setStatsActive] = useState(false);
-  const [activeScene, setActiveScene] = useState(multiTestInteraction);
-  const [flag, setFlag] = useState(-100);
-
   const EVENTS = {
     sleep: {
       name: "sleep",
@@ -46,10 +24,12 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 5,
           };
         });
+        console.log("sleep");
         setActiveScene(multiTestInteraction);
       },
       eventDisplay: {
-        availableTimes: "111111111111111111111110".split(""),
+        availableTimes:
+          "111111111111111111111111111111111111111111111111111111111111111111111111".split(""),
         name: "Sleep",
         description: "ZZZ\n+5 energy, +3 health",
         limit: 12,
@@ -71,10 +51,12 @@ const GameScreen = (props) => {
             energy: prevStats.energy - 1,
           };
         });
+        console.log("cook");
         setActiveScene(ResettiTestySpaghetti);
       },
       eventDisplay: {
-        availableTimes: "001111001111001111001110".split(""),
+        availableTimes:
+          "001111001111001111001111001111001111001111001111001111001111001111001110".split(""),
         name: "Cook!",
         description: "I hope it's edible...\n-1 energy, +3 health",
         limit: 8,
@@ -87,12 +69,15 @@ const GameScreen = (props) => {
       sideEffects: () => {
         setActiveScreen("dialogue");
         setStats((prevStats) => {
+          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
+        console.log("career fair");
         setActiveScene(multiTestInteraction);
       },
       eventDisplay: {
-        availableTimes: "000000000100000000000000".split(""),
+        availableTimes:
+          "000000000100000000000000000000000000000000000000000000000000000000000000".split(""),
         name: "Career Fair",
         description: "I wonder if I'll meet anyone interesting...?",
         limit: 1,
@@ -104,11 +89,15 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
+          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
+
+        console.log("empty");
       },
       eventDisplay: {
-        availableTimes: "000000000000000000000000".split(""),
+        availableTimes:
+          "000000000000000000000000000000000000000000000000000000000000000000000000".split(""),
         name: "",
         description: "",
         limit: 0,
@@ -120,11 +109,15 @@ const GameScreen = (props) => {
       scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
+          setFlag(prevStats.currentTime);
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
+
+        console.log("finale");
       },
       eventDisplay: {
-        availableTimes: "000000000000000000000001".split(""),
+        availableTimes:
+          "000000000000000000000000000000000000000000000000000000000000000000000001".split(""),
         name: "Job Applications",
         description: "Do you have the skills and relationship to get a job?",
         limit: 0,
@@ -132,6 +125,28 @@ const GameScreen = (props) => {
       },
     },
   };
+
+  const RESETSTATS = {
+    technical: 0,
+    presentation: 0,
+    cooking: 0,
+    networking: 0,
+    stat5: 0,
+    energy: 10,
+    health: 10,
+    currentTime: 2,
+    reputation1: 0,
+    reputation2: 0,
+    reputation3: 0,
+    reputation4: 0,
+  };
+
+  const [stats, setStats] = useState(RESETSTATS);
+
+  const [activeScreen, setActiveScreen] = useState("dialogue");
+  const [statsActive, setStatsActive] = useState(false);
+  const [activeScene, setActiveScene] = useState(multiTestInteraction);
+  const [flag, setFlag] = useState(-100);
 
   useEffect(() => {
     if (props.userId) {
