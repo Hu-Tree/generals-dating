@@ -12,6 +12,8 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
   const DAYSPERWEEK = 4;
   const PERIODSPERDAY = 6;
 
+  const fixedEventTimes = [71, 9];
+
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");
 
@@ -46,14 +48,14 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
                 <div
                   className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
                     index < stats.currentTime ? "shaded" : ""
-                  }`}
+                  } ${index == stats.currentTime % (PERIODSPERDAY * DAYSPERWEEK) ? "next2" : ""}`}
                   style={{
                     gridColumn: convertTime(index).day,
                     gridRow: convertTime(index).period,
                   }}
                 >
                   {eventID !== "empty" &&
-                  !(index === DAYSPERWEEK * PERIODSPERDAY - 1 && getTime().week == NUMWEEKS) ? (
+                  fixedEventTimes.indexOf((getTime().week - 1) * NUMWEEKS + index) === -1 ? (
                     <button
                       className="deleteEventBox"
                       onClick={() => {
@@ -102,22 +104,6 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
             ) : (
               <></>
             )}
-
-            <div
-              className={`card next1`}
-              style={{
-                gridColumn: getTime().day,
-                gridRow: getTime().period,
-              }}
-            ></div>
-
-            <div
-              className={`card next2`}
-              style={{
-                gridColumn: getTime().day,
-                gridRow: getTime().period,
-              }}
-            ></div>
           </div>
           <div className="divider"></div>
           <div>
