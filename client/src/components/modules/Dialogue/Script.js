@@ -174,4 +174,19 @@ const ResettiTestySpaghetti = [
   },
 ];
 
-export { multiTestInteraction, ResettiTestySpaghetti };
+const clickthroughTest = [
+  {
+    Index: 0,
+    CharacterState: "rizz",
+    Text: "TESTING TESTING, OUT OF THE WAY",
+    Destination: 1,
+  },
+  {
+    Index: 1,
+    CharacterState: "empty",
+    Text: "WOOSH! DISAPPEARED!",
+    Destination: -1,
+  },
+];
+
+export { multiTestInteraction, ResettiTestySpaghetti, clickthroughTest };

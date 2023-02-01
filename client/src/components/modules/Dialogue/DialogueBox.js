@@ -24,13 +24,26 @@ const OptionsBox = (props) => {
 /**
  * Pass in the text to be displayed in the large box
  * @param {String} Script (the script text )
+ * @param {Function} Indexer (Passes the destination back)
  *
  */
 
 const DialogueBox = (props) => {
+  if (props.Script.Destination) {
+    return (
+      <div
+        className="scriptBox-container"
+        onClick={() => {
+          props.Indexer(props.Script.Destination);
+        }}
+      >
+        <div className="scriptBox-text">{props.Script.Text}</div>
+      </div>
+    );
+  }
   return (
     <div className="scriptBox-container">
-      <div className="scriptBox-text"> {props.Script}</div>
+      <div className="scriptBox-text">{props.Script.Text}</div>
     </div>
   );
 };

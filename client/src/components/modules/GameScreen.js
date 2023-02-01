@@ -5,7 +5,11 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import { multiTestInteraction, ResettiTestySpaghetti } from "./Dialogue/Script.js";
+import {
+  multiTestInteraction,
+  ResettiTestySpaghetti,
+  clickthroughTest,
+} from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 
 const GameScreen = (props) => {
@@ -25,7 +29,7 @@ const GameScreen = (props) => {
           };
         });
         console.log("sleep");
-        setActiveScene(multiTestInteraction);
+        setActiveScene(clickthroughTest);
       },
       eventDisplay: {
         availableTimes:
