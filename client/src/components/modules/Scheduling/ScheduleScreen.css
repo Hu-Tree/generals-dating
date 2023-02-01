@@ -65,10 +65,7 @@ p{
   border-color: white;
 }
 
-.next2 {
-  border-color: black;
-  border-style: dashed;
-}
+
 
 .purple {
   border-color: rgb(60, 50, 204);
@@ -86,7 +83,7 @@ p{
 }
 
 .divider {
-  width: 5vw;
+  width: 1vw;
   background-color: var(--pink);
   margin-right: 0.5vw;
 }
@@ -94,6 +91,7 @@ p{
 .optionsWrapper {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1vh;
 }
 
@@ -102,7 +100,7 @@ p{
 }
 
 .optionCard {
-  width: 14vw;
+  width: 13vw;
 }
 
 .activeOptionCard {
@@ -127,7 +125,7 @@ p{
   border-color: crimson;
   border-width: 0.5vh;
   margin: 2vh;
-  width: 14vw;
+  width: 13vw;
   height: 8.5vh;
   font-size: 3vh;
   color: white;
@@ -137,4 +135,10 @@ p{
 .button:hover {
   background-color: rgb(174, 0, 61);
   color: rgb(255, 203, 223);
+}
+
+.next2 {
+  border-color: black;
+  border-style: dashed;
+  background-color: white;
 }

@@ -53,10 +53,13 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/userStats", async (req, res) => {
-  UserStats.find({ user_id: req.query.user_id }).then((userStats) => {
+  await UserStats.deleteMany({});
+  UserStats.find({ user_id: req.query.user_id }).then(async (userStats) => {
+    const user = await User.findById(req.query.user_id);
     if (userStats.length === 0) {
       const newUserStatsObject = {
         user_id: req.query.user_id,
+        name: user.name,
         games_played: 0,
         best_technical: 0,
         best_networking: 0,
@@ -78,10 +81,12 @@ router.get("/userStats", async (req, res) => {
 
 router.post("/endingStats", (req, res) => {
   UserStats.find({ user_id: req.user._id }).then(async (userStatsList) => {
+    const user = await User.findById(req.user._id);
     if (userStatsList.length === 0) {
       //First post
       const newUserStatsObject = {
         user_id: req.user._id,
+        name: user.name,
         games_played: 1,
         best_technical: req.body.technical,
         best_networking: req.body.networking,
@@ -97,6 +102,7 @@ router.post("/endingStats", (req, res) => {
     } else {
       const NewUserStats = new UserStats({
         user_id: req.user._id,
+        name: user.name,
         games_played: userStatsList[0].games_played + 1,
         best_technical: Math.max(userStatsList[0].best_technical, req.body.technical),
         best_networking: Math.max(userStatsList[0].best_networking, req.body.networking),
@@ -114,13 +120,72 @@ router.post("/endingStats", (req, res) => {
   });
 });
 
-router.get("/leaderboard-profiles", (req, res) => {
-  GameData.find().then((gameDataList) => {
-    gameDataList.sort((a, b) => {
-      return b[req.query.property] - a[req.query.property];
+router.get("/leaderboard-profiles", async (req, res) => {
+  UserStats.find().then((userStatsL) => {
+    let userStatsList = [];
+    for (let i = 0; i < userStatsL.length; i++) {
+      userStatsList.push({
+        overallrep:
+          userStatsL[i].best_rep1 +
+          userStatsL[i].best_rep2 +
+          userStatsL[i].best_rep3 +
+          userStatsL[i].best_rep4,
+        overallskill:
+          userStatsL[i].best_technical +
+          userStatsL[i].best_cooking +
+          userStatsL[i].best_networking +
+          userStatsL[i].best_presentation,
+        games_played: userStatsL[i].games_played,
+        best_technical: userStatsL[i].best_technical,
+        best_networking: userStatsL[i].best_networking,
+        best_presentation: userStatsL[i].best_presentation,
+        best_cooking: userStatsL[i].best_cooking,
+        best_rep1: userStatsL[i].best_rep1,
+        best_rep2: userStatsL[i].best_rep2,
+        best_rep3: userStatsL[i].best_rep3,
+        best_rep4: userStatsL[i].best_rep4,
+        name: userStatsL[i].name,
+      });
+    }
+
+    userStatsList.sort((a, b) => {
+      return b["overallrep"] - a["overallrep"];
     });
-    const hi = gameDataList.slice(0, 3);
-    res.send(hi);
+    const overallrepl = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["overallskill"] - a["overallskill"];
+    });
+    const overallskilll = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["games_played"] - a["games_played"];
+    });
+    const gamesplayedl = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["best_rep1"] - a["best_rep1"];
+    });
+    const rep1l = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["best_rep2"] - a["best_rep2"];
+    });
+    const rep2l = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["best_rep3"] - a["best_rep3"];
+    });
+    const rep3l = userStatsList.slice(0, 5);
+    userStatsList.sort((a, b) => {
+      return b["best_rep4"] - a["best_rep4"];
+    });
+    const rep4l = userStatsList.slice(0, 5);
+
+    res.send({
+      overallrep: overallrepl,
+      overallskill: overallskilll,
+      gamesplayed: gamesplayedl,
+      rep1: rep1l,
+      rep2: rep2l,
+      rep3: rep3l,
+      rep4: rep4l,
+    });
   });
 });
 

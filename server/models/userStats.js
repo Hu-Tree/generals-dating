@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserStatsSchema = new mongoose.Schema({
+  name: String,
   user_id: String,
   games_played: Number,
   best_technical: Number,

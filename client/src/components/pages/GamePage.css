@@ -1,3 +1,7 @@
 .gameWrapper {
     background-color: var(--lighterpink);
 }
+
+.instructionWrapper {
+    padding: var(--m);
+}

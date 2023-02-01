@@ -40,9 +40,9 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
       }
       return (
         <div
-          className={`card ${EVENTS[eventID].eventDisplay.cssClass} ${
-            index < stats.currentTime ? "shaded" : ""
-          } ${index === stats.currentTime ? "next2" : ""}`}
+          className={`card ${index === stats.currentTime ? "next2" : ""} ${
+            EVENTS[eventID].eventDisplay.cssClass
+          } ${index < stats.currentTime ? "shaded" : ""}`}
           style={{
             gridColumn: convertTime(index).day,
             gridRow: convertTime(index).period,
@@ -88,6 +88,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
             let newScheduleList = [...activeScheduleList];
             newScheduleList[index] = activeOption;
             setActiveScheduleList(newScheduleList);
+            setActiveOption("empty");
           }}
         >
           <h6>{EVENTS[activeOption].eventDisplay.name}</h6>
