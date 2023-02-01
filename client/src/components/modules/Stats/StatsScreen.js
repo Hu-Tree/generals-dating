@@ -19,6 +19,10 @@ import "./StatsScreen.css";
 // });
 
 const StatsScreen = (props) => {
+  if (!props.enabled) {
+    return <></>;
+  }
+
   return (
     <>
       <div>

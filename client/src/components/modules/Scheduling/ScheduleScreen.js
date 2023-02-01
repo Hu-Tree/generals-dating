@@ -34,6 +34,10 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");
 
+  if (!enabled) {
+    return <></>;
+  }
+
   return (
     <>
       <div className="scheduleWrapper">

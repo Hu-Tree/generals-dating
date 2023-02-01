@@ -26,7 +26,8 @@ const GameScreen = (props) => {
 
   const [stats, setStats] = useState(RESETSTATS);
 
-  const [activeScreen, setActiveScreen] = useState("schedule");
+  const [activeScreen, setActiveScreen] = useState("dialogue");
+  const [statsActive, setStatsActive] = useState(false);
   const [activeScene, setActiveScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(-100);
 
@@ -129,13 +130,24 @@ const GameScreen = (props) => {
     <>
       <div className="gameScreenWrapper">
         <div className="tabButtonContainer">
-          <button>Dialogue</button>
-          <button>Schedule</button>
-          <button>Stats</button>
+          <button
+            onClick={() => {
+              setStatsActive(false);
+            }}
+          >
+            Game
+          </button>
+          <button
+            onClick={() => {
+              setStatsActive(true);
+            }}
+          >
+            Stats
+          </button>
         </div>
         <div className="gameScreen">
           <DialogueScreen
-            enabled={activeScreen === "dialogue"}
+            enabled={activeScreen === "dialogue" && !statsActive}
             Scene={activeScene}
             setStats={setStats}
             stats={stats}
@@ -144,8 +156,12 @@ const GameScreen = (props) => {
             }}
             Flag={flag}
           />
-          <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
-          <StatsScreen stats={stats} />
+          <ScheduleScreen
+            enabled={activeScreen === "schedule" && !statsActive}
+            stats={stats}
+            EVENTS={EVENTS}
+          />
+          <StatsScreen enabled={statsActive} stats={stats} />
         </div>
 
         {props.userId ? (

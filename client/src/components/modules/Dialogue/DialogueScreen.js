@@ -40,6 +40,10 @@ const DialogueScreen = (props) => {
     }
   }, [props.Scene, props.Flag, flag2]);
 
+  if (!props.enabled) {
+    return <></>;
+  }
+
   if (!active) {
     return (
       <div className="dialogueFullScreen">
@@ -77,10 +81,8 @@ const DialogueScreen = (props) => {
         <DialogueBox Script={props.Scene[nextText].Text} />
         <div className="optionsBox-container">{help}</div>
       </div>
-      {props.enabled ? <></> : <div className="disableScreen"></div>}
     </div>
   );
-  //return <span> {"PAIN AND SUFFERING "} </span>;
 };
 
 export default DialogueScreen;
