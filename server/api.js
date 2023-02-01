@@ -53,7 +53,7 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/userStats", async (req, res) => {
-  //await UserStats.deleteMany({});
+  await UserStats.deleteMany({});
   UserStats.find({ user_id: req.query.user_id }).then(async (userStats) => {
     const user = await User.findById(req.query.user_id);
     if (userStats.length === 0) {
@@ -81,11 +81,12 @@ router.get("/userStats", async (req, res) => {
 
 router.post("/endingStats", (req, res) => {
   UserStats.find({ user_id: req.user._id }).then(async (userStatsList) => {
+    const user = await User.findById(req.user._id);
     if (userStatsList.length === 0) {
       //First post
       const newUserStatsObject = {
         user_id: req.user._id,
-        name: req.user.name,
+        name: user.name,
         games_played: 1,
         best_technical: req.body.technical,
         best_networking: req.body.networking,
@@ -101,7 +102,7 @@ router.post("/endingStats", (req, res) => {
     } else {
       const NewUserStats = new UserStats({
         user_id: req.user._id,
-        name: req.user.name,
+        name: user.name,
         games_played: userStatsList[0].games_played + 1,
         best_technical: Math.max(userStatsList[0].best_technical, req.body.technical),
         best_networking: Math.max(userStatsList[0].best_networking, req.body.networking),
@@ -147,13 +148,10 @@ router.get("/leaderboard-profiles", async (req, res) => {
       });
     }
 
-    console.log(userStatsList);
-
     userStatsList.sort((a, b) => {
       return b["overallrep"] - a["overallrep"];
     });
     const overallrepl = userStatsList.slice(0, 5);
-    console.log(overallrepl);
     userStatsList.sort((a, b) => {
       return b["overallskill"] - a["overallskill"];
     });

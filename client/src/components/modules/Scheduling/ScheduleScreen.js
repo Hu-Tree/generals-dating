@@ -88,6 +88,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
             let newScheduleList = [...activeScheduleList];
             newScheduleList[index] = activeOption;
             setActiveScheduleList(newScheduleList);
+            setActiveOption("empty");
           }}
         >
           <h6>{EVENTS[activeOption].eventDisplay.name}</h6>

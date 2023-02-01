@@ -25,7 +25,7 @@ const StatsScreen = (props) => {
 
   return (
     <>
-      <div>
+      <div className="statsContainer">
         <h1 className="statsHeader">Stats!</h1>
         <ul>
           <li>Energy: {props.stats.energy}</li>

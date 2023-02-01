@@ -148,7 +148,7 @@ const GameScreen = (props) => {
   };
 
   const [stats, setStats] = useState(RESETSTATS);
-  const [activeScreen, setActiveScreen] = useState("dialogue");
+  const [activeScreen, setActiveScreen] = useState("schedule");
   const [isStatsScreenActive, setIsStatsScreenActive] = useState(false);
   const [scene, setScene] = useState(multiTestInteraction);
   const [flag, setFlag] = useState(-100);
@@ -156,6 +156,7 @@ const GameScreen = (props) => {
   const [resetAllToggle, setResetAllToggle] = useState(false);
 
   const runEnding = () => {
+    //TOCHANGE
     if (stats.cooking > 2) {
       setEnding("cooking");
     } else {
@@ -213,6 +214,7 @@ const GameScreen = (props) => {
             stats={stats}
             cleanup={async () => {
               if (stats.currentTime !== RESETSTATS.currentTime && stats.currentTime < 5) {
+                //TOCHANGE
                 await post("/api/save", stats);
               }
 
