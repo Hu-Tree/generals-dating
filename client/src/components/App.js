@@ -49,7 +49,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
         <GamePage path="/" userId={userId} />
-        <Profile path="/profile/:userid" />
+        <Profile path="/profile/:userId" />
         <Leaderboard path="/leaderboard" />
         <NotFound default />
       </Router>
