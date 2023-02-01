@@ -164,6 +164,18 @@ const GameScreen = (props) => {
     setActiveScreen("end");
   };
 
+  const resetFunc = async () => {
+    await post("/api/save", RESETSTATS);
+
+    //reset everything
+    setStats(RESETSTATS);
+    setActiveScreen("dialogue");
+    setIsStatsScreenActive(false);
+    setScene(multiTestInteraction);
+    setFlag(-100);
+    setResetAllToggle(!resetAllToggle);
+  };
+
   useEffect(() => {
     if (props.userId) {
       get("/api/save", {}).then((save) => {
@@ -221,17 +233,7 @@ const GameScreen = (props) => {
             enabled={activeScreen === "end" && !isStatsScreenActive}
             ending={ending}
             finalStats={stats}
-            resetFunc={async () => {
-              await post("/api/save", RESETSTATS);
-
-              //reset everything
-              setStats(RESETSTATS);
-              setActiveScreen("dialogue");
-              setIsStatsScreenActive(false);
-              setScene(multiTestInteraction);
-              setFlag(-100);
-              setResetAllToggle(!resetAllToggle);
-            }}
+            resetFunc={resetFunc}
           />
           <StatsScreen enabled={isStatsScreenActive} stats={stats} />
           {props.userId ? (

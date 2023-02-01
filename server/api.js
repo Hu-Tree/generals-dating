@@ -12,6 +12,7 @@ const express = require("express");
 // import models so we can interact with the database
 const GameData = require("./models/gameData");
 const User = require("./models/user");
+const UserStats = require("./models/userStats");
 
 // import authentication library
 const auth = require("./auth");
@@ -41,9 +42,75 @@ router.get("/allSaves", (req, res) => {
   GameData.find().then((gameData) => res.send(gameData));
 });
 
+router.get("/allUserStats", (req, res) => {
+  UserStats.find().then((userStats) => res.send(userStats));
+});
+
 router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
+  });
+});
+
+router.get("/userStats", async (req, res) => {
+  UserStats.find({ user_id: req.query.user_id }).then((userStats) => {
+    if (userStats.length === 0) {
+      const newUserStatsObject = {
+        user_id: req.query.user_id,
+        games_played: 0,
+        best_technical: 0,
+        best_networking: 0,
+        best_presentation: 0,
+        best_cooking: 0,
+        best_rep1: 0,
+        best_rep2: 0,
+        best_rep3: 0,
+        best_rep4: 0,
+      };
+      const NewUserStats = new UserStats(newUserStatsObject);
+      NewUserStats.save();
+      res.send(newUserStatsObject);
+    } else {
+      res.send(userStats[0]);
+    }
+  });
+});
+
+router.post("/endingStats", (req, res) => {
+  UserStats.find({ user_id: req.user._id }).then(async (userStatsList) => {
+    if (userStatsList.length === 0) {
+      //First post
+      const newUserStatsObject = {
+        user_id: req.user._id,
+        games_played: 1,
+        best_technical: req.body.technical,
+        best_networking: req.body.networking,
+        best_presentation: req.body.presentation,
+        best_cooking: req.body.cooking,
+        best_rep1: req.body.reputation1,
+        best_rep2: req.body.reputation2,
+        best_rep3: req.body.reputation3,
+        best_rep4: req.body.reputation4,
+      };
+      const NewUserStats = new UserStats(newUserStatsObject);
+      res.send(await NewUserStats.save());
+    } else {
+      const NewUserStats = new UserStats({
+        user_id: req.user._id,
+        games_played: userStatsList[0].games_played + 1,
+        best_technical: max(userStatsList[0].best_technical, req.body.technical),
+        best_networking: max(userStatsList[0].best_networking, req.body.networking),
+        best_presentation: max(userStatsList[0].best_presentation, req.body.presentation),
+        best_cooking: max(userStatsList[0].best_cooking, req.body.cooking),
+        best_rep1: max(userStatsList[0].best_rep1, req.body.reputation1),
+        best_rep2: max(userStatsList[0].best_rep2, req.body.reputation2),
+        best_rep3: max(userStatsList[0].best_rep3, req.body.reputation3),
+        best_rep4: max(userStatsList[0].best_rep4, req.body.reputation4),
+      });
+
+      await UserStats.deleteMany({ user_id: req.user._id });
+      res.send(await NewUserStats.save());
+    }
   });
 });
 
