@@ -26,7 +26,7 @@ const Profile = (props) => {
         <li>Best Final Cooking Stat: </li>
         <li>Best Final X Stat: </li>
         <li>Best JP Silver Affection: </li>
-        <li>Least Number of Events Used In A Winning Run: </li>
+        {/* <li>Least Number of Events Used In A Winning Run: </li> */}
       </ul>
       <h1 className="Profile-h1">Achievements</h1>
       <div>Placeholder</div>

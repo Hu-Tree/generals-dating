@@ -203,7 +203,9 @@ const GameScreen = (props) => {
             setStats={setStats}
             stats={stats}
             cleanup={async () => {
-              await post("/api/save", stats);
+              if (stats.currentTime !== RESETSTATS.currentTime) {
+                await post("/api/save", stats);
+              }
 
               if (stats.currentTime >= 5) {
                 runEnding();
@@ -222,7 +224,7 @@ const GameScreen = (props) => {
           <EndScreen
             enabled={activeScreen === "end" && !isStatsScreenActive}
             ending={ending}
-            finalStats={"hello"}
+            finalStats={stats}
             resetFunc={async () => {
               await post("/api/save", RESETSTATS);
 
@@ -236,9 +238,20 @@ const GameScreen = (props) => {
             }}
           />
           <StatsScreen enabled={isStatsScreenActive} stats={stats} />
+          {props.userId ? (
+            <></>
+          ) : (
+            <div>
+              <div className="disableScreen">
+                <div className="angry">
+                  <div>You must login to play!</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
-        {props.userId ? (
+        {/* {props.userId ? (
           <div>
             <button
               className="saveButton"
@@ -266,7 +279,7 @@ const GameScreen = (props) => {
           </div>
         ) : (
           <></>
-        )}
+        )} */}
       </div>
     </>
   );

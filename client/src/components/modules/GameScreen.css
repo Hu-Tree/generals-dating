@@ -9,6 +9,7 @@
 }
 
 .gameScreen {
+    position:relative;
     border-color: var(--pink);
     border-style:ridge;
     border-width: var(--l);
@@ -19,3 +20,27 @@ button {
     border: solid var(--pink);
     background-color: var(--white);
 }
+
+.disableScreen {
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    opacity: 0.5;
+    background-color: black;
+  }
+
+  .angry {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    height:50vh;
+    width:50vw;
+    border:pink solid var(--m);
+    font-size: 6vh;
+  }
