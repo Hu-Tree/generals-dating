@@ -165,6 +165,7 @@ const GameScreen = (props) => {
   };
 
   const resetFunc = async () => {
+    await post("/api/endingStats", stats);
     await post("/api/save", RESETSTATS);
 
     //reset everything

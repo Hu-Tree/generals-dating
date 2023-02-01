@@ -98,14 +98,14 @@ router.post("/endingStats", (req, res) => {
       const NewUserStats = new UserStats({
         user_id: req.user._id,
         games_played: userStatsList[0].games_played + 1,
-        best_technical: max(userStatsList[0].best_technical, req.body.technical),
-        best_networking: max(userStatsList[0].best_networking, req.body.networking),
-        best_presentation: max(userStatsList[0].best_presentation, req.body.presentation),
-        best_cooking: max(userStatsList[0].best_cooking, req.body.cooking),
-        best_rep1: max(userStatsList[0].best_rep1, req.body.reputation1),
-        best_rep2: max(userStatsList[0].best_rep2, req.body.reputation2),
-        best_rep3: max(userStatsList[0].best_rep3, req.body.reputation3),
-        best_rep4: max(userStatsList[0].best_rep4, req.body.reputation4),
+        best_technical: Math.max(userStatsList[0].best_technical, req.body.technical),
+        best_networking: Math.max(userStatsList[0].best_networking, req.body.networking),
+        best_presentation: Math.max(userStatsList[0].best_presentation, req.body.presentation),
+        best_cooking: Math.max(userStatsList[0].best_cooking, req.body.cooking),
+        best_rep1: Math.max(userStatsList[0].best_rep1, req.body.reputation1),
+        best_rep2: Math.max(userStatsList[0].best_rep2, req.body.reputation2),
+        best_rep3: Math.max(userStatsList[0].best_rep3, req.body.reputation3),
+        best_rep4: Math.max(userStatsList[0].best_rep4, req.body.reputation4),
       });
 
       await UserStats.deleteMany({ user_id: req.user._id });
