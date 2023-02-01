@@ -21,7 +21,7 @@ const IntroSegment = [
   [
     {
       Index: 0,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "I can’t believe this! Is it really the career fair already? I barely got my resume together in time last night, I’m totally unprepared!",
       Background: "Room",
       Destination: 1,
@@ -29,7 +29,7 @@ const IntroSegment = [
     },
     {
       Index: 1,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Shoot, it’s already almost noon! I need to get going soon or I’m dead meat!",
       Background: "Room",
       Destination: -1,
@@ -39,7 +39,7 @@ const IntroSegment = [
   [
     {
       Index: 0,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "I made it in time! But barely! Gotta get to the tech section quick! But where is it?",
       Background: "Conference",
       Destination: -1,
@@ -50,7 +50,7 @@ const IntroSegment = [
     },
     {
       Index: 1,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Hm, this looks right... there's only 4 tables though. I hoped there'd be more than this... I guess I'll start from the close end.",
       Background: "Corridor",
       Destination: -1,
@@ -60,7 +60,7 @@ const IntroSegment = [
     },
     {
       Index: 2,
-      CharacterState: MartinNeut,
+      CharacterState: "MartinNeut",
       Text: "Howdy there! Are you here for the career fair? My name is Martin L. Ray, but you can just call me Marty!",
       Background: "Table",
       Destination: 3,
@@ -68,7 +68,7 @@ const IntroSegment = [
     },
     {
       Index: 3,
-      CharacterState: MartinMyst,
+      CharacterState: "MartinMyst",
       Text: "My company Raylock specializes in the development of new technology, for the sake of protecting our dear home nation, Web.Landia!",
       Background: "Table",
       Destination: 4,
@@ -76,7 +76,7 @@ const IntroSegment = [
     },
     {
       Index: 4,
-      CharacterState: MartinIbuk,
+      CharacterState: "MartinIbuk",
       Text: "Here's the number for later. So whaddya say, are you interested?",
       Background: "Table",
       Destination: -1,
@@ -91,7 +91,7 @@ const IntroSegment = [
     },
     {
       Index: 5,
-      CharacterState: MartinFlus,
+      CharacterState: "MartinFlus",
       Text: "It was nice talking to you, but I you should probably move on! Wouldn't want to keep the others waiting, after all.",
       Background: "Table",
       Destination: 6,
@@ -99,7 +99,7 @@ const IntroSegment = [
     },
     {
       Index: 6,
-      CharacterState: EdnaNeut,
+      CharacterState: "EdnaNeut",
       Text: "Hello, my name is Edna Tonne, and I am a Junior Researcher at the Ungulate Institute of Technology.",
       Background: "Table",
       Destination: 7,
@@ -107,7 +107,7 @@ const IntroSegment = [
     },
     {
       Index: 7,
-      CharacterState: EdnaNeut,
+      CharacterState: "EdnaNeut",
       Text: "My lab here studies the depths of advanced computer science. Our work isn't easy; you really have to know what you're doing to get far in this field.",
       Background: "Table",
       Destination: 8,
@@ -115,7 +115,7 @@ const IntroSegment = [
     },
     {
       Index: 8,
-      CharacterState: EdnaHappy,
+      CharacterState: "EdnaHappy",
       Text: "We happen to be looking for new assistants. I think you have potential.. Take a card, won't you?",
       Background: "Table",
       Destination: -1,
@@ -123,7 +123,7 @@ const IntroSegment = [
     },
     {
       Index: 9,
-      CharacterState: EdnaNeut,
+      CharacterState: "EdnaNeut",
       Text: "Why don't you move along now?  It's almost lunchtime.",
       Background: "Table",
       Destination: 10,
@@ -131,7 +131,7 @@ const IntroSegment = [
     },
     {
       Index: 10,
-      CharacterState: JpRizz,
+      CharacterState: "JpRizz",
       Text: "Hey kid, how're doing? Good? Good. I'm doing good too. My name is JP Silverbags, by the way, and I'm a consultant for the Castle Avenue Bank. ",
       Background: "Table",
       Destination: 11,
@@ -139,7 +139,7 @@ const IntroSegment = [
     },
     {
       Index: 11,
-      CharacterState: JpNeut,
+      CharacterState: "JpNeut",
       Text: 'We have a motto here:  "avarice is awesome". You know the right people, push the right buttons, you can go far.',
       Background: "Table",
       Destination: 12,
@@ -147,7 +147,7 @@ const IntroSegment = [
     },
     {
       Index: 12,
-      CharacterState: JpNeut,
+      CharacterState: "JpNeut",
       Text: "You might not look like much now, but I think you'll be worth something. Have this. On me.",
       Background: "Table",
       Destination: -1,
@@ -158,7 +158,7 @@ const IntroSegment = [
     },
     {
       Index: 13,
-      CharacterState: JpAgit,
+      CharacterState: "JpAgit",
       Text: "Yeah, you're getting it! Now run along kiddo, that next guy seems a little impatient...",
       Background: "Table",
       Destination: 14,
@@ -166,7 +166,7 @@ const IntroSegment = [
     },
     {
       Index: 14,
-      CharacterState: SylviaNeut,
+      CharacterState: "SylviaNeut",
       Text: "Welcome welcome, one and all, to the tablke of Sylvia Besk, CEO of Nile Technologies! Now come on, hurry it up, I haven't got all day.",
       Background: "Table",
       Destination: 15,
@@ -174,7 +174,7 @@ const IntroSegment = [
     },
     {
       Index: 15,
-      CharacterState: SylviaAgit,
+      CharacterState: "SylviaAgit",
       Text: "You know, you're lucky I'm even still here. This is the future of tech, and you think it's acceptable to show up 5 minutes before closing?",
       Background: "Table",
       Destination: 16,
@@ -182,7 +182,7 @@ const IntroSegment = [
     },
     {
       Index: 16,
-      CharacterState: SylviaNeut,
+      CharacterState: "SylviaNeut",
       Text: "Well whatever. You still came, so you're willing to work. Take this and go already, I'm starving here. ",
       Background: "Table",
       Destination: 17,
@@ -190,7 +190,7 @@ const IntroSegment = [
     },
     {
       Index: 17,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "That was definitely an experience... it looks like all of these cards have times for other meetings on the back. I wonder if I can fit those into my schedule?",
       Background: "Conference",
       Destination: 18,
@@ -198,7 +198,7 @@ const IntroSegment = [
     },
     {
       Index: 18,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Honestly though with how underqualified they made me out to be, maybe I should take some time to grind first. I'll just head home for the day.",
       Background: "Conference",
       Destination: -1,
@@ -206,7 +206,7 @@ const IntroSegment = [
     },
     {
       Index: 19,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Oh no! This is a dead end. Maybe the other way instead?",
       Background: "Conference",
       Destination: 0,
@@ -216,7 +216,7 @@ const IntroSegment = [
   [
     {
       Index: 0,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Oh Jesus Christ, oh God, oh man. Why do I suddenly feel so tired? My body refuses to move. What is this?",
       Background: "Room",
       Destination: 1,
@@ -224,7 +224,7 @@ const IntroSegment = [
     },
     {
       Index: 1,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "Wait, that's right! I did so much last week... maybe too much. I'm feeling faint...",
       Background: "Room",
       Destination: 2,
@@ -232,7 +232,7 @@ const IntroSegment = [
     },
     {
       Index: 2,
-      CharacterState: Empty,
+      CharacterState: "Empty",
       Text: "You find yourself passing out onto the nearest soft object. You do not wake up for the next 2 days.",
       Background: "nan",
       Destination: -1,
