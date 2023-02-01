@@ -42,8 +42,8 @@ const ScheduleScreen = ({ enabled, stats, EVENTS }) => {
     <>
       <div className="scheduleWrapper">
         <h2>Schedule</h2>
-        Current Time: {stats.currentTime}
-        <div className="u-flex">
+        <p>Current Time: {stats.currentTime}</p>
+        <div className="calendarWrapper">
           <div className="gridWrapper">
             {activeScheduleList.map((eventID, index) => {
               return (

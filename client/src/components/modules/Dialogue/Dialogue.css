@@ -67,37 +67,22 @@
   background-repeat: no-repeat;
 }
 
-.cP_flus {
-  background-image: url("../../../martin_states/martin_flustered.png");
-}
-
+.cP_flus { 
+  background-image: url("../../../martin_states/martin_flustered.png");}
 .cP_gloom {
-  background-image: url("../../../martin_states/martin_gloomy.png");
-}
-
+  background-image: url("../../../martin_states/martin_gloomy.png");}
 .cP_neut {
-  background-image: url("../../../martin_states/martin_neutral.png");
-}
-
+  background-image: url("../../../martin_states/martin_neutral.png");}
 .cP_neut {
-  background-image: url("../../../martin_states/martin_neutral.png");
-}
-
+  background-image: url("../../../martin_states/martin_neutral.png");}
 .cP_ibuk {
-  background-image: url("../../../martin_states/martin_ibuki.png");
-}
-
+  background-image: url("../../../martin_states/martin_ibuki.png");}
 .cP_rizz {
-  background-image: url("../../../martin_states/martin_rizz.png");
-}
-
+  background-image: url("../../../martin_states/martin_rizz.png");}
 .cP_myst {
-  background-image: url("../../../martin_states/martin_wants_to_launch.png");
-}
-
+  background-image: url("../../../martin_states/martin_wants_to_launch.png");}
 .cP_empty {
-  background-image: url("../../../Empty.png");
-}
+  background-image: url("../../../Empty.png");}
 
 .dialogueFullScreen {
   position: relative;

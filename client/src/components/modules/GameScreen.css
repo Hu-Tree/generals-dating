@@ -12,6 +12,7 @@
     border-color: var(--pink);
     border-style:ridge;
     border-width: var(--l);
+    height: 80vh;
 }
 
 button {

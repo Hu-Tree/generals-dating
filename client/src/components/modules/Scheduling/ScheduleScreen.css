@@ -2,15 +2,29 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0vh;
-  left: 0vw;
+  top: 0%;
+  left: 0%;
   opacity: 0.5;
   background-color: black;
+}
+
+h2{
+  font-size: 5vh;
+  margin: 0vh 0.75vh;
+}
+
+p{
+  font-size: 2.5vh;
+  margin: 0vh 0.75vh
 }
 
 .scheduleWrapper {
   position: relative;
   white-space: pre-wrap;
+}
+
+.calendarWrapper {
+  display: flex
 }
 
 .gridWrapper {
@@ -27,15 +41,15 @@
   border: solid;
   border-width: 0.75vh;
   padding: 1vh;
-  height: 7vh;
+  height: 7.2vh;
 }
 .card > h6 {
-  font-size: 2vh;
-  margin: 0vh;
+  font-size: 2.5vh;
+  margin: 0%;
 }
 .card > p {
-  font-size: 1.5vh;
-  margin: 0vh;
+  font-size: 1.75vh;
+  margin: 0%;
 }
 .shaded {
   opacity: 0.3;
@@ -92,9 +106,9 @@
   justify-content: center;
   top: 0vh;
   right: 0vw;
-  width: 1.5vmax;
-  height: 1.5vmax;
-  font-size: 1vmax;
+  width: 3vh;
+  height: 3vh;
+  font-size: 2vh;
 }
 
 .button {
