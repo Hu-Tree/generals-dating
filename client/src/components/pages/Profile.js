@@ -19,11 +19,16 @@ const Profile = (props) => {
   return (
     <>
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
-      <h2>Overall Statistics:</h2>
+      <h1 className="Profile-h1">Overall Statistics</h1>
       <ul>
-        <li>Placeholder</li>
+        <li>Games Played: </li>
+        <li>Games Won: </li>
+        <li>Games Lost: </li>
+        <li>Best Final Cooking Stat: </li>
+        <li>Best Final X Stat: </li>
+        <li>Least Number of Events Used: </li>
       </ul>
-      <h2>Achievements</h2>
+      <h1 className="Profile-h1">Achievements</h1>
       <div>Placeholder</div>
     </>
   );
