@@ -87,6 +87,9 @@
 
 .deleteEventBox {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0vh;
   right: 0vw;
   width: 1.5vmax;

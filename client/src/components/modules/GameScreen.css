@@ -2,3 +2,19 @@
     width: 10vw;
     height: 4vh;
 }
+
+.gameScreenWrapper {
+    
+    padding:var(--m);
+}
+
+.gameScreen {
+    border-color: var(--pink);
+    border-style:ridge;
+    border-width: var(--l);
+}
+
+button {
+    border: solid var(--pink);
+    background-color: var(--white);
+}

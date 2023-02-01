@@ -127,53 +127,57 @@ const GameScreen = (props) => {
 
   return (
     <>
-      <div className="tabButtonContainer">
-        <button>Dialogue</button>
-        <button>Schedule</button>
-        <button>Stats</button>
-      </div>
-
-      <DialogueScreen
-        enabled={activeScreen === "dialogue"}
-        Scene={activeScene}
-        setStats={setStats}
-        stats={stats}
-        cleanup={() => {
-          setActiveScreen("schedule");
-        }}
-        Flag={flag}
-      />
-      <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
-      <StatsScreen stats={stats} />
-      {props.userId ? (
-        <div>
-          <button
-            className="saveButton"
-            onClick={() => {
-              post("/api/save", stats).then(() => {
-                alert("Your data has been saved!");
-              });
-            }}
-          >
-            Save!
-          </button>
-
-          <button
-            className="saveButton"
-            onClick={() => {
-              post("/api/save", RESETSTATS).then(() => {
-                alert("Your data has been reset!");
-              });
-              //post save but reset for testing purposes
-              setStats(RESETSTATS);
-            }}
-          >
-            Reset!
-          </button>
+      <div className="gameScreenWrapper">
+        <div className="tabButtonContainer">
+          <button>Dialogue</button>
+          <button>Schedule</button>
+          <button>Stats</button>
         </div>
-      ) : (
-        <></>
-      )}
+        <div className="gameScreen">
+          <DialogueScreen
+            enabled={activeScreen === "dialogue"}
+            Scene={activeScene}
+            setStats={setStats}
+            stats={stats}
+            cleanup={() => {
+              setActiveScreen("schedule");
+            }}
+            Flag={flag}
+          />
+          <ScheduleScreen enabled={activeScreen === "schedule"} stats={stats} EVENTS={EVENTS} />
+          <StatsScreen stats={stats} />
+        </div>
+
+        {props.userId ? (
+          <div>
+            <button
+              className="saveButton"
+              onClick={() => {
+                post("/api/save", stats).then(() => {
+                  alert("Your data has been saved!");
+                });
+              }}
+            >
+              Save!
+            </button>
+
+            <button
+              className="saveButton"
+              onClick={() => {
+                post("/api/save", RESETSTATS).then(() => {
+                  alert("Your data has been reset!");
+                });
+                //post save but reset for testing purposes
+                setStats(RESETSTATS);
+              }}
+            >
+              Reset!
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 };
