@@ -361,16 +361,16 @@ const GameScreen = (props) => {
           );
           if (bestAffection === stats.reputation1) {
             setEnding("1");
-            runScript(Edna[1], 0);
+            runScript(Edna[1], 1);
           } else if (bestAffection === stats.reputation2) {
             setEnding("2");
-            runScript(Jp[3], 0);
+            runScript(Jp[3], 2);
           } else if (bestAffection === stats.reputation3) {
             setEnding("3");
-            runScript(Martin[1], 0);
+            runScript(Martin[1], 3);
           } else if (bestAffection === stats.reputation4) {
             setEnding("4");
-            runScript(Sylvia[2], 0);
+            runScript(Sylvia[2], 4);
           }
         } else {
           setEnding("lonely");
@@ -392,10 +392,10 @@ const GameScreen = (props) => {
 
         if (passFail(1)) {
           setEnding("1");
-          runScript(Edna[1], 0);
+          runScript(Edna[1], 1);
         } else {
           setEnding("lonely");
-          runScript(Edna[2], 0);
+          runScript(Edna[2], 1);
         }
       },
       eventDisplay: {
@@ -413,10 +413,10 @@ const GameScreen = (props) => {
 
         if (passFail(2)) {
           setEnding("2");
-          runScript(Jp[3], 0);
+          runScript(Jp[3], 2);
         } else {
           setEnding("lonely");
-          runScript(Jp[4], 0);
+          runScript(Jp[4], 2);
         }
       },
       eventDisplay: {
@@ -434,10 +434,10 @@ const GameScreen = (props) => {
 
         if (passFail(3)) {
           setEnding("3");
-          runScript(Martin[1], 0);
+          runScript(Martin[1], 3);
         } else {
           setEnding("lonely");
-          runScript(Martin[2], 0);
+          runScript(Martin[2], 3);
         }
       },
       eventDisplay: {
@@ -455,10 +455,10 @@ const GameScreen = (props) => {
 
         if (passFail(4)) {
           setEnding("4");
-          runScript(Sylvia[2], 0);
+          runScript(Sylvia[2], 4);
         } else {
           setEnding("lonely");
-          runScript(Sylvia[3], 0);
+          runScript(Sylvia[3], 4);
         }
       },
       eventDisplay: {
@@ -543,6 +543,15 @@ const GameScreen = (props) => {
     if (stats.currentTime < ENDTIME && stats.currentTime > 1) {
       console.log(stats);
       post("/api/save", stats);
+    }
+  }, [stats]);
+
+  useEffect(() => {
+    if (stats.energy < 0) {
+      runScript(IntroSegment[2]);
+      setStats((prevStats) => {
+        return { ...prevStats, currentTime: 23 };
+      });
     }
   }, [stats]);
 
