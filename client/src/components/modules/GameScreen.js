@@ -70,8 +70,8 @@ const GameScreen = (props) => {
       name: "sleep",
       scriptName: "idfk",
       sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
+        //setActiveScreen("dialogue");
+        //setFlag(stats.currentTime);
 
         setStats((prevStats) => {
           return {
