@@ -458,13 +458,13 @@ const GameScreen = (props) => {
           runScript(Sylvia[2], 0);
         } else {
           setEnding("lonely");
-          runScript(Syvlia[3], 0);
+          runScript(Sylvia[3], 0);
         }
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "000001",
-        name: "Apply To Edna",
-        description: "Apply only to Edna",
+        name: "Apply To Sylvia",
+        description: "Apply only to Sylvia",
         cssClass: "important",
       },
     },
