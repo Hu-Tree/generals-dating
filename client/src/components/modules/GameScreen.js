@@ -32,7 +32,7 @@ const GameScreen = (props) => {
     if (
       targetNum === 1 &&
       stats.reputation1 >= 5 &&
-      stats.technical >= 15 &&
+      stats.technical >= 20 &&
       stats.presentation >= 5 &&
       stats.networking >= 0
     ) {
@@ -42,15 +42,15 @@ const GameScreen = (props) => {
       targetNum === 2 &&
       stats.reputation2 >= 5 &&
       stats.technical >= 5 &&
-      stats.presentation >= 5 &&
-      stats.networking >= 5
+      stats.presentation >= 10 &&
+      stats.networking >= 10
     ) {
       pass = true;
     }
     if (
       targetNum === 3 &&
       stats.reputation3 >= 5 &&
-      stats.technical >= 10 &&
+      stats.technical >= 15 &&
       stats.presentation >= 5 &&
       stats.networking >= 5
     ) {
@@ -61,7 +61,7 @@ const GameScreen = (props) => {
       stats.reputation4 >= 5 &&
       stats.technical >= 15 &&
       stats.presentation >= 5 &&
-      stats.networking >= 5
+      stats.networking >= 10
     ) {
       pass = true;
     }
