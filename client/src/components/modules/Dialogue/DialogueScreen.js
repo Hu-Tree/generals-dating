@@ -55,6 +55,8 @@ const DialogueScreen = (props) => {
 
   if (props.Scene) {
     help = "";
+    console.log(props.Scene[nextText]);
+    console.log(props.Scene[nextText].Options);
     if (props.Scene[nextText].Options) {
       help = props.Scene[nextText].Options.map((DialogueOption) => (
         <OptionsBox

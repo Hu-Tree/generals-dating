@@ -6,10 +6,10 @@ import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
 import {
-  multiTestInteraction,
   ResettiTestySpaghetti,
   clickthroughTest,
   IntroSegment,
+  Martin,
 } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
@@ -174,7 +174,7 @@ const GameScreen = (props) => {
         });
 
         console.log("finale");
-        setScene(multiTestInteraction);
+        setScene(IntroSegment[0]);
       },
       eventDisplay: {
         availableTimes:
@@ -203,7 +203,7 @@ const GameScreen = (props) => {
   const [stats, setStats] = useState(RESETSTATS);
   const [activeScreen, setActiveScreen] = useState("schedule");
   const [isStatsScreenActive, setIsStatsScreenActive] = useState(false);
-  const [scene, setScene] = useState(multiTestInteraction);
+  const [scene, setScene] = useState(IntroSegment[0]);
   const [flag, setFlag] = useState(-100);
   const [ending, setEnding] = useState("lonely");
   const [resetAllToggle, setResetAllToggle] = useState(false);
@@ -226,7 +226,7 @@ const GameScreen = (props) => {
     setStats(RESETSTATS);
     setActiveScreen("schedule");
     setIsStatsScreenActive(false);
-    setScene(multiTestInteraction);
+    setScene(IntroSegment[0]);
     setFlag(-100);
     setResetAllToggle(!resetAllToggle);
   };
