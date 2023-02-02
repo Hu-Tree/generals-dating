@@ -20,7 +20,7 @@ const GameScreen = (props) => {
   };
 
   const dialogueCleanup = async () => {
-    if (stats.currentTime >= ENDTIME) {
+    if (stats.currentTime >= ENDTIME && ending !== "going") {
       runEnding();
     } else {
       setActiveScreen("schedule");
@@ -503,7 +503,7 @@ const GameScreen = (props) => {
   const [isStatsScreenActive, setIsStatsScreenActive] = useState(false);
   const [scene, setScene] = useState(IntroSegment[0]);
   const [flag, setFlag] = useState(-100);
-  const [ending, setEnding] = useState("lonely");
+  const [ending, setEnding] = useState("going");
   const [resetAllToggle, setResetAllToggle] = useState(false);
   const [industry, setIndustry] = useState(0);
 
@@ -548,10 +548,10 @@ const GameScreen = (props) => {
 
   useEffect(() => {
     if (stats.energy < 0) {
-      runScript(IntroSegment[2]);
       setStats((prevStats) => {
-        return { ...prevStats, currentTime: 23 };
+        return { ...prevStats, currentTime: 23, energy: 1 };
       });
+      runScript(IntroSegment[2], 0);
     }
   }, [stats]);
 

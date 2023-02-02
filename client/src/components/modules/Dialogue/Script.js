@@ -237,6 +237,15 @@ const IntroSegment = [
       Destination: -1,
     },
   ],
+  [
+    {
+      Index: 0,
+      CharacterState: "nan",
+      Text: "PLACEHOLDER - FAILURE",
+      Background: "nan",
+      Destination: -1,
+    },
+  ],
 ];
 
 const Edna = [
