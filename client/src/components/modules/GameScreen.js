@@ -14,7 +14,7 @@ const GameScreen = (props) => {
 
   const runScript = (script, target) => {
     setIndustry(target);
-    setFlag(stats.currentTime);
+    setFlag(stats.currentTime + 100 * stats.energy);
     setScene(script);
     setActiveScreen("dialogue");
   };
@@ -25,6 +25,47 @@ const GameScreen = (props) => {
     } else {
       setActiveScreen("schedule");
     }
+  };
+
+  const passFail = (targetNum) => {
+    let pass = false;
+    if (
+      targetNum === 1 &&
+      stats.reputation1 >= 5 &&
+      stats.technical >= 15 &&
+      stats.presentation >= 5 &&
+      stats.networking >= 0
+    ) {
+      pass = true;
+    }
+    if (
+      targetNum === 2 &&
+      stats.reputation2 >= 5 &&
+      stats.technical >= 5 &&
+      stats.presentation >= 5 &&
+      stats.networking >= 5
+    ) {
+      pass = true;
+    }
+    if (
+      targetNum === 3 &&
+      stats.reputation3 >= 5 &&
+      stats.technical >= 10 &&
+      stats.presentation >= 5 &&
+      stats.networking >= 5
+    ) {
+      pass = true;
+    }
+    if (
+      targetNum === 4 &&
+      stats.reputation4 >= 5 &&
+      stats.technical >= 15 &&
+      stats.presentation >= 5 &&
+      stats.networking >= 5
+    ) {
+      pass = true;
+    }
+    return pass;
   };
 
   const EVENTS = {
@@ -54,25 +95,6 @@ const GameScreen = (props) => {
         availableTimes: "",
         name: "Career Fair",
         description: "I wonder what I jobs I could do...",
-        cssClass: "important",
-        noList: true,
-      },
-    },
-    finale: {
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
-
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-
-        setScene(IntroSegment[0]);
-      },
-      eventDisplay: {
-        availableTimes: "",
-        name: "Job Applications",
-        description: "Apps are due tonight! Do I have the skills to get a job?",
         cssClass: "important",
         noList: true,
       },
@@ -321,6 +343,129 @@ const GameScreen = (props) => {
         name: "Cook!",
         description: "Energize yourself with some of your own cooking! +?? energy.",
         cssClass: "purple",
+      },
+    },
+
+    finale: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        if (passFail(1) || passFail(2) || passFail(3) || passFail(4)) {
+          const bestAffection = Math.max(
+            stats.reputation1,
+            stats.reputation2,
+            stats.reputation3,
+            stats.reputation4
+          );
+          if (bestAffection === stats.reputation1) {
+            setEnding("1");
+            runScript(Edna[1], 0);
+          } else if (bestAffection === stats.reputation2) {
+            setEnding("2");
+            runScript(Jp[3], 0);
+          } else if (bestAffection === stats.reputation3) {
+            setEnding("3");
+            runScript(Martin[1], 0);
+          } else if (bestAffection === stats.reputation4) {
+            setEnding("4");
+            runScript(Sylvia[2], 0);
+          }
+        } else {
+          setEnding("lonely");
+          runScript(IntroSegment[3], 0);
+        }
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000001",
+        name: "Apply To Everyone",
+        description: "Apply to everyone! I hope someone accepts you...",
+        cssClass: "important",
+      },
+    },
+    edfinale: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        if (passFail(1)) {
+          setEnding("1");
+          runScript(Edna[1], 0);
+        } else {
+          setEnding("lonely");
+          runScript(Edna[2], 0);
+        }
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000001",
+        name: "Apply To Edna",
+        description: "Apply only to Edna",
+        cssClass: "important",
+      },
+    },
+    JPfinale: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        if (passFail(2)) {
+          setEnding("2");
+          runScript(Jp[3], 0);
+        } else {
+          setEnding("lonely");
+          runScript(Jp[4], 0);
+        }
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000001",
+        name: "Apply To JP",
+        description: "Apply only to JP",
+        cssClass: "important",
+      },
+    },
+    martinfinale: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        if (passFail(3)) {
+          setEnding("3");
+          runScript(Martin[1], 0);
+        } else {
+          setEnding("lonely");
+          runScript(Martin[2], 0);
+        }
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000001",
+        name: "Apply To Martin",
+        description: "Apply only to Martin",
+        cssClass: "important",
+      },
+    },
+    sylviafinale: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        if (passFail(4)) {
+          setEnding("4");
+          runScript(Sylvia[2], 0);
+        } else {
+          setEnding("lonely");
+          runScript(Syvlia[3], 0);
+        }
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000001",
+        name: "Apply To Edna",
+        description: "Apply only to Edna",
+        cssClass: "important",
       },
     },
 
