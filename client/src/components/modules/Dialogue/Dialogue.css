@@ -151,19 +151,19 @@
 }
 
 .EdnaFlus {
-  background-image: url("../../../edna_states/martin_flustered.png");
+  background-image: url("../../../edna_states/edna_flustered.png");
 }
 .EdnaSad {
-  background-image: url("../../../edna_states/martin_gloomy.png");
+  background-image: url("../../../edna_states/edna_sad.png");
 }
 .EdnaNeut {
-  background-image: url("../../../martin_states/martin_neutral.png");
+  background-image: url("../../../edna_states/edna_neutral.png");
 }
 .EdnaHappy {
-  background-image: url("../../../martin_states/martin_ibuki.png");
+  background-image: url("../../../edna_states/edna_happy.png");
 }
 .EdnaShook {
-  background-image: url("../../../martin_states/martin_rizz.png");
+  background-image: url("../../../edna_states/edna_flustered.png");
 }
 
 .JpTrade {
