@@ -22,7 +22,15 @@ const DialogueScreen = (props) => {
 
   useEffect(() => {
     if (!active) {
-      props.setStats({ ...props.stats, reputation1: props.stats.reputation1 + affectionChange });
+      if (industry == 1) {
+        props.setStats({ ...props.stats, reputation1: props.stats.reputation1 + affectionChange });
+      } else if (industry == 2) {
+        props.setStats({ ...props.stats, reputation1: props.stats.reputation2 + affectionChange });
+      } else if (industry == 3) {
+        props.setStats({ ...props.stats, reputation1: props.stats.reputation3 + affectionChange });
+      } else if (industry == 4) {
+        props.setStats({ ...props.stats, reputation1: props.stats.reputation4 + affectionChange });
+      }
       props.cleanup();
     }
   }, [active]);
