@@ -116,7 +116,6 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
       <div className="optionsWrapper">
         {eventButton()}
         {Object.keys(EVENTS).map((eventID) => {
-          console.log(Object.hasOwn(EVENTS[eventID].eventDisplay, "noList"));
           if (
             Object.hasOwn(EVENTS[eventID].eventDisplay, "noList") &&
             EVENTS[eventID].eventDisplay["noList"]
