@@ -5,12 +5,7 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import {
-  ResettiTestySpaghetti,
-  clickthroughTest,
-  IntroSegment,
-  Martin,
-} from "./Dialogue/Script.js";
+import { IntroSegment, Martin, Edna, Jp, Sylvia } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
 
