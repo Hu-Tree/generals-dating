@@ -202,44 +202,95 @@ const GameScreen = (props) => {
     //Mini-Events
     weblab: {
       sideEffects: () => {
+        alert(
+          `You learn something about props and React. +5 technical, +1 networking and -4 energy.`
+        );
+
         setStats((prevStats) => {
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
-            energy: prevStats.energy - 5,
-            technical: prevStats.technical + 1,
+            technical: prevStats.technical + 5,
+            networking: prevStats.networking + 1,
+            energy: prevStats.energy - 4,
           };
         });
-
-        alert("Web dev is hard...");
       },
       eventDisplay: {
-        availableTimes: "001000001000001000001000",
-        name: "Web Lab",
-        description: "It's time to learn!",
+        availableTimes: "001000" + "001000" + "001000" + "001000",
+        name: "Attend {web.lab}",
+        description: "You can feel your brain enlargen from web dev; -4 energy.",
         cssClass: "orange",
       },
     },
-    trading: {
+    poker: {
       sideEffects: () => {
         setStats((prevStats) => {
           return {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
-            energy: prevStats.energy - 5,
-            networking: prevStats.networking + 1,
+            energy: prevStats.energy - 3,
+            networking: prevStats.networking + 3,
+            technical: prevStats.technical + 1,
           };
         });
 
-        alert("I made some useful connections, hehe.");
+        alert(
+          "Is poker really that similar to trading? +3 networking, +1 technical and -3 energy."
+        );
       },
       eventDisplay: {
-        availableTimes: "010000010000010000010000",
-        name: "Hudson River Trading",
-        description: "HRT goes brrrr",
+        availableTimes: "000100" + "000100" + "000100" + "000100",
+        name: "Poker Club",
+        description: "Cards go brrrrrrrr. -3 energy",
         cssClass: "orange",
       },
     },
+    urop: {
+      sideEffects: () => {
+        alert(`You work on your UROP! +3 technical and -2 energy.`);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            technical: prevStats.technical + 3,
+            energy: prevStats.energy - 2,
+          };
+        });
+      },
+      eventDisplay: {
+        availableTimes: "001111" + "111111" + "111111" + "111110",
+        name: "Work on UROP",
+        description: "Your code could use some work; -2 energy.",
+        cssClass: "orange",
+      },
+    },
+    speakingworkshop: {
+      sideEffects: () => {
+        alert(
+          `It was a bit embarassing and very tiring, but ultimately useful for you. +6 presentation, +3 networking and -6 energy.`
+        );
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            networking: prevStats.networking + 3,
+            presentation: prevStats.presentation + 6,
+            energy: prevStats.energy - 6,
+          };
+        });
+      },
+      eventDisplay: {
+        availableTimes: "000100" + "000000" + "000000" + "000000",
+        name: "Public Speaking Workshop",
+        description: "Presenting is hard! -6 energy.",
+        cssClass: "orange",
+      },
+    },
+
+    //resting events
     sleep: {
       sideEffects: () => {
         setStats((prevStats) => {
@@ -250,20 +301,18 @@ const GameScreen = (props) => {
           };
         });
 
-        alert("Sweet dreams!");
-        //setScene(IntroSegment[1]);
+        alert("Sweet dreams! +5 energy.");
       },
       eventDisplay: {
-        availableTimes: "111111111111111111111111111111111111111111111111111111111111111111111111",
+        availableTimes: "001111" + "111111" + "111111" + "111110",
         name: "Sleep",
-        description: "ZZZ\n+5 energy",
+        description: "ZZZ; +5 energy",
         cssClass: "purple",
       },
     },
     cook: {
       sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
+        alert(`You cooked a meal! +1 cooking and +${2 * (stats.cooking + 1)} energy.`);
 
         setStats((prevStats) => {
           return {
@@ -273,16 +322,15 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 2 * (prevStats.cooking + 1),
           };
         });
-        alert("You cooked a meal! You feel your cooking skill improve and energy replenished.");
-        //setScene("hi");
       },
       eventDisplay: {
-        availableTimes: "011100111100111100111100",
+        availableTimes: "001100" + "111100" + "111100" + "111100",
         name: "Cook!",
-        description: "Energize yourself with cooking!\nI hope it's edible...",
+        description: "Energize yourself with some of your own cooking! +?? energy.",
         cssClass: "purple",
       },
     },
+
     empty: {
       sideEffects: () => {
         setStats((prevStats) => {
