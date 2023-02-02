@@ -12,22 +12,15 @@ import EndScreen from "./EndScreen/EndScreen";
 const GameScreen = (props) => {
   const ENDTIME = 23; //final event should be at this time. Autosave occurs beforehand.
 
-  const runScript = (script) => {
-    setActiveScreen("dialogue");
+  const runScript = (script, target) => {
+    setIndustry(target);
     setFlag(stats.currentTime);
     setScene(script);
+    setActiveScreen("dialogue");
   };
 
   const dialogueCleanup = async () => {
-    if (
-      stats.currentTime !== RESETSTATS.currentTime &&
-      stats.currentTime < ENDTIME &&
-      stats.energy >= 0
-    ) {
-      await post("/api/save", stats);
-    }
-
-    if (stats.currentTime >= ENDTIME || stats.energy < 0) {
+    if (stats.currentTime >= ENDTIME) {
       runEnding();
     } else {
       setActiveScreen("schedule");
@@ -90,7 +83,7 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Edna[0]);
+        runScript(Edna[0], 1);
       },
       eventDisplay: {
         availableTimes: "0000001",
@@ -99,31 +92,31 @@ const GameScreen = (props) => {
         cssClass: "important",
       },
     },
-    meet_ma1: {
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        runScript(Martin[0]);
-      },
-      eventDisplay: {
-        availableTimes: "00000001",
-        name: "Interview With Martin",
-        description: "Nothing quite like the military-industrial complex!",
-        cssClass: "important",
-      },
-    },
     meet_jp1: {
       sideEffects: () => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Jp[0]);
+        runScript(Jp[0], 2);
       },
       eventDisplay: {
-        availableTimes: "000000" + "001000" + "000000" + "000000",
+        availableTimes: "000000" + "010000" + "000000" + "000000",
         name: "Interview With JP",
         description: "meet_jp1",
+        cssClass: "important",
+      },
+    },
+    meet_ma1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Martin[0], 3);
+      },
+      eventDisplay: {
+        availableTimes: "000000001",
+        name: "Interview With Martin",
+        description: "Nothing quite like the military-industrial complex!",
         cssClass: "important",
       },
     },
@@ -132,7 +125,7 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Sylvia[0]);
+        runScript(Sylvia[0], 4);
       },
       eventDisplay: {
         availableTimes: "000000" + "000100" + "000000" + "000000",
@@ -147,7 +140,7 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(IntroSegment[0]); //CHANGE
+        runScript(IntroSegment[0], 1); //CHANGE
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "000100",
@@ -156,31 +149,31 @@ const GameScreen = (props) => {
         cssClass: "important",
       },
     },
-    meet_ma2: {
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        runScript(IntroSegment[0]); //CHANGE
-      },
-      eventDisplay: {
-        availableTimes: "000000" + "000000" + "000000" + "001000",
-        name: "Meet With Martin 2",
-        description: "Nothing quite like the military-industrial complex!",
-        cssClass: "important",
-      },
-    },
     meet_jp2: {
       sideEffects: () => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Jp[0]); //CHANGE
+        runScript(Jp[0], 2); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "001000",
+        name: "Meet With JP 2",
+        description: "meet_jp2",
+        cssClass: "important",
+      },
+    },
+    meet_ma2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0], 3); //CHANGE
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "010000",
-        name: "Meet With JP 2",
-        description: "meet_jp2",
+        name: "Meet With Martin 2",
+        description: "Nothing quite like the military-industrial complex!",
         cssClass: "important",
       },
     },
@@ -189,7 +182,7 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Jp[0]); //CHANGE
+        runScript(Jp[0], 4); //CHANGE
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "100000",
@@ -367,6 +360,7 @@ const GameScreen = (props) => {
   const [flag, setFlag] = useState(-100);
   const [ending, setEnding] = useState("lonely");
   const [resetAllToggle, setResetAllToggle] = useState(false);
+  const [industry, setIndustry] = useState(0);
 
   const runEnding = () => {
     //TOCHANGE
@@ -400,6 +394,13 @@ const GameScreen = (props) => {
     }
   }, [props.userId]);
 
+  useEffect(() => {
+    if (stats.currentTime < ENDTIME && stats.currentTime > 1) {
+      console.log(stats);
+      post("/api/save", stats);
+    }
+  }, [stats]);
+
   return (
     <>
       <div className="gameScreenWrapper">
@@ -427,6 +428,7 @@ const GameScreen = (props) => {
             stats={stats}
             cleanup={dialogueCleanup}
             Flag={flag}
+            industry={industry}
           />
           <ScheduleScreen
             enabled={activeScreen === "schedule" && !isStatsScreenActive}
