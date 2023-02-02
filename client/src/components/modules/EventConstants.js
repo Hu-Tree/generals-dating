@@ -1,30 +1,30 @@
 const INITIALSCHEDULE = [
-  "date_e1", //week1 day1 period1
+  "intro1", //week1 day1 period1
+  "intro2",
   "empty",
   "empty",
   "empty",
-  "sleep",
-  "sleep",
+  "empty",
   "empty", //week1 day2 period1
   "empty",
   "empty",
   "empty",
-  "sleep",
-  "sleep",
+  "empty",
+  "empty",
   "empty", //week1 day3 period1
   "empty",
   "empty",
   "empty",
-  "sleep",
-  "sleep",
+  "empty",
+  "empty",
   "empty", //week1 day4 period1
   "empty",
   "empty",
-  "finale",
-  "sleep",
-  "sleep",
-  "sleep", //week2 day1 period1
-  "sleep",
+  "empty",
+  "empty",
+  "empty",
+  "empty", //week2 day1 period1
+  "empty",
   "empty",
   "empty",
   "empty",
@@ -32,7 +32,7 @@ const INITIALSCHEDULE = [
   "empty", //week2 day2 period1
   "empty",
   "empty",
-  "date_e1",
+  "empty",
   "empty",
   "empty",
   "empty", //week2 day3 period1
@@ -46,9 +46,9 @@ const INITIALSCHEDULE = [
   "empty",
   "empty",
   "empty",
-  "finale",
-  "sleep", //week3 day1 period1
-  "sleep",
+  "empty",
+  "empty", //week3 day1 period1
+  "empty",
   "empty",
   "empty",
   "empty",
@@ -56,7 +56,7 @@ const INITIALSCHEDULE = [
   "empty", //week3 day2 period1
   "empty",
   "empty",
-  "date_e1",
+  "empty",
   "empty",
   "empty",
   "empty", //week3 day3 period1
@@ -70,7 +70,7 @@ const INITIALSCHEDULE = [
   "empty",
   "empty",
   "empty",
-  "finale",
+  "empty",
 ];
 
 export { INITIALSCHEDULE };

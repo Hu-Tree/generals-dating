@@ -10,7 +10,10 @@ const GamePage = (props) => {
     <>
       <div className="gameWrapper">
         <div className="instructionWrapper">
-          Tutorial: <br />
+          <h3>Can you get a job by the end of IAP?</h3>
+          Meet people, make connections, make skills, manage your time, and ultimately impress your
+          job prospects!
+          <h3>Tutorial:</h3>
           <ul>
             <li>
               Hit the "Play Current Event!" button to play the highlighted event and move forward in
@@ -20,11 +23,8 @@ const GamePage = (props) => {
               After the dialogue completes, you can change the schedule by selecting an event from
               the right, and placing it in a valid location (indicated by the faint outlines).
             </li>
-            <li>
-              You can view your stats by hitting the stats tab. Make sure to train to impress your
-              job prospects!
-            </li>
-            <li>Also make sure to keep track of your energy...</li>
+            <li>You can view your stats by hitting the stats tab.</li>
+            <li>The game autosaves directly to your account!</li>
           </ul>
         </div>
         <GameScreen userId={props.userId} />

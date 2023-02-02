@@ -53,7 +53,7 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/userStats", async (req, res) => {
-  await UserStats.deleteMany({});
+  //await UserStats.deleteMany({});
   UserStats.find({ user_id: req.query.user_id }).then(async (userStats) => {
     const user = await User.findById(req.query.user_id);
     if (userStats.length === 0) {

@@ -5,25 +5,52 @@ import "./GameScreen.css";
 import ScheduleScreen from "./Scheduling/ScheduleScreen";
 import DialogueScreen from "./Dialogue/DialogueScreen";
 import StatsScreen from "./Stats/StatsScreen";
-import {
-  ResettiTestySpaghetti,
-  clickthroughTest,
-  IntroSegment,
-  Martin,
-  Jp,
-  Edna,
-  Sylvia,
-} from "./Dialogue/Script.js";
+import { IntroSegment, Martin, Edna, Jp, Sylvia } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
+  const ENDTIME = 21; //final event should be at this time. Autosave occurs beforehand.
+
+  const runScript = (script) => {
+    setActiveScreen("dialogue");
+    setFlag(stats.currentTime);
+    setScene(script);
+  };
+
   const EVENTS = {
+    intro1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0]);
+      },
+      eventDisplay: {
+        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        name: "Prep For Career Fair",
+        description: "I have to be ready to make a good impression!",
+        cssClass: "important",
+        noList: true,
+      },
+    },
+    intro2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[1]);
+      },
+      eventDisplay: {
+        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        name: "Career Fair",
+        description: "I wonder what I jobs I could do...",
+        cssClass: "important",
+        noList: true,
+      },
+    },
     weblab: {
       sideEffects: () => {
-        //setActiveScreen("dialogue");
-        //setFlag(stats.currentTime);
-
         setStats((prevStats) => {
           return {
             ...prevStats,
@@ -34,11 +61,9 @@ const GameScreen = (props) => {
         });
 
         alert("Web dev is hard...");
-
-        console.log("weblab");
       },
       eventDisplay: {
-        availableTimes: "010000010000010000010000".split(""),
+        availableTimes: "010000010000010000010000",
         name: "Web Lab",
         description: "It's time to learn!",
         cssClass: "orange",
@@ -46,9 +71,6 @@ const GameScreen = (props) => {
     },
     trading: {
       sideEffects: () => {
-        //setActiveScreen("dialogue");
-        //setFlag(stats.currentTime);
-
         setStats((prevStats) => {
           return {
             ...prevStats,
@@ -59,23 +81,16 @@ const GameScreen = (props) => {
         });
 
         alert("I made some useful connections, hehe.");
-
-        console.log("hrt");
       },
       eventDisplay: {
-        availableTimes: "010000010000010000010000".split(""),
+        availableTimes: "010000010000010000010000",
         name: "Hudson River Trading",
         description: "HRT goes brrrr",
         cssClass: "orange",
       },
     },
     sleep: {
-      name: "sleep",
-      scriptName: "idfk",
       sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
-
         setStats((prevStats) => {
           return {
             ...prevStats,
@@ -85,21 +100,16 @@ const GameScreen = (props) => {
         });
 
         alert("Sweet dreams!");
-        console.log("sleep");
-        setScene(Martin[0]);
+        //setScene(IntroSegment[1]);
       },
       eventDisplay: {
-        availableTimes:
-          "111111111111111111111111111111111111111111111111111111111111111111111111".split(""),
+        availableTimes: "111111111111111111111111111111111111111111111111111111111111111111111111",
         name: "Sleep",
         description: "ZZZ\n+5 energy",
-        limit: 12,
         cssClass: "purple",
       },
     },
     cook: {
-      name: "cook",
-      scriptName: "idfk",
       sideEffects: () => {
         setActiveScreen("dialogue");
         setFlag(stats.currentTime);
@@ -112,62 +122,31 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 2 * (prevStats.cooking + 1),
           };
         });
-        console.log("cook");
         alert("You cooked a meal! You feel your cooking skill improve and energy replenished.");
-        setScene(Jp[0]);
+        //setScene("hi");
       },
       eventDisplay: {
-        availableTimes: "011100111100111100111100".split(""),
+        availableTimes: "011100111100111100111100",
         name: "Cook!",
         description: "Energize yourself with cooking!\nI hope it's edible...",
-        limit: 8,
         cssClass: "purple",
       },
     },
-    date_e1: {
-      name: "career fair",
-      scriptName: "idfk",
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
-
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        console.log("career fair");
-        setScene(IntroSegment[1]);
-      },
-      eventDisplay: {
-        availableTimes:
-          "10000000000000000000000000000000000000000000000000000000000000000000000".split(""),
-        name: "Career Fair",
-        description: "I wonder if I'll meet anyone interesting...?",
-        limit: 1,
-        cssClass: "important",
-      },
-    },
     empty: {
-      name: "empty",
-      scriptName: "idfk",
       sideEffects: () => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-
-        console.log("empty");
       },
       eventDisplay: {
-        availableTimes:
-          "000000000000000000000000000000000000000000000000000000000000000000000000".split(""),
+        availableTimes: "000000000000000000000000000000000000000000000000000000000000000000000000",
         name: "",
         description: "",
-        limit: 0,
         cssClass: "empty",
+        noList: true,
       },
     },
     finale: {
-      name: "finale",
-      scriptName: "idfk",
       sideEffects: () => {
         setActiveScreen("dialogue");
         setFlag(stats.currentTime);
@@ -176,16 +155,14 @@ const GameScreen = (props) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
 
-        console.log("finale");
         setScene(IntroSegment[0]);
       },
       eventDisplay: {
-        availableTimes:
-          "000000000000000000000000000000000000000000000000000000000000000000000000".split(""),
+        availableTimes: "000000000000000000000000000000000000000000000000000000000000000000000000",
         name: "Job Applications",
         description: "The finale: Do you have the skills to get a job?",
-        limit: 0,
         cssClass: "important",
+        noList: true,
       },
     },
   };
@@ -279,13 +256,13 @@ const GameScreen = (props) => {
             cleanup={async () => {
               if (
                 stats.currentTime !== RESETSTATS.currentTime &&
-                stats.currentTime < 21 &&
+                stats.currentTime < ENDTIME &&
                 stats.energy >= 0
               ) {
                 await post("/api/save", stats);
               }
 
-              if (stats.currentTime >= 21 || stats.energy < 0) {
+              if (stats.currentTime >= ENDTIME || stats.energy < 0) {
                 runEnding();
               } else {
                 setActiveScreen("schedule");

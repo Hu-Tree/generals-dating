@@ -70,7 +70,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
   };
 
   const drawGhostBoxes = () => {
-    return EVENTS[activeOption].eventDisplay.availableTimes.map((allowed, index) => {
+    return EVENTS[activeOption].eventDisplay.availableTimes.split("").map((allowed, index) => {
       if (getTime().week !== convertTime(index).week) {
         return <></>;
       }
@@ -115,7 +115,11 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
     return (
       <div className="optionsWrapper">
         {Object.keys(EVENTS).map((eventID) => {
-          if (eventID === "empty" || eventID === "finale") {
+          console.log(Object.hasOwn(EVENTS[eventID].eventDisplay, "noList"));
+          if (
+            Object.hasOwn(EVENTS[eventID].eventDisplay, "noList") &&
+            EVENTS[eventID].eventDisplay["noList"]
+          ) {
             return <></>;
           }
           return (
