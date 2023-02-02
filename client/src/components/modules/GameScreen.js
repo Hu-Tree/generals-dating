@@ -124,7 +124,7 @@ const GameScreen = (props) => {
       eventDisplay: {
         availableTimes: "000000" + "010000" + "000000" + "000000",
         name: "Interview With JP",
-        description: "meet_jp1",
+        description: "Is this what meaningful work looks like?",
         cssClass: "important",
       },
     },
@@ -152,7 +152,7 @@ const GameScreen = (props) => {
       eventDisplay: {
         availableTimes: "000000" + "000100" + "000000" + "000000",
         name: "Interview With Sylvia",
-        description: "meet_sy1",
+        description: "It's big tech time.",
         cssClass: "important",
       },
     },
@@ -162,12 +162,12 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(IntroSegment[0], 1); //CHANGE
+        runScript(Edna[3], 1);
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "000100",
-        name: "meet_edna_2",
-        description: "Edna",
+        name: "Hangout With Edna",
+        description: "How exciting!",
         cssClass: "important",
       },
     },
@@ -176,12 +176,12 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Jp[0], 2); //CHANGE
+        runScript(Jp[1], 2); //CHANGE
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "001000",
-        name: "Meet With JP 2",
-        description: "meet_jp2",
+        name: "Hangout With JP",
+        description: "Stonks.",
         cssClass: "important",
       },
     },
@@ -190,12 +190,12 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(IntroSegment[0], 3); //CHANGE
+        runScript(Martin[3], 3);
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "010000",
-        name: "Meet With Martin 2",
-        description: "Nothing quite like the military-industrial complex!",
+        name: "Hangout With Martin",
+        description: "Martin ordered me to come...",
         cssClass: "important",
       },
     },
@@ -204,12 +204,26 @@ const GameScreen = (props) => {
         setStats((prevStats) => {
           return { ...prevStats, currentTime: prevStats.currentTime + 1 };
         });
-        runScript(Jp[0], 4); //CHANGE
+        runScript(Sylvia[1], 4);
       },
       eventDisplay: {
         availableTimes: "000000" + "000000" + "000000" + "100000",
-        name: "Meet With Sylvia 2",
-        description: "meet_sy2",
+        name: "Hangout With Sylvia",
+        description: "What does Sylvia have in store for me today?",
+        cssClass: "important",
+      },
+    },
+    meet_jp3: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[2], 2);
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000010",
+        name: "???",
+        description: "A mysterious meeting with JP.",
         cssClass: "important",
       },
     },
@@ -360,16 +374,16 @@ const GameScreen = (props) => {
             stats.reputation4
           );
           if (bestAffection === stats.reputation1) {
-            setEnding("1");
+            setEnding("yay1");
             runScript(Edna[1], 1);
           } else if (bestAffection === stats.reputation2) {
-            setEnding("2");
+            setEnding("yay2");
             runScript(Jp[3], 2);
           } else if (bestAffection === stats.reputation3) {
-            setEnding("3");
+            setEnding("yay3");
             runScript(Martin[1], 3);
           } else if (bestAffection === stats.reputation4) {
-            setEnding("4");
+            setEnding("yay4");
             runScript(Sylvia[2], 4);
           }
         } else {
@@ -391,7 +405,7 @@ const GameScreen = (props) => {
         });
 
         if (passFail(1)) {
-          setEnding("1");
+          setEnding("yay1");
           runScript(Edna[1], 1);
         } else {
           setEnding("lonely");
@@ -412,7 +426,7 @@ const GameScreen = (props) => {
         });
 
         if (passFail(2)) {
-          setEnding("2");
+          setEnding("yay2");
           runScript(Jp[3], 2);
         } else {
           setEnding("lonely");
@@ -433,7 +447,7 @@ const GameScreen = (props) => {
         });
 
         if (passFail(3)) {
-          setEnding("3");
+          setEnding("yay3");
           runScript(Martin[1], 3);
         } else {
           setEnding("lonely");
@@ -454,7 +468,7 @@ const GameScreen = (props) => {
         });
 
         if (passFail(4)) {
-          setEnding("4");
+          setEnding("yay4");
           runScript(Sylvia[2], 4);
         } else {
           setEnding("lonely");
