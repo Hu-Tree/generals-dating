@@ -84,7 +84,7 @@ const GameScreen = (props) => {
         noList: true,
       },
     },
-    //Dates
+    //Dates; first meetings
     meet_ed1: {
       sideEffects: () => {
         setStats((prevStats) => {
@@ -96,20 +96,6 @@ const GameScreen = (props) => {
         availableTimes: "0000001",
         name: "Interview With Edna",
         description: "I hope to make a good impression!",
-        cssClass: "important",
-      },
-    },
-    meet_ed2: {
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        runScript(IntroSegment[0]); //CHANGE
-      },
-      eventDisplay: {
-        availableTimes: "000000000000000000100000",
-        name: "meet_edna_2",
-        description: "Edna",
         cssClass: "important",
       },
     },
@@ -127,6 +113,49 @@ const GameScreen = (props) => {
         cssClass: "important",
       },
     },
+    meet_jp1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]);
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "001000" + "000000" + "000000",
+        name: "Interview With JP",
+        description: "meet_jp1",
+        cssClass: "important",
+      },
+    },
+    meet_sy1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Sylvia[0]);
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000100" + "000000" + "000000",
+        name: "Interview With Sylvia",
+        description: "meet_sy1",
+        cssClass: "important",
+      },
+    },
+    //Second meetings
+    meet_ed2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000100",
+        name: "meet_edna_2",
+        description: "Edna",
+        cssClass: "important",
+      },
+    },
     meet_ma2: {
       sideEffects: () => {
         setStats((prevStats) => {
@@ -135,9 +164,37 @@ const GameScreen = (props) => {
         runScript(IntroSegment[0]); //CHANGE
       },
       eventDisplay: {
-        availableTimes: "00000000000000000001",
+        availableTimes: "000000" + "000000" + "000000" + "001000",
         name: "Meet With Martin 2",
         description: "Nothing quite like the military-industrial complex!",
+        cssClass: "important",
+      },
+    },
+    meet_jp2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "010000",
+        name: "Meet With JP 2",
+        description: "meet_jp2",
+        cssClass: "important",
+      },
+    },
+    meet_sy2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "100000",
+        name: "Meet With Sylvia 2",
+        description: "meet_sy2",
         cssClass: "important",
       },
     },
