@@ -24,7 +24,7 @@ const GamePage = (props) => {
               the right, and placing it in a valid location (indicated by the faint outlines).
             </li>
             <li>You can view your stats by hitting the stats tab.</li>
-            <li>The game autosaves directly to your account!</li>
+            <li>The game autosaves after every dialogue directly to your account!</li>
           </ul>
         </div>
         <GameScreen userId={props.userId} />

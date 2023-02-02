@@ -10,12 +10,28 @@ import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
-  const ENDTIME = 21; //final event should be at this time. Autosave occurs beforehand.
+  const ENDTIME = 23; //final event should be at this time. Autosave occurs beforehand.
 
   const runScript = (script) => {
     setActiveScreen("dialogue");
     setFlag(stats.currentTime);
     setScene(script);
+  };
+
+  const dialogueCleanup = async () => {
+    if (
+      stats.currentTime !== RESETSTATS.currentTime &&
+      stats.currentTime < ENDTIME &&
+      stats.energy >= 0
+    ) {
+      await post("/api/save", stats);
+    }
+
+    if (stats.currentTime >= ENDTIME || stats.energy < 0) {
+      runEnding();
+    } else {
+      setActiveScreen("schedule");
+    }
   };
 
   const EVENTS = {
@@ -27,7 +43,7 @@ const GameScreen = (props) => {
         runScript(IntroSegment[0]);
       },
       eventDisplay: {
-        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        availableTimes: "",
         name: "Prep For Career Fair",
         description: "I have to be ready to make a good impression!",
         cssClass: "important",
@@ -42,13 +58,148 @@ const GameScreen = (props) => {
         runScript(IntroSegment[1]);
       },
       eventDisplay: {
-        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        availableTimes: "",
         name: "Career Fair",
         description: "I wonder what I jobs I could do...",
         cssClass: "important",
         noList: true,
       },
     },
+    finale: {
+      sideEffects: () => {
+        setActiveScreen("dialogue");
+        setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+
+        setScene(IntroSegment[0]);
+      },
+      eventDisplay: {
+        availableTimes: "",
+        name: "Job Applications",
+        description: "Apps are due tonight! Do I have the skills to get a job?",
+        cssClass: "important",
+        noList: true,
+      },
+    },
+    //Dates; first meetings
+    meet_ed1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Edna[0]);
+      },
+      eventDisplay: {
+        availableTimes: "0000001",
+        name: "Interview With Edna",
+        description: "I hope to make a good impression!",
+        cssClass: "important",
+      },
+    },
+    meet_ma1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Martin[0]);
+      },
+      eventDisplay: {
+        availableTimes: "00000001",
+        name: "Interview With Martin",
+        description: "Nothing quite like the military-industrial complex!",
+        cssClass: "important",
+      },
+    },
+    meet_jp1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]);
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "001000" + "000000" + "000000",
+        name: "Interview With JP",
+        description: "meet_jp1",
+        cssClass: "important",
+      },
+    },
+    meet_sy1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Sylvia[0]);
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000100" + "000000" + "000000",
+        name: "Interview With Sylvia",
+        description: "meet_sy1",
+        cssClass: "important",
+      },
+    },
+    //Second meetings
+    meet_ed2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "000100",
+        name: "meet_edna_2",
+        description: "Edna",
+        cssClass: "important",
+      },
+    },
+    meet_ma2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "001000",
+        name: "Meet With Martin 2",
+        description: "Nothing quite like the military-industrial complex!",
+        cssClass: "important",
+      },
+    },
+    meet_jp2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "010000",
+        name: "Meet With JP 2",
+        description: "meet_jp2",
+        cssClass: "important",
+      },
+    },
+    meet_sy2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(Jp[0]); //CHANGE
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "000000" + "100000",
+        name: "Meet With Sylvia 2",
+        description: "meet_sy2",
+        cssClass: "important",
+      },
+    },
+
+    //Mini-Events
     weblab: {
       sideEffects: () => {
         setStats((prevStats) => {
@@ -63,7 +214,7 @@ const GameScreen = (props) => {
         alert("Web dev is hard...");
       },
       eventDisplay: {
-        availableTimes: "010000010000010000010000",
+        availableTimes: "001000001000001000001000",
         name: "Web Lab",
         description: "It's time to learn!",
         cssClass: "orange",
@@ -146,25 +297,6 @@ const GameScreen = (props) => {
         noList: true,
       },
     },
-    finale: {
-      sideEffects: () => {
-        setActiveScreen("dialogue");
-        setFlag(stats.currentTime);
-
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-
-        setScene(IntroSegment[0]);
-      },
-      eventDisplay: {
-        availableTimes: "000000000000000000000000000000000000000000000000000000000000000000000000",
-        name: "Job Applications",
-        description: "The finale: Do you have the skills to get a job?",
-        cssClass: "important",
-        noList: true,
-      },
-    },
   };
 
   const RESETSTATS = {
@@ -220,14 +352,6 @@ const GameScreen = (props) => {
     }
   }, [props.userId]);
 
-  useEffect(() => {
-    if (stats.energy < 0) {
-      setActiveScreen("dialogue");
-      setScene(IntroSegment[2]);
-      setFlag(1000);
-    }
-  }, [stats]);
-
   return (
     <>
       <div className="gameScreenWrapper">
@@ -253,21 +377,7 @@ const GameScreen = (props) => {
             Scene={scene}
             setStats={setStats}
             stats={stats}
-            cleanup={async () => {
-              if (
-                stats.currentTime !== RESETSTATS.currentTime &&
-                stats.currentTime < ENDTIME &&
-                stats.energy >= 0
-              ) {
-                await post("/api/save", stats);
-              }
-
-              if (stats.currentTime >= ENDTIME || stats.energy < 0) {
-                runEnding();
-              } else {
-                setActiveScreen("schedule");
-              }
-            }}
+            cleanup={dialogueCleanup}
             Flag={flag}
           />
           <ScheduleScreen

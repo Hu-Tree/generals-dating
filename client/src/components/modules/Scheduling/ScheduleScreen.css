@@ -32,7 +32,7 @@ p{
   grid-template-columns: repeat(4, 1fr);
   gap: 1vh;
   padding: 1vh;
-  width: 61vw;
+  width: 60vw;
 }
 
 .card {
@@ -44,11 +44,11 @@ p{
   height: 7.2vh;
 }
 .card > h6 {
-  font-size: 2.5vh;
+  font-size: 2.2vh;
   margin: 0%;
 }
 .card > p {
-  font-size: 1.75vh;
+  font-size: 1.7vh;
   margin: 0%;
 }
 .shaded {
@@ -93,14 +93,38 @@ p{
   flex-direction: column;
   flex-wrap: wrap;
   gap: 1vh;
+  height: 70vh;
+  align-items: center;
 }
 
 .optionsButton {
-  height: 10vh;
+  background-color: var(--pink);
+  border-radius: 1vh;
+  border-color: crimson;
+  border-width: 0.5vh;
+  margin: 1vh;
+  width: 8vw;
+  font-size: 2.5vh;
+  color: white;
+  transition-duration: 0.2s;
+}
+
+.optionsButton:hover {
+  background-color: rgb(174, 0, 61);
+  color: rgb(255, 203, 223);
 }
 
 .optionCard {
-  width: 13vw;
+  width: 8vw;
+  height: 5vh;
+}
+.optionCard > h6 {
+  font-size: 1.75vh;
+  margin: 0%;
+}
+.optionCard > p {
+  font-size: 1.5vh;
+  margin: 0%;
 }
 
 .activeOptionCard {
@@ -119,26 +143,13 @@ p{
   font-size: 2vh;
 }
 
-.button {
-  background-color: var(--pink);
-  border-radius: 1vh;
-  border-color: crimson;
-  border-width: 0.5vh;
-  margin: 2vh;
-  width: 13vw;
-  height: 8.5vh;
-  font-size: 3vh;
-  color: white;
-  transition-duration: 0.2s;
-}
-
-.button:hover {
-  background-color: rgb(174, 0, 61);
-  color: rgb(255, 203, 223);
-}
-
 .next2 {
   border-color: black;
   border-style: dashed;
   background-color: white;
+}
+
+.ghost {
+  border-style: dashed;
+  opacity: 0.9;
 }

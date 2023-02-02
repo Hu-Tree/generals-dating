@@ -8,11 +8,11 @@ import "./ScheduleScreen.css";
 const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
   const [activeScheduleList, setActiveScheduleList] = useState(INITIALSCHEDULE);
 
-  const NUMWEEKS = 3;
+  const NUMWEEKS = 1;
   const DAYSPERWEEK = 4;
   const PERIODSPERDAY = 6;
 
-  const fixedEventTimes = [0, 21];
+  const fixedEventTimes = [0, 1, 23];
 
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");
@@ -79,7 +79,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
       }
       return (
         <div
-          className={`card ${EVENTS[activeOption].eventDisplay.cssClass} shaded`}
+          className={`card ${EVENTS[activeOption].eventDisplay.cssClass} ghost`}
           style={{
             gridColumn: convertTime(index).day,
             gridRow: convertTime(index).period,
@@ -101,7 +101,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
   const eventButton = () => {
     return (
       <button
-        className="button"
+        className="optionsButton"
         onClick={() => {
           EVENTS[activeScheduleList[stats.currentTime]].sideEffects();
         }}
@@ -111,9 +111,10 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
     );
   };
 
-  const drawOptions = () => {
+  const drawRightHalf = () => {
     return (
       <div className="optionsWrapper">
+        {eventButton()}
         {Object.keys(EVENTS).map((eventID) => {
           console.log(Object.hasOwn(EVENTS[eventID].eventDisplay, "noList"));
           if (
@@ -161,10 +162,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
             {activeOption !== "empty" ? drawGhostBoxes() : <></>}
           </div>
           <div className="divider"></div>
-          <div>
-            {eventButton()}
-            {drawOptions()}
-          </div>
+          <div>{drawRightHalf()}</div>
         </div>
         {enabled ? <></> : <div className="disableScreen"></div>}
       </div>
