@@ -16,6 +16,56 @@ import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
   const EVENTS = {
+    weblab: {
+      sideEffects: () => {
+        //setActiveScreen("dialogue");
+        //setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            energy: prevStats.energy - 5,
+            technical: prevStats.technical + 1,
+          };
+        });
+
+        alert("Web dev is hard...");
+
+        console.log("weblab");
+      },
+      eventDisplay: {
+        availableTimes: "010000010000010000010000".split(""),
+        name: "Web Lab",
+        description: "It's time to learn!",
+        cssClass: "orange",
+      },
+    },
+    trading: {
+      sideEffects: () => {
+        //setActiveScreen("dialogue");
+        //setFlag(stats.currentTime);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            energy: prevStats.energy - 5,
+            networking: prevStats.networking + 1,
+          };
+        });
+
+        alert("I made some useful connections, hehe.");
+
+        console.log("hrt");
+      },
+      eventDisplay: {
+        availableTimes: "010000010000010000010000".split(""),
+        name: "Hudson River Trading",
+        description: "HRT goes brrrr",
+        cssClass: "orange",
+      },
+    },
     sleep: {
       name: "sleep",
       scriptName: "idfk",
@@ -30,8 +80,10 @@ const GameScreen = (props) => {
             energy: prevStats.energy + 5,
           };
         });
+
+        alert("Sweet dreams!");
         console.log("sleep");
-        setScene(Martin[0]);
+        //setScene(IntroSegment[1]);
       },
       eventDisplay: {
         availableTimes:
@@ -54,19 +106,19 @@ const GameScreen = (props) => {
             ...prevStats,
             currentTime: prevStats.currentTime + 1,
             cooking: prevStats.cooking + 1,
-            energy: prevStats.energy - 1,
+            energy: prevStats.energy + 2 * (prevStats.cooking + 1),
           };
         });
         console.log("cook");
-        setScene(IntroSegment[0]);
+        alert("You cooked a meal! You feel your cooking skill improve and energy replenished.");
+        //setScene("hi");
       },
       eventDisplay: {
-        availableTimes:
-          "001111001111001111001111001111001111001111001111001111001111001111001110".split(""),
+        availableTimes: "011100111100111100111100".split(""),
         name: "Cook!",
         description: "Energize yourself with cooking!\nI hope it's edible...",
         limit: 8,
-        cssClass: "orange",
+        cssClass: "purple",
       },
     },
     date_e1: {
@@ -84,7 +136,7 @@ const GameScreen = (props) => {
       },
       eventDisplay: {
         availableTimes:
-          "000000000100000000000000000000000000000000000000000000000000000000000000".split(""),
+          "10000000000000000000000000000000000000000000000000000000000000000000000".split(""),
         name: "Career Fair",
         description: "I wonder if I'll meet anyone interesting...?",
         limit: 1,
@@ -126,9 +178,9 @@ const GameScreen = (props) => {
       },
       eventDisplay: {
         availableTimes:
-          "000000000000000000000000000000000000000000000000000000000000000000000001".split(""),
+          "000000000000000000000000000000000000000000000000000000000000000000000000".split(""),
         name: "Job Applications",
-        description: "Do you have the skills and relationship to get a job?",
+        description: "The finale: Do you have the skills to get a job?",
         limit: 0,
         cssClass: "important",
       },
@@ -188,6 +240,14 @@ const GameScreen = (props) => {
     }
   }, [props.userId]);
 
+  useEffect(() => {
+    if (stats.energy < 0) {
+      setActiveScreen("dialogue");
+      setScene(IntroSegment[2]);
+      setFlag(1000);
+    }
+  }, [stats]);
+
   return (
     <>
       <div className="gameScreenWrapper">
@@ -214,12 +274,15 @@ const GameScreen = (props) => {
             setStats={setStats}
             stats={stats}
             cleanup={async () => {
-              if (stats.currentTime !== RESETSTATS.currentTime && stats.currentTime < 5) {
-                //TOCHANGE
+              if (
+                stats.currentTime !== RESETSTATS.currentTime &&
+                stats.currentTime < 21 &&
+                stats.energy >= 0
+              ) {
                 await post("/api/save", stats);
               }
 
-              if (stats.currentTime >= 5) {
+              if (stats.currentTime >= 21 || stats.energy < 0) {
                 runEnding();
               } else {
                 setActiveScreen("schedule");

@@ -12,7 +12,7 @@ const ScheduleScreen = ({ enabled, stats, EVENTS, reset }) => {
   const DAYSPERWEEK = 4;
   const PERIODSPERDAY = 6;
 
-  const fixedEventTimes = [71, 9];
+  const fixedEventTimes = [0, 21];
 
   //what is the currently selected option
   const [activeOption, setActiveOption] = useState("empty");

@@ -36,7 +36,7 @@ const EndScreen = ({ enabled, ending, finalStats, resetFunc }) => {
         <li>Sylvia Besk Affection: {finalStats.reputation4}</li>
       </ul>
       <div>
-        <button onClick={resetFunc}>New Game!</button>
+        <button onClick={resetFunc}>Submit To Leaderboards and Start New Game!</button>
       </div>
     </div>
   );
