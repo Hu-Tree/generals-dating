@@ -10,13 +10,45 @@ import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
 
 const GameScreen = (props) => {
+  const ENDTIME = 21; //final event should be at this time. Autosave occurs beforehand.
+
   const runScript = (script) => {
-    getActiveScreen("dialogue");
+    setActiveScreen("dialogue");
     setFlag(stats.currentTime);
     setScene(script);
   };
 
   const EVENTS = {
+    intro1: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[0]);
+      },
+      eventDisplay: {
+        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        name: "Prep For Career Fair",
+        description: "I have to be ready to make a good impression!",
+        cssClass: "important",
+        noList: true,
+      },
+    },
+    intro2: {
+      sideEffects: () => {
+        setStats((prevStats) => {
+          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
+        });
+        runScript(IntroSegment[1]);
+      },
+      eventDisplay: {
+        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
+        name: "Career Fair",
+        description: "I wonder what I jobs I could do...",
+        cssClass: "important",
+        noList: true,
+      },
+    },
     weblab: {
       sideEffects: () => {
         setStats((prevStats) => {
@@ -98,21 +130,6 @@ const GameScreen = (props) => {
         name: "Cook!",
         description: "Energize yourself with cooking!\nI hope it's edible...",
         cssClass: "purple",
-      },
-    },
-    date_e1: {
-      sideEffects: () => {
-        setStats((prevStats) => {
-          return { ...prevStats, currentTime: prevStats.currentTime + 1 };
-        });
-        runScript(IntroSegment[1]);
-      },
-      eventDisplay: {
-        availableTimes: "10000000000000000000000000000000000000000000000000000000000000000000000",
-        name: "Career Fair",
-        description: "I wonder if I'll meet anyone interesting...?",
-        cssClass: "important",
-        noList: true,
       },
     },
     empty: {
@@ -239,13 +256,13 @@ const GameScreen = (props) => {
             cleanup={async () => {
               if (
                 stats.currentTime !== RESETSTATS.currentTime &&
-                stats.currentTime < 21 &&
+                stats.currentTime < ENDTIME &&
                 stats.energy >= 0
               ) {
                 await post("/api/save", stats);
               }
 
-              if (stats.currentTime >= 21 || stats.energy < 0) {
+              if (stats.currentTime >= ENDTIME || stats.energy < 0) {
                 runEnding();
               } else {
                 setActiveScreen("schedule");
