@@ -8,12 +8,32 @@ const EndScreen = ({ enabled, ending, finalStats, resetFunc }) => {
     lonely: {
       title: "Jobless... for only a couple of years",
       blurb:
-        "You didn't get any job offers...for this semester. When you graduate, you end up getting a job regardless. Putting that MIT degree to work, after all.",
+        "You didn't get any job offers...for this semester. When you graduate, you end up getting a job regardless. Putting that UIT degree to work, after all.",
     },
     cooking: {
       title: "Ascension to Cookingdom",
       blurb:
         "You have ascended to cookingdom with how much you have cooked. All mortal worries wash away.",
+    },
+    yay1: {
+      title: "Ungulatory Innovation",
+      blurb:
+        "You have proved your worth, and can now ungulate with the best of them! May your days be filled with discovery and cute catgirls.",
+    },
+    yay2: {
+      title: "Unlimited Investments",
+      blurb:
+        "You have achieved true stonks. Infinite growth, capped only by the size of your limitless ambition, you join JP sailing the seas of gold.",
+    },
+    yay3: {
+      title: "Unified Interests",
+      blurb:
+        "You have secured a spot in one of the most prestigious national defense companies available. They seem cool, and you're well taken care of, but at what cost?",
+    },
+    yay4: {
+      title: "Undefeatable Intern",
+      blurb:
+        "You have a solid start to your career as a software developer. Some may wonder if having a tsundere for a boss is all it's cracked up to be, though.",
     },
   };
   if (!enabled) {
