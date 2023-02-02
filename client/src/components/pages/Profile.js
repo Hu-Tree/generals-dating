@@ -31,7 +31,7 @@ const Profile = (props) => {
         <li>Best Networking Stat: {metaStats.best_networking}</li>
         <li>Best Presentation Stat: {metaStats.best_presentation}</li>
         <li>Best Cooking Stat: {metaStats.best_cooking}</li>
-        <li>Best Ed G Tonne Affection: {metaStats.best_rep1}</li>
+        <li>Best Edna G Tonne Affection: {metaStats.best_rep1}</li>
         <li>Best JP Silverbags Affection: {metaStats.best_rep2}</li>
         <li>Best Martin L Ray Affection: {metaStats.best_rep3}</li>
         <li>Best Sylvia Besk Affection: {metaStats.best_rep4}</li>
