@@ -567,12 +567,6 @@ const GameScreen = (props) => {
   const [industry, setIndustry] = useState(0);
 
   const runEnding = () => {
-    //TOCHANGE
-    if (stats.cooking > 2) {
-      setEnding("cooking");
-    } else {
-      setEnding("lonely");
-    }
     setActiveScreen("end");
   };
 
