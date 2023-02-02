@@ -65,7 +65,7 @@
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../backgrounds/Room.png");
+  background-image: url("../../../backgrounds/Conference.png");
 }
 
 .Corridor {
@@ -106,6 +106,46 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../../backgrounds/Failure.png");
+}
+
+.Meadow {
+  height: 80vh;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../backgrounds/Meadow.png");
+}
+
+.Black {
+  height: 80vh;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../backgrounds/Black.png");
+}
+
+.Sun {
+  height: 80vh;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../backgrounds/Sun.png");
+}
+
+.Field {
+  height: 80vh;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../backgrounds/Field.png");
 }
 
 .Room {
