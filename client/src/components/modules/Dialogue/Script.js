@@ -928,4 +928,4 @@ const clickthroughTest = [
   },
 ];
 
-export { ResettiTestySpaghetti, clickthroughTest, IntroSegment, Martin };
+export { ResettiTestySpaghetti, clickthroughTest, IntroSegment, Martin, Edna, Jp, Sylvia };

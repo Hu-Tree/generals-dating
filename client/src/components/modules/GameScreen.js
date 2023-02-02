@@ -10,6 +10,9 @@ import {
   clickthroughTest,
   IntroSegment,
   Martin,
+  Jp,
+  Edna,
+  Sylvia,
 } from "./Dialogue/Script.js";
 import { get, post } from "../../utilities.js";
 import EndScreen from "./EndScreen/EndScreen";
@@ -83,7 +86,7 @@ const GameScreen = (props) => {
 
         alert("Sweet dreams!");
         console.log("sleep");
-        //setScene(IntroSegment[1]);
+        setScene(Martin[0]);
       },
       eventDisplay: {
         availableTimes:
@@ -111,7 +114,7 @@ const GameScreen = (props) => {
         });
         console.log("cook");
         alert("You cooked a meal! You feel your cooking skill improve and energy replenished.");
-        //setScene("hi");
+        setScene(Jp[0]);
       },
       eventDisplay: {
         availableTimes: "011100111100111100111100".split(""),
