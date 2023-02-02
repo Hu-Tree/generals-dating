@@ -269,7 +269,7 @@ const GameScreen = (props) => {
         );
       },
       eventDisplay: {
-        availableTimes: "000100" + "000100" + "000100" + "000100",
+        availableTimes: "001000" + "001000" + "001000" + "001000",
         name: "Poker Club",
         description: "Cards go brrrrrrrr. -3 energy",
         cssClass: "orange",
@@ -312,9 +312,54 @@ const GameScreen = (props) => {
         });
       },
       eventDisplay: {
-        availableTimes: "000100" + "000000" + "000000" + "000000",
+        availableTimes: "000100" + "000000" + "000000" + "001000",
         name: "Public Speaking Workshop",
         description: "Presenting is hard! -6 energy.",
+        cssClass: "orange",
+      },
+    },
+    hangout: {
+      sideEffects: () => {
+        alert(
+          `You have a fun time exploring Boston! +3 networking, +1 presentation and -3 energy.`
+        );
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            networking: prevStats.networking + 3,
+            presentation: prevStats.presentation + 1,
+            energy: prevStats.energy - 3,
+          };
+        });
+      },
+      eventDisplay: {
+        availableTimes: "011110" + "011110" + "011110" + "011110",
+        name: "Hangout With Acquaintances",
+        description: "Hopefully you enjoy it! -3 energy.",
+        cssClass: "orange",
+      },
+    },
+    minihack: {
+      sideEffects: () => {
+        alert(`So stressful! +6 presentation, +4 networking, +3 technical and -10 energy.`);
+
+        setStats((prevStats) => {
+          return {
+            ...prevStats,
+            currentTime: prevStats.currentTime + 1,
+            networking: prevStats.networking + 4,
+            presentation: prevStats.presentation + 6,
+            technical: prevStats.technical + 3,
+            energy: prevStats.energy - 10,
+          };
+        });
+      },
+      eventDisplay: {
+        availableTimes: "000000" + "000000" + "001000" + "000000",
+        name: "Mini Hackathon",
+        description: "Attend the annual hackathon. -10 energy.",
         cssClass: "orange",
       },
     },

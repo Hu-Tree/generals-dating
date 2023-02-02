@@ -10,7 +10,7 @@ const GamePage = (props) => {
     <>
       <div className="gameWrapper">
         <div className="instructionWrapper">
-          <h3>Can you get a job by the end of IAP?</h3>
+          <h3>Can you get a job?</h3>
           Meet people, make connections, make skills, manage your time, and ultimately impress your
           job prospects!
           <h3>Tutorial:</h3>
