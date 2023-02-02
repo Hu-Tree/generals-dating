@@ -148,14 +148,24 @@
   background-image: url("../../../backgrounds/Field.png");
 }
 
-.Room {
+.Lab {
   height: 80vh;
 
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../backgrounds/Room.png");
+  background-image: url("../../../backgrounds/Lab.png");
+}
+
+.Plane {
+  height: 80vh;
+
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../backgrounds/Plane.png");
 }
 
 .characterPortrait {
